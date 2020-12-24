@@ -60,6 +60,11 @@ void iDraw()
     //place your drawing codes here
     iClear();
     iShowBMP(0,0,"bk\\0.bmp");
+    for(int i = 0; i < number_of_enemy; i++){
+        if(jombie[i].face == 1)
+        iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
+        else iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
+    }
     if(NIN_THROW){
         if(FACE == 1)
         iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
@@ -84,11 +89,6 @@ void iDraw()
                 iShowBMP2(NINCAKU_X, NINCAKU_Y, "atninr\\x.bmp", 255);
             }
             else iShowBMP2(NINCAKU_X, NINCAKU_Y, "atnin\\x.bmp", 255);
-    }
-    for(int i = 0; i < number_of_enemy; i++){
-        if(jombie[i].face == 1)
-        iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
-        else iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
     }
 }
 
@@ -178,7 +178,7 @@ void iSpecialKeyboard(unsigned char key)
 
 void place_enemy(){
     for(int i = 0; i < number_of_enemy; i++){
-        jombie[i].base =  500+(rand()%500);
+        jombie[i].base =  600+(rand()%700);
         jombie[i].face = rand()%2;
         jombie[i].image_index = 0;
         jombie[i].state = i%2;
