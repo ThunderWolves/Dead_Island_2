@@ -1,5 +1,6 @@
 #include "iGraphics.h"
 #include<bits/stdc++.h>
+#include <mmsystem.h>
 using namespace std;
 int ENEMY_SEEING_RANGE = 400;
 const int number_of_enemy = 3;
@@ -16,7 +17,7 @@ int nin_face = 0;
 int GIRL_X = 0, GIRL_Y = FLOOR;
 int jumppic_index = 0, idle_index = 0;
 int NINCAKU_X , NINCAKU_Y;
-int nin_throw_idx = 0;
+int nin_throw_idx = 0, music = 1;
 int RunPicIndex1=0;
 int RunPicIndex2=0;
 int TIME_TO_STOP = 0;
@@ -58,7 +59,7 @@ void iDraw()
 {
     //place your drawing codes here
     iClear();
-    iShowBMP(0,0,"jump\\0.bmp");
+    iShowBMP(0,0,"bk\\0.bmp");
     if(NIN_THROW){
         if(FACE == 1)
         iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
@@ -111,6 +112,13 @@ void iKeyboard(unsigned char key)
     if(key == 'q')
     {
         exit(0);
+    }
+    if(key == 'm'){
+            music ^= 1;
+        if(music){
+        PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+        }
+        else PlaySound(0,0,0);
     }
     if(key == 'w'){
         jump = true;
@@ -189,6 +197,9 @@ void place_enemy(){
 int main()
 {
     place_enemy();
+    if(music){
+        PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+    }
     iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
