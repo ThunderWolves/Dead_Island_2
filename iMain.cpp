@@ -4,12 +4,12 @@
 using namespace std;
 int ENEMY_SEEING_RANGE = 400;
 const int number_of_enemy = 3;
-int desktop_hor = 800, desktop_ver = 500;
+int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
 #include <windows.h>
 bool jump = false;
 int r = 0,g = 255, b = 0;
-int FLOOR = 0;
+int FLOOR = 100;
 bool RUN_STATUS = false;
 bool NIN_SHOW = false, NIN_THROW = false;
 int FACE = 1; //0 mane bam , 1 mane dane
@@ -143,10 +143,6 @@ void iKeyboard(unsigned char key)
             FACE=1;
         }
         GIRL_X+=10;
-        if(GIRL_X>=900)
-        {
-            GIRL_X=900;
-        }
         RunPicIndex1++;
         if(RunPicIndex1>=10)
         RunPicIndex1=0;
@@ -164,8 +160,6 @@ void iKeyboard(unsigned char key)
             FACE=0;
         }
         GIRL_X-=10;
-        if(GIRL_X<0)
-            GIRL_X=0;
         RunPicIndex2++;
             if(RunPicIndex2>=10)
                 RunPicIndex2=0;
