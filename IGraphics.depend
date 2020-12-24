@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1608823088 source:c:\users\ashiq\documents\github\game-development\imain.cpp
+	"iGraphics.h"
+	<bits/stdc++.h>
+	<mmsystem.h>
+	<windows.h>
+	"functions.hpp"
+
+1608787985 c:\users\ashiq\documents\github\game-development\igraphics.h
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"glut.h"
+	<time.h>
+	<math.h>
+	"glaux.h"
+
+1608787985 c:\users\ashiq\documents\github\game-development\opengl\include\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1608787985 c:\users\ashiq\documents\github\game-development\opengl\include\glaux.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1608809105 c:\users\ashiq\documents\github\game-development\functions.hpp
+
