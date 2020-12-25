@@ -22,34 +22,34 @@ void change(){
             if(FACE == 1){
                 jumppic_index++;
                 if(jumppic_index <= 5){
-                    GIRL_X += 20;
-                    GIRL_Y += 20;
+                    GIRL_X += 25;
+                    GIRL_Y += 35;
                 }
                 else if(jumppic_index == 10){
-                    GIRL_Y -= 20;
+                    GIRL_Y -= 35;
                     jumppic_index = 0;
                     jump = false;
                 }
                 else{
-                    GIRL_X += 20;
-                    GIRL_Y -= 20;
+                    GIRL_X += 25;
+                    GIRL_Y -= 35;
                 }
-                GIRL_X = min(desktop_hor-100, GIRL_X);
+                GIRL_X = min(desktop_hor-80, GIRL_X);
             }
             else{
                 jumppic_indexr++;
                 if(jumppic_indexr <= 5){
-                    GIRL_X -= 20;
-                    GIRL_Y += 20;
+                    GIRL_X -= 25;
+                    GIRL_Y += 35;
                 }
                 else if(jumppic_indexr == 10){
-                    GIRL_Y -= 20;
+                    GIRL_Y -= 35;
                     jumppic_indexr = 0;
                     jump = false;
                 }
                 else{
-                    GIRL_X -= 20;
-                    GIRL_Y -= 20;
+                    GIRL_X -= 25;
+                    GIRL_Y -= 35;
                 }
             }
             GIRL_X = max(GIRL_X, 0);
@@ -90,7 +90,7 @@ void change(){
                 }
             }
             if(jombie[i].state == 2 || jombie[i].state == 3){
-                if(abs(GIRL_X - jombie[i].posx) < 100){
+                if(abs(GIRL_X - jombie[i].posx) < 50){
                     continue;
                 }
                 else if(GIRL_X > jombie[i].posx){
@@ -101,13 +101,16 @@ void change(){
                     jombie[i].face = 0;
                     jombie[i].posx -= 15;
                 }
-                if(abs(GIRL_X - jombie[i].posx) < 100 && jombie[i].state == 2){
+                if(abs(GIRL_X - jombie[i].posx) < 50 && jombie[i].state == 2 ){
                     jombie[i].state = 3;
                     jombie[i].image_index = 0;
                 }
-                else if(abs(GIRL_X - jombie[i].posx) > 100 && jombie[i].state == 3){
+                else if(abs(GIRL_X - jombie[i].posx) > 50 && jombie[i].state == 3){
                     jombie[i].state = 2;
                     jombie[i].image_index = 0;
+                }
+                if(jump){
+                    jombie[i].state = 2;
                 }
             }
             if(jombie[i].state == 1){
@@ -131,7 +134,7 @@ void change(){
                 if(NIN_THROW){
                 nin_throw_idx++;
                 if(nin_throw_idx == 8){
-                    NIN_SHOW = true;
+                    ninchuk[throwing_now].state = 1;
                 }
                 if(nin_throw_idx == 10){
                     NIN_THROW = false;
@@ -143,31 +146,39 @@ void change(){
                 if(NIN_THROW){
                     nin_throw_idxr++;
                     if(nin_throw_idxr == 8){
-                        NIN_SHOW = true;
+                        ninchuk[throwing_now].state = 1;
                     }
                     if(nin_throw_idxr == 10){
                     NIN_THROW = false;
                     nin_throw_idxr = 0;
-                }
+                    }
                 }
 
-                }
+            }
     }
     else if(TIME_NOW%3 == 0){
-        if(NIN_SHOW){
-                if(nin_face == 1)
-            NINCAKU_X += 51;
-            else NINCAKU_X -= 51;
-            if(NINCAKU_X > desktop_hor || NINCAKU_X < -100){
-                NIN_SHOW = FALSE;
+        for(int i = 0; i < 5; i++){
+            if(ninchuk[i].state != 1) continue;
+            if(ninchuk[i].face) ninchuk[i].posx += 51;
+            else ninchuk[i].posx -= 51;
+            if(ninchuk[i].posx > desktop_hor || ninchuk[i].posx < -100){
+                ninchuk[i].state = 0;
+                NIN_COUNT--;
             }
-            for(int i = 0; i < number_of_enemy; i++){
-                if(jombie[i].state == 4) continue;
-                if(jombie[i].posx + 10 <= NINCAKU_X ){
-                    NIN_SHOW = false;
-                    jombie[i].state = 4;
-                    jombie[i].image_index = 0;
+            if(ninchuk[i].posy >= jombie[i].posy + 205) continue;
+            for(int ii = 0; ii < number_of_enemy; ii++){
+                if(jombie[ii].state != 1) if(ninchuk[i].posy >= jombie[i].posy + 155) continue;
+                if(jombie[ii].state == 4) continue;
+                if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx){
+                    ninchuk[i].state = 2;
+                    jombie[ii].state = 4;
                 }
+            }
+        }
+        for(int ii = 0; ii < number_of_enemy; ii++){
+            if(abs(jombie[ii].posx - GIRL_X) < 50 && jombie[ii].chaku && jombie[ii].state == 4){
+                    NIN_COUNT--;
+                    jombie[ii].chaku = 0;
             }
         }
     }

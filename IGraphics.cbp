@@ -58,14 +58,6 @@
 		</ExtraCommands>
 		<Unit filename="functions.hpp" />
 		<Unit filename="iMain.cpp" />
-		<Unit filename="testashiq.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="testashiq2.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
