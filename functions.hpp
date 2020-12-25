@@ -132,10 +132,11 @@ void change(){
     if(TIME_NOW%15==0)
     {
         for(int i = 0; i < number_of_enemy; i++)
-         {if(jombie[i].state==3)
+         {
+            if(jombie[i].state==3)
             {
             if(touch_sound==0)
-            PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
+                PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
             life_left=life_left-1;
             touch_sound=1;
             if(life_left<=0)
@@ -154,8 +155,7 @@ void change(){
       {
           if(touch_sound==1)
          {
-          PlaySound(0, 0, 0 );
-          touch_sound=0;
+            touch_sound=0;
           PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
          }
       }
@@ -203,6 +203,7 @@ void change(){
                 if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx){
                     ninchuk[i].state = 2;
                     jombie[ii].state = 4;
+                    jombie[ii].image_index = 0;
                     break;
                 }
             }

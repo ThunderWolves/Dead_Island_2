@@ -4,7 +4,7 @@
 using namespace std;
 int touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 400;
-const int number_of_enemy = 10;
+const int number_of_enemy = 5;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
