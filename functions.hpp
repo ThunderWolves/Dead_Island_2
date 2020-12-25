@@ -129,7 +129,38 @@ void change(){
         }
 
     }
-    else if(TIME_NOW%4==0){
+    if(TIME_NOW%15==0)
+    {
+        for(int i = 0; i < number_of_enemy; i++)
+         {if(jombie[i].state==3)
+            {
+            if(touch_sound==0)
+            PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
+            life_left=life_left-1;
+            touch_sound=1;
+            if(life_left<=0)
+            {
+                exit(0);
+            }
+            }
+         }
+      touch_continue=0;
+      for(int i = 0; i < number_of_enemy; i++)
+      {
+         if(jombie[i].state==3)
+            touch_continue=1;
+      }
+      if(touch_continue==0)
+      {
+          if(touch_sound==1)
+         {
+          PlaySound(0, 0, 0 );
+          touch_sound=0;
+          PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+         }
+      }
+    }
+    if(TIME_NOW%4==0){
             if(FACE == 1){
                 if(NIN_THROW){
                 nin_throw_idx++;
@@ -156,7 +187,7 @@ void change(){
 
             }
     }
-    else if(TIME_NOW%3 == 0){
+    if(TIME_NOW%3 == 0){
         for(int i = 0; i < 5; i++){
             if(ninchuk[i].state != 1) continue;
             if(ninchuk[i].face) ninchuk[i].posx += 51;
