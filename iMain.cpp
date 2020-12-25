@@ -3,7 +3,7 @@
 #include <mmsystem.h>
 using namespace std;
 int ENEMY_SEEING_RANGE = 400;
-const int number_of_enemy = 3;
+const int number_of_enemy = 10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
 #include <windows.h>
@@ -70,11 +70,19 @@ void iDraw()
     iClear();
     iShowBMP(0,0,"bk\\0.bmp");
     for(int i = 0; i < number_of_enemy; i++){
-        if(jombie[i].face == 1)
-        iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
-        else iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
+        printf("%d %d %d\n", jombie[i].state, jombie[i].image_index, jombie[i].face);
+        if(jombie[i].face == 1){
+            iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
+        }
+        else{
+            iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
+        }
     }
-    if(NIN_THROW){
+    if(RUN_STATUS){
+        if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
+        else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
+    }
+    else if(NIN_THROW){
         if(FACE == 1)
         iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
         else iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throwr[nin_throw_idxr], 255);
@@ -83,10 +91,6 @@ void iDraw()
         if(FACE == 1)
         iShowBMP2(GIRL_X,GIRL_Y,jumppic[jumppic_index],255);
         else iShowBMP2(GIRL_X,GIRL_Y,jumppicr[jumppic_indexr],255);
-    }
-    else if(RUN_STATUS){
-        if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
-        else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
     }
     else{
         if(FACE == 1)
@@ -104,7 +108,7 @@ void iDraw()
         }
     }
     iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
-    iShowBMP2(30, desktop_ver-55, num[5-NIN_COUNT], 255);
+    iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
 
 }
 
@@ -140,6 +144,7 @@ void iKeyboard(unsigned char key)
         jump = true;
     }
     if(key == ' '){
+            RUN_STATUS = 0;
             if(NIN_COUNT >= 5 || NIN_THROW) return;
             NIN_THROW = 1;
             NIN_COUNT++;
@@ -155,6 +160,7 @@ void iKeyboard(unsigned char key)
     }
     if(key=='d')
     {
+        if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
         if(jump) return;
         TIME_TO_STOP = TIME_NOW + 20;
         if(TIME_TO_STOP > 1e18) TIME_TO_STOP -= 1e18-1;
@@ -172,6 +178,7 @@ void iKeyboard(unsigned char key)
     }
     if(key=='a')
     {
+        if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
         if(jump) return;
         TIME_TO_STOP = TIME_NOW + 20;
         if(TIME_TO_STOP > 1e18) TIME_TO_STOP -= 1e18-1;

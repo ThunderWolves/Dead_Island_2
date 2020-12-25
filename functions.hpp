@@ -172,6 +172,7 @@ void change(){
                 if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx){
                     ninchuk[i].state = 2;
                     jombie[ii].state = 4;
+                    break;
                 }
             }
         }
