@@ -3,7 +3,7 @@
 #include <mmsystem.h>
 using namespace std;
 int touch_sound=0,touch_continue=0;
-int ENEMY_SEEING_RANGE = 400;
+int ENEMY_SEEING_RANGE = 300;
 const int number_of_enemy = 5;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
@@ -12,7 +12,7 @@ long long int TIME_NOW = 0;
 int throwing_now = 0;
 bool jump = false;
 int r = 0,g = 255, b = 0;
-int FLOOR = 100;
+int FLOOR = 200;
 bool NIN_THROW = false;
 bool RUN_STATUS = false;
 int NIN_COUNT = 0;
@@ -70,7 +70,7 @@ void iDraw()
 {
     //place your drawing codes here
     iClear();
-    iShowBMP(0,0,"bk\\0.bmp");
+    iShowBMP(0,0,"bk\\1.bmp");
     for(int i = 0; i < number_of_enemy; i++){
         if(jombie[i].face == 1){
             iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
