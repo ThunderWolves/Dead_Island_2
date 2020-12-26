@@ -65,7 +65,6 @@ struct arm1{
 };
 enemy1 jombie[number_of_enemy];
 arm1 ninchuk[5];
-#include "functions.hpp"
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 char homemenu[15] = ""; // for homemenu image
@@ -174,11 +173,12 @@ void iDraw()
         iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
         iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
         for(int i = 1; i <= life_left;i++){
-            iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
+            iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);w
         }
         iShowBMP2(450,161,"bk\\brg.bmp",255);
     }
 }
+#include "functions.hpp"
 void place_enemy(){
     for(int i = 0; i < number_of_enemy; i++){
         int dif = (desktop_hor-500)/number_of_enemy;
@@ -209,9 +209,7 @@ int main()
     if(music){
         PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
     }
-    if(game_state >= 1){
-        iSetTimer(10, change);
-    }
+    iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
     return 0;

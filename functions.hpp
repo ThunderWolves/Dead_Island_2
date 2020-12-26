@@ -14,6 +14,7 @@ void GetDesktopResolution(int& horizontal, int& vertical)
 }
 
 void change(){
+    if(game_state < 1) return;
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%6 == 0){
@@ -138,7 +139,7 @@ void change(){
          {
             if(jombie[i].state==3)
             {
-            if(touch_sound==0)
+            if(touch_sound==0 && music)
                 PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
             life_left=life_left-1;
             touch_sound=1;
@@ -156,7 +157,7 @@ void change(){
       }
       if(touch_continue==0)
       {
-          if(touch_sound==1)
+          if(touch_sound==1 && music)
          {
             touch_sound=0;
           PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
