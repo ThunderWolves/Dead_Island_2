@@ -209,7 +209,9 @@ int main()
     if(music){
         PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
     }
-    iSetTimer(10, change);
+    if(game_state >= 1){
+        iSetTimer(10, change);
+    }
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
     return 0;
