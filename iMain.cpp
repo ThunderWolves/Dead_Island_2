@@ -4,7 +4,7 @@
 using namespace std;
 int touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
-const int number_of_enemy = 8;
+const int number_of_enemy = 13;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
@@ -181,8 +181,9 @@ void iDraw()
 }
 void place_enemy(){
     for(int i = 0; i < number_of_enemy; i++){
-        if(i&1) jombie[i].base = 400+(i*115);
-        else jombie[i].base = 400+(i*115);
+        int dif = (desktop_hor-500)/number_of_enemy;
+        if(i&1) jombie[i].base = 400+(i*dif);
+        else jombie[i].base = 400+(i*dif);
         jombie[i].chaku = 1;
         jombie[i].face = rand()%2;
         jombie[i].image_index = 0;
