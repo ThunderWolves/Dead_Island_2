@@ -125,6 +125,9 @@ void change(){
                 if(abs(jombie[i].base - jombie[i].posx) >= jombie[i].walking_range){
                     jombie[i].face ^= 1;
                 }
+                if(jombie[i].posx >= desktop_hor-50){
+                    jombie[i].face = 0;
+                }
             }
         }
 

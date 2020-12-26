@@ -4,7 +4,7 @@
 using namespace std;
 int touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
-const int number_of_enemy = 5;
+const int number_of_enemy = 8;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
@@ -12,13 +12,13 @@ long long int TIME_NOW = 0;
 int throwing_now = 0;
 bool jump = false;
 int r = 0,g = 255, b = 0;
-int FLOOR = 100;
+vector<int>FLOOR(500);
 bool NIN_THROW = false;
 bool RUN_STATUS = false;
 int NIN_COUNT = 0;
 int FACE = 1; //0 mane bam , 1 mane dane
 int nin_face = 0;
-int GIRL_X = 0, GIRL_Y = FLOOR;
+int GIRL_X = 0, GIRL_Y = 100;
 int jumppic_index = 0, idle_index = 0;
 int nin_throw_idx = 0, music = 1;
 int RunPicIndex1=0;
@@ -52,7 +52,7 @@ char t1enmyr[5][14][20] = { {"t1\\idler\\1.bmp","t1\\idler\\2.bmp","t1\\idler\\3
 char num[6][20] = {"num\\0.bmp","num\\1.bmp","num\\2.bmp","num\\3.bmp","num\\4.bmp","num\\5.bmp"};
 int sizt1[5] = {8,6,9,6,12};
 struct enemy1{
-    int chaku = 1;
+    int chaku;
     int state; //0 idle 1 walking 2 running 3 damage 4 dead
     int walking_range, face;
     int base;
@@ -81,107 +81,122 @@ void iDraw()
     //place your drawing codes here
     iClear();
     // for handeling button, change by farhan
-    cout << game_state << endl;
     if(game_state == 0) {
         iShowBMP(0, 0, "mainmenu\\menu.bmp");
         for(int i = 0; i < 3; i++) {
             iShowBMP2(bCordinate[i].x, bCordinate[i].y, button[i], 255);
         }
     } // end here
-    else { // fy farhan
-
-    iShowBMP(0,0,"bk\\0.bmp");
-    for(int i = 0; i < number_of_enemy; i++){
-        if(jombie[i].face == 1){
-            iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
-        }
-        else{
-            iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
-        }
-    }
-    if(RUN_STATUS){
-        if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
-        else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
-    }
-    else if(NIN_THROW){
-        if(FACE == 1)
-        iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
-        else iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throwr[nin_throw_idxr], 255);
-    }
-    else if(jump){
-        if(FACE == 1)
-        iShowBMP2(GIRL_X,GIRL_Y,jumppic[jumppic_index],255);
-        else iShowBMP2(GIRL_X,GIRL_Y,jumppicr[jumppic_indexr],255);
-    }
-    else{
-        if(FACE == 1)
-        iShowBMP2(GIRL_X, GIRL_Y, idlepic[idle_index],255);
-        else iShowBMP2(GIRL_X, GIRL_Y, idlepicr[idle_indexr],255);
-    }
-    for(int nin = 0; nin < 5; nin++){
-        if(ninchuk[nin].state == 1){
-            if(ninchuk[nin].face == 1){
-                iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atnin//x.bmp", 255);
+    else if(game_state == 1){ // fy farhan
+        iShowBMP(0,0,"bk\\0.bmp");
+        for(int i = 0; i < number_of_enemy; i++){
+            if(jombie[i].face == 1){
+                iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
             }
             else{
-                iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atninr//x.bmp", 255);
+                iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
             }
         }
-    }
-    iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
-    iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
-    for(int i = 1; i <= life_left;i++){
-        iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
-    }
-    }
-
-}
-
-void iMouseMove(int mx, int my)
-{
-
-}
-void iMouse(int button, int state, int mx, int my)
-{
-    // by farhan, start
-    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-    {
-        for(int i = 0; i < 3; i++) {
-            if(mx >= bCordinate[i].x && mx <= bCordinate[i].x + 149 && my >= bCordinate[i].y && my <= bCordinate[i].y + 150) {
-                game_state = 1;
+        if(RUN_STATUS){
+            if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
+            else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
+        }
+        else if(NIN_THROW){
+            if(FACE == 1)
+            iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
+            else iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throwr[nin_throw_idxr], 255);
+        }
+        else if(jump){
+            if(FACE == 1)
+            iShowBMP2(GIRL_X,GIRL_Y,jumppic[jumppic_index],255);
+            else iShowBMP2(GIRL_X,GIRL_Y,jumppicr[jumppic_indexr],255);
+        }
+        else{
+            if(FACE == 1)
+            iShowBMP2(GIRL_X, GIRL_Y, idlepic[idle_index],255);
+            else iShowBMP2(GIRL_X, GIRL_Y, idlepicr[idle_indexr],255);
+        }
+        for(int nin = 0; nin < 5; nin++){
+            if(ninchuk[nin].state == 1){
+                if(ninchuk[nin].face == 1){
+                    iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atnin//x.bmp", 255);
+                }
+                else{
+                    iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atninr//x.bmp", 255);
+                }
             }
         }
+        iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
+        iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
+        for(int i = 1; i <= life_left;i++){
+            iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
+        }
     }
-    // by farhan, end
-    if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-    {
+    else if(game_state == 2){
+        iShowBMP(0,0,"bk\\1.bmp");
+        for(int i = 0; i < number_of_enemy; i++){
+            if(jombie[i].face == 1){
+                iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
+            }
+            else{
+                iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
+            }
+        }
+        if(RUN_STATUS){
+            if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
+            else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
+        }
+        else if(NIN_THROW){
+            if(FACE == 1)
+            iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
+            else iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throwr[nin_throw_idxr], 255);
+        }
+        else if(jump){
+            if(FACE == 1)
+            iShowBMP2(GIRL_X,GIRL_Y,jumppic[jumppic_index],255);
+            else iShowBMP2(GIRL_X,GIRL_Y,jumppicr[jumppic_indexr],255);
+        }
+        else{
+            if(FACE == 1)
+            iShowBMP2(GIRL_X, GIRL_Y, idlepic[idle_index],255);
+            else iShowBMP2(GIRL_X, GIRL_Y, idlepicr[idle_indexr],255);
+        }
+        for(int nin = 0; nin < 5; nin++){
+            if(ninchuk[nin].state == 1){
+                if(ninchuk[nin].face == 1){
+                    iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atnin//x.bmp", 255);
+                }
+                else{
+                    iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atninr//x.bmp", 255);
+                }
+            }
+        }
+        iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
+        iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
+        for(int i = 1; i <= life_left;i++){
+            iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
+        }
+        iShowBMP2(450,161,"bk\\brg.bmp",255);
     }
 }
-
-void iSpecialKeyboard(unsigned char key)
-{
-    if(key == GLUT_KEY_END)
-    {
-        exit(0);
-    }
-}
-#include "ikeyboard.hpp";
-
 void place_enemy(){
     for(int i = 0; i < number_of_enemy; i++){
-        jombie[i].base =  600+(rand()%700);
+        if(i&1) jombie[i].base = 400+(i*115);
+        else jombie[i].base = 400+(i*115);
+        jombie[i].chaku = 1;
         jombie[i].face = rand()%2;
         jombie[i].image_index = 0;
         jombie[i].state = i%2;
         jombie[i].posx = jombie[i].base;
-        jombie[i].posy = FLOOR;
+        jombie[i].posy = FLOOR[game_state];
         jombie[i].walking_range = 200;
     }
 }
-
+#include "ikeyboard.hpp";
 int main()
 {
     // for homemenu, by farhan, start
+    FLOOR[1] = 100; FLOOR[2] = 200;
      int sum  = 100;
     for(int i = 2; i >= 0; i--) {
         bCordinate[i].x = desktop_hor-250;

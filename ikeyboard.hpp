@@ -1,3 +1,32 @@
+void iMouseMove(int mx, int my)
+{
+
+}
+void iMouse(int button, int state, int mx, int my)
+{
+    // by farhan, start
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+    {
+        for(int i = 0; i < 3; i++) {
+            if(mx >= bCordinate[i].x && mx <= bCordinate[i].x + 149 && my >= bCordinate[i].y && my <= bCordinate[i].y + 150) {
+                game_state = 1;
+                place_enemy();
+            }
+        }
+    }
+    // by farhan, end
+    if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+    {
+    }
+}
+
+void iSpecialKeyboard(unsigned char key)
+{
+    if(key == GLUT_KEY_END)
+    {
+        exit(0);
+    }
+}
 
 void iKeyboard(unsigned char key)
 {
@@ -65,5 +94,18 @@ void iKeyboard(unsigned char key)
                 RunPicIndex2=0;
         GIRL_X = min(desktop_hor-100, GIRL_X);
         GIRL_X = max(GIRL_X, 0);
+    }
+    if(key == 'n'){
+        for(int i = 0;i < number_of_enemy; i++){
+            if(jombie[i].state != 4){
+                return;
+            }
+        }
+        if(GIRL_X >= desktop_hor-150){
+            game_state++;
+            place_enemy();
+            GIRL_X = 0;
+            GIRL_Y = FLOOR[game_state];
+        }
     }
 }
