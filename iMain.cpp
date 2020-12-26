@@ -12,7 +12,7 @@ long long int TIME_NOW = 0;
 int throwing_now = 0;
 bool jump = false;
 int r = 0,g = 255, b = 0;
-int FLOOR = 200;
+int FLOOR = 100;
 bool NIN_THROW = false;
 bool RUN_STATUS = false;
 int NIN_COUNT = 0;
@@ -66,11 +66,31 @@ struct arm1{
 enemy1 jombie[number_of_enemy];
 arm1 ninchuk[5];
 #include "functions.hpp"
+// for handeling button, change by farhan
+char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
+char homemenu[15] = ""; // for homemenu image
+int game_state = 0;
+struct buttonCordinate {
+    int x;
+    int y;
+}bCordinate[3];
+// end here, by farhan
+
 void iDraw()
 {
     //place your drawing codes here
     iClear();
-    iShowBMP(0,0,"bk\\1.bmp");
+    // for handeling button, change by farhan
+    cout << game_state << endl;
+    if(game_state == 0) {
+        iShowBMP(0, 0, "mainmenu\\menu.bmp");
+        for(int i = 0; i < 3; i++) {
+            iShowBMP2(bCordinate[i].x, bCordinate[i].y, button[i], 255);
+        }
+    } // end here
+    else { // fy farhan
+
+    iShowBMP(0,0,"bk\\0.bmp");
     for(int i = 0; i < number_of_enemy; i++){
         if(jombie[i].face == 1){
             iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
@@ -110,8 +130,9 @@ void iDraw()
     }
     iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
     iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
-    for(int i = 0; i < life_left;i++){
+    for(int i = 1; i <= life_left;i++){
         iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
+    }
     }
 
 }
@@ -122,10 +143,16 @@ void iMouseMove(int mx, int my)
 }
 void iMouse(int button, int state, int mx, int my)
 {
+    // by farhan, start
     if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
-
+        for(int i = 0; i < 3; i++) {
+            if(mx >= bCordinate[i].x && mx <= bCordinate[i].x + 149 && my >= bCordinate[i].y && my <= bCordinate[i].y + 150) {
+                game_state = 1;
+            }
+        }
     }
+    // by farhan, end
     if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
     {
     }
@@ -154,6 +181,14 @@ void place_enemy(){
 
 int main()
 {
+    // for homemenu, by farhan, start
+     int sum  = 100;
+    for(int i = 2; i >= 0; i--) {
+        bCordinate[i].x = desktop_hor-250;
+        bCordinate[i].y = sum;
+        sum += 170;
+    }
+    // end, farhan
     place_enemy();
     if(music){
         PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);

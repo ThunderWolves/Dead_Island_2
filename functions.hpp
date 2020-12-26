@@ -200,7 +200,8 @@ void change(){
             for(int ii = 0; ii < number_of_enemy; ii++){
                 if(jombie[ii].state != 1) if(ninchuk[i].posy >= jombie[i].posy + 155) continue;
                 if(jombie[ii].state == 4) continue;
-                if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx){
+                if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx ||
+                        (GIRL_X >= jombie[ii].posx && ninchuk[i].posx <= jombie[ii].posx)){
                     ninchuk[i].state = 2;
                     jombie[ii].state = 4;
                     jombie[ii].image_index = 0;
