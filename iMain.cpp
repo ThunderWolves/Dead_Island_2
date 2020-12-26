@@ -53,10 +53,16 @@ char num[6][20] = {"num\\0.bmp","num\\1.bmp","num\\2.bmp","num\\3.bmp","num\\4.b
 int sizt1[5] = {8,6,9,6,12};
 struct enemy1{
     int chaku;
-    int state; //0 idle 1 walking 2 running 3 damage 4 dead
+    int state; //0 idle 1 walking 2 running 3 damage 4 dead 5 hurt
     int walking_range, face;
     int base;
     int posx, posy, image_index;
+};
+struct enemy2{
+    int chaku;
+    int state;
+    int walking_range, face;
+    int base, posx, posy, image_index;
 };
 struct arm1{
     int state = 0;
@@ -173,7 +179,7 @@ void iDraw()
         iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
         iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
         for(int i = 1; i <= life_left;i++){
-            iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);w
+            iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
         }
         iShowBMP2(450,161,"bk\\brg.bmp",255);
     }
@@ -207,7 +213,7 @@ int main()
     // end, farhan
     place_enemy();
     if(music){
-        PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+        PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
     }
     iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);

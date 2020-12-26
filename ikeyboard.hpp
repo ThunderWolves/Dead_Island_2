@@ -11,6 +11,9 @@ void iMouse(int button, int state, int mx, int my)
             if(mx >= bCordinate[i].x && mx <= bCordinate[i].x + 149 && my >= bCordinate[i].y && my <= bCordinate[i].y + 150) {
                 game_state = 1;
                 place_enemy();
+                if(music){
+                    PlaySound("music.wav", NULL,SND_LOOP | SND_ASYNC);
+                }
             }
         }
     }
