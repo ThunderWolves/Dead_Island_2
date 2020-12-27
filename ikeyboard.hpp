@@ -108,7 +108,8 @@ void iKeyboard(unsigned char key)
             game_state++;
             place_enemy();
             GIRL_X = 0;
-            GIRL_Y = FLOOR[game_state];
+            GIRL_Y = FLOOR[game_state][0][0];
+
         }
     }
 }

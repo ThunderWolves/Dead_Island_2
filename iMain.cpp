@@ -2,9 +2,10 @@
 #include<bits/stdc++.h>
 #include <mmsystem.h>
 using namespace std;
+int GRAVITY_SPEED = 40;
 int touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
-const int number_of_enemy = 1;
+const int number_of_enemy = 7;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
@@ -12,7 +13,7 @@ long long int TIME_NOW = 0;
 int throwing_now = 0;
 bool jump = false;
 int r = 0,g = 255, b = 0;
-vector<int>FLOOR(500);
+int FLOOR[20][1400][1000]; // game_state & x,y,
 bool NIN_THROW = false;
 bool RUN_STATUS = false;
 int NIN_COUNT = 0;
@@ -25,6 +26,9 @@ int RunPicIndex1=0;
 int RunPicIndex2=0;
 int TIME_TO_STOP = 0;
 int jumppic_indexr = 0, idle_indexr = 0, nin_throw_idxr = 0;
+
+
+
 char jumppic[12][20] = {"jump\\1.bmp","jump\\2.bmp","jump\\3.bmp","jump\\4.bmp","jump\\5.bmp","jump\\6.bmp","jump\\7.bmp","jump\\8.bmp","jump\\9.bmp",
 "jump\\10.bmp"};
 char idlepic[12][20] = {"idle\\0.bmp","idle\\1.bmp","idle\\2.bmp","idle\\3.bmp","idle\\4.bmp","idle\\5.bmp","idle\\6.bmp","idle\\7.bmp","idle\\8.bmp","idle\\9.bmp"};
@@ -56,6 +60,7 @@ char t2enemy[5][14][20] = { {"grl\\idle\\1.bmp","grl\\idle\\2.bmp","grl\\idle\\3
                 {"grl\\ded\\1.bmp","grl\\ded\\2.bmp","grl\\ded\\3.bmp","grl\\ded\\4.bmp","grl\\ded\\5.bmp","grl\\ded\\6.bmp","grl\\ded\\7.bmp","grl\\ded\\8.bmp","grl\\ded\\9.bmp","grl\\ded\\10.bmp","grl\\ded\\11.bmp","grl\\ded\\12.bmp"} };
 char num[6][20] = {"num\\0.bmp","num\\1.bmp","num\\2.bmp","num\\3.bmp","num\\4.bmp","num\\5.bmp"};
 int sizt1[5] = {8,6,9,6,12};
+char end_pic[15][25] = {"game_over\\e1.bmp", "game_over\\e2.bmp", "game_over\\e3.bmp", "game_over\\e4.bmp", "game_over\\e5.bmp"};
 struct enemy1{
     int chaku;
     int state; //0 idle 1 walking 2 running 3 damage 4 dead
@@ -78,14 +83,15 @@ enemy1 jombie[number_of_enemy];
 arm1 ninchuk[5];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
-char homemenu[15] = ""; // for homemenu image
+char homemenu[15] = "";
+// for homemenu image
 int game_state = 0;
 struct buttonCordinate {
     int x;
     int y;
 }bCordinate[3];
 // end here, by farhan
-
+#include "show_girl.hpp";
 void iDraw()
 {
     //place your drawing codes here
@@ -99,48 +105,17 @@ void iDraw()
     } // end here
     else if(game_state == 1){ // fy farhan
         iShowBMP(0,0,"bk\\0.bmp");
+        //show jombies
         for(int i = 0; i < number_of_enemy; i++){
             if(jombie[i].face == 1){
+                printf("%d %d\n", jombie[i].state, jombie[i].image_index);
                 iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
             }
             else{
                 iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
             }
         }
-        if(RUN_STATUS){
-            if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
-            else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
-        }
-        else if(NIN_THROW){
-            if(FACE == 1)
-            iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
-            else iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throwr[nin_throw_idxr], 255);
-        }
-        else if(jump){
-            if(FACE == 1)
-            iShowBMP2(GIRL_X,GIRL_Y,jumppic[jumppic_index],255);
-            else iShowBMP2(GIRL_X,GIRL_Y,jumppicr[jumppic_indexr],255);
-        }
-        else{
-            if(FACE == 1)
-            iShowBMP2(GIRL_X, GIRL_Y, idlepic[idle_index],255);
-            else iShowBMP2(GIRL_X, GIRL_Y, idlepicr[idle_indexr],255);
-        }
-        for(int nin = 0; nin < 5; nin++){
-            if(ninchuk[nin].state == 1){
-                if(ninchuk[nin].face == 1){
-                    iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atnin//x.bmp", 255);
-                }
-                else{
-                    iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atninr//x.bmp", 255);
-                }
-            }
-        }
-        iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
-        iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
-        for(int i = 1; i <= life_left;i++){
-            iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
-        }
+        show_girl();
     }
     else if(game_state == 2){
         iShowBMP(0,0,"bk\\1.bmp");
@@ -152,44 +127,27 @@ void iDraw()
                 iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
             }
         }
-        if(RUN_STATUS){
-            if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
-            else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
-        }
-        else if(NIN_THROW){
-            if(FACE == 1)
-            iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
-            else iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throwr[nin_throw_idxr], 255);
-        }
-        else if(jump){
-            if(FACE == 1)
-            iShowBMP2(GIRL_X,GIRL_Y,jumppic[jumppic_index],255);
-            else iShowBMP2(GIRL_X,GIRL_Y,jumppicr[jumppic_indexr],255);
-        }
-        else{
-            if(FACE == 1)
-            iShowBMP2(GIRL_X, GIRL_Y, idlepic[idle_index],255);
-            else iShowBMP2(GIRL_X, GIRL_Y, idlepicr[idle_indexr],255);
-        }
-        for(int nin = 0; nin < 5; nin++){
-            if(ninchuk[nin].state == 1){
-                if(ninchuk[nin].face == 1){
-                    iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atnin//x.bmp", 255);
-                }
-                else{
-                    iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atninr//x.bmp", 255);
-                }
-            }
-        }
-        iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
-        iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
-        for(int i = 1; i <= life_left;i++){
-            iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
-        }
+        show_girl();
         iShowBMP2(450,161,"bk\\brg.bmp",255);
     }
 }
 #include "functions.hpp"
+void place_floor(){
+    for(int i = 1; i <= 13; i++){
+        for(int j = 0; j <= 1300; j++){
+            for(int k = 0; k <= 800; k++){
+                if(i == 1){
+                    FLOOR[i][j][k] = 100;
+                }
+                else if(i == 2){
+                    FLOOR[i][j][k] = 200;
+                }
+                //floors here
+            }
+        }
+    }
+}
+
 void place_enemy(){
     for(int i = 0; i < number_of_enemy; i++){
         int dif = (desktop_hor-500)/number_of_enemy;
@@ -200,7 +158,7 @@ void place_enemy(){
         jombie[i].image_index = 0;
         jombie[i].state = i%2;
         jombie[i].posx = jombie[i].base;
-        jombie[i].posy = FLOOR[game_state];
+        jombie[i].posy = FLOOR[game_state][0][0];
         jombie[i].walking_range = 200;
     }
 }
@@ -208,7 +166,7 @@ void place_enemy(){
 int main()
 {
     // for homemenu, by farhan, start
-    FLOOR[1] = 100; FLOOR[2] = 200;
+    place_floor();
      int sum  = 100;
     for(int i = 2; i >= 0; i--) {
         bCordinate[i].x = desktop_hor-250;
