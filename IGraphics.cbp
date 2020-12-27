@@ -60,6 +60,7 @@
 		<Unit filename="functions.hpp" />
 		<Unit filename="iMain.cpp" />
 		<Unit filename="ikeyboard.hpp" />
+		<Unit filename="show_girl.hpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
