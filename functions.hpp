@@ -163,6 +163,7 @@ void change(){
                 if(NIN_THROW){
                 nin_throw_idx++;
                 if(nin_throw_idx == 8){
+                    NIN_COUNT++;
                     ninchuk[throwing_now].state = 1;
                 }
                 if(nin_throw_idx == 10){
@@ -207,10 +208,12 @@ void change(){
                     chakus_in_dead_body.push_back(i);
                     ninchuk[i].state = 2;
                     jombie[ii].state = 4;
+                    jombie[ii].chaku = 1;
                     jombie[ii].image_index = 0;
-                    break;
+                    goto hell;
                 }
             }
+            hell:;
         }
         for(int ii = 0; ii < number_of_enemy; ii++){
             if(abs(jombie[ii].posx - GIRL_X) < 50 && jombie[ii].chaku && jombie[ii].state == 4){

@@ -2,11 +2,10 @@
 #include<bits/stdc++.h>
 #include <mmsystem.h>
 using namespace std;
-int GRAVITY_SPEED = 40;
-int touch_sound=0,touch_continue=0;
+int GRAVITY_SPEED = 40, base= 0,touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
 int MAX_NINCHUK = 3;
-const int number_of_enemy = 1;
+const int number_of_enemy = 4;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
@@ -17,9 +16,9 @@ int r = 0,g = 255, b = 0;
 int FLOOR[20][1400][1000]; // game_state & x,y,
 bool NIN_THROW = false;
 bool RUN_STATUS = false;
-int NIN_COUNT = 0;
+int NIN_COUNT = 0, UNLOCKED_CHARACTER = 1;
 int FACE = 1; //0 mane bam , 1 mane dane
-int GIRL_X = 0, GIRL_Y = 0;
+int GIRL_X = 0, GIRL_Y = 100;
 vector<int>chakus_in_dead_body;
 int jumppic_index = 0, idle_index = 0;
 int nin_throw_idx = 0, music = 1;
@@ -82,7 +81,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 3;
+int game_state = 0;
 struct buttonCordinate {
     int x;
     int y;
@@ -138,14 +137,14 @@ void place_floor(){
 void place_enemy(){
     int dif = (desktop_hor-500)/number_of_enemy;
     for(int i = 0; i < number_of_enemy; i++){
-        jombie[i].type = 1;
+        jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
         jombie[i].image_index = rand()%6;
         if(i&1) jombie[i].base = 400+(i*dif);
         else jombie[i].base = 400+(i*dif);
         jombie[i].chaku = 0;
         jombie[i].face = rand()%2;
         jombie[i].image_index = 0;
-        jombie[i].state = (i+1)%2;
+        jombie[i].state = i%2;
         jombie[i].posx = jombie[i].base;
         jombie[i].posy = FLOOR[game_state][0][0];
         jombie[i].walking_range = 200;
@@ -168,7 +167,6 @@ int main()
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
     }
-    GIRL_Y = FLOOR[game_state][0][0];
     iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");

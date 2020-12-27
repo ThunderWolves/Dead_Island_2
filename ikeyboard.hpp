@@ -51,7 +51,6 @@ void iKeyboard(unsigned char key)
             RUN_STATUS = 0;
             if(NIN_COUNT >= MAX_NINCHUK || NIN_THROW) return;
             NIN_THROW = 1;
-            NIN_COUNT++;
             for(int i = 0; i < MAX_NINCHUK; i++){
                 if(ninchuk[i].state == 1) continue;
                 throwing_now = i;
@@ -111,7 +110,30 @@ void iKeyboard(unsigned char key)
             place_enemy();
             GIRL_X = 0;
             GIRL_Y = FLOOR[game_state][0][0];
-
+            if(game_state > 1){
+                UNLOCKED_CHARACTER = 2;
+            }
+            if(game_state <= 3){
+                base = 0;
+            }
+            else if(game_state <= 6){
+                base = 2;
+            }
+            else if(game_state == 7){
+                base = 0;
+            }
+            else if(game_state == 8){
+                base = 2;
+            }
+            else if(game_state <= 9){
+                base = 0;
+            }
+            else if(game_state <= 11){
+                base = 0;
+            }
+            else if(game_state <= 13){
+                base = 2;
+            }
         }
     }
 }

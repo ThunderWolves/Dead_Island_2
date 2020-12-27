@@ -30,7 +30,7 @@ Take this.
 Shimla will press ‘O’ to open (ar khulle hasnain cartoonize face ar name asbe :-) )
 Page 8:Fight with some jombies
 Page 9: Fight with some pirates.
-Page 10: Meet with Ashiq.
+Page 9: Meet with Ashiq.
         Shimla: Apni ki Ashiq?
         Ashiq: Ha, k apni ?
         Shimla: Ami apnar theke help nite asche. Apni ki amak help korte parben Hasnain k defeat korte ?
@@ -46,6 +46,7 @@ Page 10: Meet with Ashiq.
         A FEW MOMENTS LATER
         Ashiq : Ajk tomar training sesh holo (Shimlar new arms asbe)
         May be a co-fight or not
+Page 10: Trainning finished ( may be an automatic fight);
 Page 11: Jombie Attack
 Page 12: pirate attack
 Page 13: Last fight.
