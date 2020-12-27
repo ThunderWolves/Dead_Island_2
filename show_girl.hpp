@@ -18,7 +18,7 @@ void show_girl(){
             iShowBMP2(GIRL_X, GIRL_Y, idlepic[idle_index],255);
             else iShowBMP2(GIRL_X, GIRL_Y, idlepicr[idle_indexr],255);
         }
-        for(int nin = 0; nin < 5; nin++){
+        for(int nin = 0; nin < MAX_NINCHUK; nin++){
             if(ninchuk[nin].state == 1){
                 if(ninchuk[nin].face == 1){
                     iShowBMP2(ninchuk[nin].posx, ninchuk[nin].posy, "atnin//x.bmp", 255);
@@ -29,7 +29,7 @@ void show_girl(){
             }
         }
         iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
-        iShowBMP2(35, desktop_ver-45, num[5-NIN_COUNT], 255);
+        iShowBMP2(35, desktop_ver-45, num[MAX_NINCHUK-NIN_COUNT], 255);
         for(int i = 1; i <= life_left;i++){
             iShowBMP2(desktop_hor-(i*53), desktop_ver-55,"bk//life.bmp", 255);
         }

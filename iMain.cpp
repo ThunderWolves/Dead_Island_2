@@ -5,6 +5,7 @@ using namespace std;
 int GRAVITY_SPEED = 40;
 int touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
+int MAX_NINCHUK = 3;
 const int number_of_enemy = 7;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
@@ -79,8 +80,8 @@ struct arm1{
     int posx, posy;
     int face;
 };
+arm1 ninchuk[30];
 enemy1 jombie[number_of_enemy];
-arm1 ninchuk[5];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 char homemenu[15] = "";

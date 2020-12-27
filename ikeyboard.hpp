@@ -49,10 +49,10 @@ void iKeyboard(unsigned char key)
     }
     if(key == ' '){
             RUN_STATUS = 0;
-            if(NIN_COUNT >= 5 || NIN_THROW) return;
+            if(NIN_COUNT >= MAX_NINCHUK || NIN_THROW) return;
             NIN_THROW = 1;
             NIN_COUNT++;
-            for(int i = 0; i < 5; i++){
+            for(int i = 0; i < MAX_NINCHUK; i++){
                 if(ninchuk[i].state == 1) continue;
                 throwing_now = i;
                 ninchuk[i].face = FACE;
