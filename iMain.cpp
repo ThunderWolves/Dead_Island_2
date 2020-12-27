@@ -4,7 +4,7 @@
 using namespace std;
 int touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
-const int number_of_enemy = 13;
+const int number_of_enemy = 1;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
@@ -49,11 +49,16 @@ char t1enmyr[5][14][20] = { {"t1\\idler\\1.bmp","t1\\idler\\2.bmp","t1\\idler\\3
                 {"t1\\runr\\2.bmp","t1\\runr\\3.bmp","t1\\runr\\4.bmp","t1\\runr\\5.bmp","t1\\runr\\6.bmp","t1\\runr\\7.bmp","t1\\runr\\8.bmp","t1\\runr\\9.bmp","t1\\runr\\10.bmp"},
                 {"t1\\atkr\\1.bmp","t1\\atkr\\2.bmp","t1\\atkr\\3.bmp","t1\\atkr\\4.bmp","t1\\atkr\\5.bmp","t1\\atkr\\6.bmp"},
                 {"t1\\dedr\\1.bmp","t1\\dedr\\2.bmp","t1\\dedr\\3.bmp","t1\\dedr\\4.bmp","t1\\dedr\\5.bmp","t1\\dedr\\6.bmp","t1\\dedr\\7.bmp","t1\\dedr\\8.bmp","t1\\dedr\\9.bmp","t1\\dedr\\10.bmp","t1\\dedr\\11.bmp","t1\\dedr\\12.bmp"} };
+char t2enemy[5][14][20] = { {"grl\\idle\\1.bmp","grl\\idle\\2.bmp","grl\\idle\\3.bmp","grl\\idle\\4.bmp","grl\\idle\\5.bmp","grl\\idle\\6.bmp","grl\\idle\\7.bmp","grl\\idle\\8.bmp"},
+                {"grl\\walk\\1.bmp","grl\\walk\\2.bmp","grl\\walk\\3.bmp","grl\\walk\\4.bmp","grl\\walk\\5.bmp","grl\\walk\\6.bmp"},
+                {"grl\\run\\2.bmp","grl\\run\\3.bmp","grl\\run\\4.bmp","grl\\run\\5.bmp","grl\\run\\6.bmp","grl\\run\\7.bmp","grl\\run\\8.bmp","grl\\run\\9.bmp","grl\\run\\10.bmp"},
+                {"grl\\atk\\1.bmp","grl\\atk\\2.bmp","grl\\atk\\3.bmp","grl\\atk\\4.bmp","grl\\atk\\5.bmp","grl\\atk\\6.bmp"},
+                {"grl\\ded\\1.bmp","grl\\ded\\2.bmp","grl\\ded\\3.bmp","grl\\ded\\4.bmp","grl\\ded\\5.bmp","grl\\ded\\6.bmp","grl\\ded\\7.bmp","grl\\ded\\8.bmp","grl\\ded\\9.bmp","grl\\ded\\10.bmp","grl\\ded\\11.bmp","grl\\ded\\12.bmp"} };
 char num[6][20] = {"num\\0.bmp","num\\1.bmp","num\\2.bmp","num\\3.bmp","num\\4.bmp","num\\5.bmp"};
 int sizt1[5] = {8,6,9,6,12};
 struct enemy1{
     int chaku;
-    int state; //0 idle 1 walking 2 running 3 damage 4 dead 5 hurt
+    int state; //0 idle 1 walking 2 running 3 damage 4 dead
     int walking_range, face;
     int base;
     int posx, posy, image_index;
