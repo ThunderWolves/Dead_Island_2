@@ -1,3 +1,27 @@
+void show_jombie(){
+        for(int i = 0; i < number_of_enemy; i++){
+            if(jombie[i].type == 0){
+                if(jombie[i].face == 1){
+                    iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
+                }
+                else{
+                    iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
+                }
+            }
+            else if(jombie[i].type == 1){
+                for(int i = 0; i < number_of_enemy; i++){
+                        cout << jombie[i].face << " "<< jombie[i].state << " "<< jombie[i].image_index << endl;
+                    if(jombie[i].face == 1){
+                        iShowBMP2(jombie[i].posx, jombie[i].posy, t2enemy[jombie[i].state][jombie[i].image_index], 255);
+                    }
+                    else{
+                        iShowBMP2(jombie[i].posx, jombie[i].posy, t2enemyr[jombie[i].state][jombie[i].image_index], 255);
+                    }
+                }
+            }
+        }
+}
+
 void show_girl(){
     if(RUN_STATUS){
             if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);

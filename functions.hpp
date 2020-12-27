@@ -17,7 +17,7 @@ void change(){
     if(game_state < 1) return;
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
-    if(TIME_NOW%6 == 0){
+    if(TIME_NOW%5 == 0){
             //normal moves
         if(jump){
             if(FACE == 1){
@@ -70,7 +70,7 @@ void change(){
 
         for(int i = 0; i < number_of_enemy; i++){
             if(jombie[i].state == 4 ){
-                if(jombie[i].image_index >= 7){
+                if(jombie[i].image_index >= 10){
                     jombie[i].image_index = 7;
                     continue;
                 }
@@ -133,27 +133,22 @@ void change(){
                 }
             }
         }
-        if(life_left <= 0) exit(0);
 
     }
     if(TIME_NOW%15==0 && life_left > 0)
     {
+        touch_continue=0;
         for(int i = 0; i < number_of_enemy; i++)
          {
             if(jombie[i].state==3)
             {
+                touch_continue=1;
             if(touch_sound==0 && music)
                 PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
             life_left=life_left-1;
             touch_sound=1;
             }
          }
-      touch_continue=0;
-      for(int i = 0; i < number_of_enemy; i++)
-      {
-         if(jombie[i].state==3)
-            touch_continue=1;
-      }
       if(touch_continue==0)
       {
           if(touch_sound==1 && music)
@@ -203,12 +198,13 @@ void change(){
                 ninchuk[i].state = 0;
                 NIN_COUNT--;
             }
-            if(ninchuk[i].posy >= jombie[i].posy + 205) continue;
+            if(ninchuk[i].posy >= jombie[i].posy + 200) continue;
             for(int ii = 0; ii < number_of_enemy; ii++){
-                if(jombie[ii].state != 1) if(ninchuk[i].posy >= jombie[i].posy + 155) continue;
+                if(jombie[ii].state != 1) if(ninchuk[i].posy >= jombie[i].posy + 150) continue;
                 if(jombie[ii].state == 4) continue;
                 if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx ||
                         (GIRL_X >= jombie[ii].posx && ninchuk[i].posx <= jombie[ii].posx)){
+                    chakus_in_dead_body.push_back(i);
                     ninchuk[i].state = 2;
                     jombie[ii].state = 4;
                     jombie[ii].image_index = 0;
@@ -218,6 +214,8 @@ void change(){
         }
         for(int ii = 0; ii < number_of_enemy; ii++){
             if(abs(jombie[ii].posx - GIRL_X) < 50 && jombie[ii].chaku && jombie[ii].state == 4){
+                    int km = chakus_in_dead_body.back();
+                    ninchuk[km].state = 0;
                     NIN_COUNT--;
                     jombie[ii].chaku = 0;
             }

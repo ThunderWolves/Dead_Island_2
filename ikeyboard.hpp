@@ -64,6 +64,7 @@ void iKeyboard(unsigned char key)
     }
     if(key=='d')
     {
+        NIN_THROW = 0;
         if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
         if(jump) return;
         TIME_TO_STOP = TIME_NOW + 20;
@@ -82,6 +83,7 @@ void iKeyboard(unsigned char key)
     }
     if(key=='a')
     {
+        NIN_THROW = 0;
         if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
         if(jump) return;
         TIME_TO_STOP = TIME_NOW + 20;
