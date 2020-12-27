@@ -19,7 +19,6 @@ bool NIN_THROW = false;
 bool RUN_STATUS = false;
 int NIN_COUNT = 0;
 int FACE = 1; //0 mane bam , 1 mane dane
-int nin_face = 0;
 int GIRL_X = 0, GIRL_Y = 100;
 int jumppic_index = 0, idle_index = 0;
 int nin_throw_idx = 0, music = 1;
@@ -27,8 +26,6 @@ int RunPicIndex1=0;
 int RunPicIndex2=0;
 int TIME_TO_STOP = 0;
 int jumppic_indexr = 0, idle_indexr = 0, nin_throw_idxr = 0;
-
-
 
 char jumppic[12][20] = {"jump\\1.bmp","jump\\2.bmp","jump\\3.bmp","jump\\4.bmp","jump\\5.bmp","jump\\6.bmp","jump\\7.bmp","jump\\8.bmp","jump\\9.bmp",
 "jump\\10.bmp"};
