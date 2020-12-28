@@ -214,9 +214,8 @@ void change(){
                 ninchuk[i].state = 0;
                 NIN_COUNT--;
             }
-            if(ninchuk[i].posy >= jombie[i].posy + 200) continue;
             for(int ii = 0; ii < number_of_enemy; ii++){
-                if(jombie[ii].state != 1) if(ninchuk[i].posy >= jombie[i].posy + 150) continue;
+                if(ninchuk[i].posy > jombie[ii].posy+150+(50*(jombie[ii].state == 1)) || ninchuk[i].posy < jombie[ii].posy) continue;
                 if(jombie[ii].state == 4) continue;
                 if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx ||
                         (GIRL_X >= jombie[ii].posx && ninchuk[i].posx <= jombie[ii].posx)){
