@@ -176,6 +176,7 @@ void change(){
                 if(NIN_THROW){
                     nin_throw_idxr++;
                     if(nin_throw_idxr == 8){
+                        NIN_COUNT++;
                         ninchuk[throwing_now].state = 1;
                     }
                     if(nin_throw_idxr == 10){
@@ -191,7 +192,7 @@ void change(){
             int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
             GIRL_Y -= min(dif, GRAVITY_SPEED);
         }
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < MAX_NINCHUK; i++){
             if(ninchuk[i].state != 1) continue;
             if(ninchuk[i].face) ninchuk[i].posx += 51;
             else ninchuk[i].posx -= 51;
