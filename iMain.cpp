@@ -171,17 +171,17 @@ void place_floor(){
                         }
                     }
                     if(j >= 390 && j <= 645){
-                        if( k >= 444){
+                        if( k >= 384){
                             FLOOR[i][j][k] = 384;
                         }
                     }
                     if(j >= 915 && j <= 1200){
-                        if( k >= 444){
+                        if( k >= 344){
                             FLOOR[i][j][k] = 344;
                         }
                     }
                     if(j >= 600 && j <= 915){
-                        if( k >= 444){
+                        if( k >= 239){
                             FLOOR[i][j][k] = 239;
                         }
                     }
@@ -237,7 +237,7 @@ int main()
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
     }
-    iSetTimer(80, change);
+    iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
     return 0;

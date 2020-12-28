@@ -28,8 +28,8 @@ void change(){
                     GIRL_Y += GIRL_JUMP_Y;
                 }
                 else if(jumppic_index == 10){
-                    GIRL_Y -= GIRL_JUMP_Y;
-                    GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
+                    int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
+                    dif= min(dif, GIRL_JUMP_Y);
                     jumppic_index = 0;
                     jump = false;
                 }
@@ -48,7 +48,8 @@ void change(){
                     GIRL_Y += GIRL_JUMP_Y;
                 }
                 else if(jumppic_indexr == 10){
-                    GIRL_Y -= GIRL_JUMP_Y;
+                    int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
+                    dif= min(dif, GIRL_JUMP_Y);
                     jumppic_indexr = 0;
                     jump = false;
                 }
@@ -211,6 +212,8 @@ void change(){
     }
     if(TIME_NOW%3 == 0){
         if(GIRL_Y > FLOOR[game_state][GIRL_X][GIRL_Y] && !jump){
+            cout << "Here " << endl;
+            cout << GIRL_Y << " "<< FLOOR[game_state][GIRL_X][GIRL_Y] << endl;
             int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
             GIRL_Y -= min(dif, GRAVITY_SPEED);
         }
