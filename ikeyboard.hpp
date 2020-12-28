@@ -7,6 +7,7 @@ void iMouse(int button, int state, int mx, int my)
     // by farhan, start
     if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
+        if(game_state > 0) return;
         for(int i = 0; i < 3; i++) {
             if(mx >= bCordinate[i].x && mx <= bCordinate[i].x + 149 && my >= bCordinate[i].y && my <= bCordinate[i].y + 150) {
                 game_state = 1;
@@ -113,6 +114,7 @@ void iKeyboard(unsigned char key)
             }
         }
         if(GIRL_X >= desktop_hor-150){
+                cout << "Here"  << endl;
             game_state++;
             GIRL_X = 0;
             GIRL_Y = FLOOR[game_state][0][0];

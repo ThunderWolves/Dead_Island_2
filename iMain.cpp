@@ -4,7 +4,7 @@
 using namespace std;
 int GRAVITY_SPEED = 40, base= 0,touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
-int MAX_NINCHUK = 3;
+int MAX_NINCHUK = 3, GIRL_JUMP_Y = 50;
 const int number_of_enemy = 1;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
@@ -164,11 +164,31 @@ void place_floor(){
                     FLOOR[i][j][k] = 150;
                 }
                 if(i == 4){
-                    FLOOR[i][j][k] = 344;
+                    FLOOR[i][j][k] = 81;
+                    if(j >= 50 && j <= 370){
+                        if( k >= 444){
+                            FLOOR[i][j][k] = 444;
+                        }
+                    }
+                    if(j >= 390 && j <= 645){
+                        if( k >= 444){
+                            FLOOR[i][j][k] = 384;
+                        }
+                    }
+                    if(j >= 915 && j <= 1200){
+                        if( k >= 444){
+                            FLOOR[i][j][k] = 344;
+                        }
+                    }
+                    if(j >= 600 && j <= 915){
+                        if( k >= 444){
+                            FLOOR[i][j][k] = 239;
+                        }
+                    }
                     //onest = 50, oneen = 370;
                     //twost = 390, twoen = 645;
                     //threest = 600, threeen = 915;
-                    //fourst = 915, fouren = ;
+                    //fourst = 915, fouren = 1200;
                     //floor = 81;
                     //one = 444;
                     //two = 384;
@@ -217,7 +237,7 @@ int main()
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
     }
-    iSetTimer(10, change);
+    iSetTimer(80, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
     return 0;

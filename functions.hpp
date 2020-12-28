@@ -18,23 +18,24 @@ void change(){
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
+        cout << GIRL_X  << " "<< GIRL_Y << " " << FLOOR[game_state][GIRL_X][GIRL_Y] << endl;
             //normal moves
         if(jump){
             if(FACE == 1){
                 jumppic_index++;
                 if(jumppic_index <= 5){
                     GIRL_X += 30;
-                    GIRL_Y += 35;
+                    GIRL_Y += GIRL_JUMP_Y;
                 }
                 else if(jumppic_index == 10){
-                    GIRL_Y -= 35;
+                    GIRL_Y -= GIRL_JUMP_Y;
                     GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
                     jumppic_index = 0;
                     jump = false;
                 }
                 else{
                     int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
-                    dif= min(dif, 35);
+                    dif= min(dif, GIRL_JUMP_Y);
                     GIRL_X += max(0,dif-5);
                     GIRL_Y -= dif;
                 }
@@ -44,16 +45,16 @@ void change(){
                 jumppic_indexr++;
                 if(jumppic_indexr <= 5){
                     GIRL_X -= 30;
-                    GIRL_Y += 35;
+                    GIRL_Y += GIRL_JUMP_Y;
                 }
                 else if(jumppic_indexr == 10){
-                    GIRL_Y -= 35;
+                    GIRL_Y -= GIRL_JUMP_Y;
                     jumppic_indexr = 0;
                     jump = false;
                 }
                 else{
                     int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
-                    dif= min(dif, 35);
+                    dif= min(dif, GIRL_JUMP_Y);
                     GIRL_X -= max(0,dif-5);
                     GIRL_Y -= dif;
                 }
