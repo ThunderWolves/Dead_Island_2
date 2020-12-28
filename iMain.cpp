@@ -147,6 +147,12 @@ void iDraw()
         iShowBMP(0,0,"bk\\4.bmp");
         show_jombie();
         show_girl();
+        if(!jump){
+            iShowBMP2(100,448,"bk\\41.bmp",255);
+            iShowBMP2(444,388,"bk\\42.bmp",255);
+            iShowBMP2(658,241,"bk\\43.bmp",255);
+            iShowBMP2(968,344,"bk\\44.bmp",255);
+        }
     }
 }
 #include "functions.hpp"
@@ -165,17 +171,17 @@ void place_floor(){
                 }
                 else if(i == 4){
                     FLOOR[i][j][k] = 81;
-                    if(j >= 50 && j <= 370 && k >= 444){
-                            FLOOR[i][j][k] = 444;
+                    if(j >= 50 && j <= 370 && k >= 448){
+                            FLOOR[i][j][k] = 448;
                     }
-                    else if(j >= 390 && j <= 667 && k >= 384){  //bug here
-                            FLOOR[i][j][k] = 384;
+                    else if(j >= 390 && j <= 667 && k >= 388){  //bug here
+                            FLOOR[i][j][k] = 388;
                     }
                     else if(j >= 915 && j <= 1200 && k >= 344){
                             FLOOR[i][j][k] = 344;
                     }
-                    else if(j >= 597 && j <= 915 && k >= 239){
-                            FLOOR[i][j][k] = 239;
+                    else if(j >= 597 && j <= 915 && k >= 241){
+                            FLOOR[i][j][k] = 241;
                     }
                 }
             }
