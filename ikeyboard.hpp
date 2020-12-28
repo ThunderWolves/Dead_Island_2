@@ -37,7 +37,7 @@ void iKeyboard(unsigned char key)
     {
         exit(0);
     }
-    if(key == 'm'){
+    if(key == 'p'){
             music ^= 1;
         if(music){
         PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
@@ -98,6 +98,12 @@ void iKeyboard(unsigned char key)
                 RunPicIndex2=0;
         GIRL_X = min(desktop_hor-100, GIRL_X);
         GIRL_X = max(GIRL_X, 0);
+    }
+    if(key=='m' && game_state>=1)
+    {
+        toroal=1;
+        RUN_STATUS = 0;
+        NIN_THROW = 0;
     }
     if(key == 'n'){
         for(int i = 0;i < number_of_enemy; i++){

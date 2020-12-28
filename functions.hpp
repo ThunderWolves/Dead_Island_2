@@ -171,6 +171,14 @@ void change(){
                     nin_throw_idx = 0;
                 }
                 }
+                 else if(toroal)//start- shimla
+                {
+                toroal_index++;
+                if(toroal_index== 10){
+                    toroal=0;
+                    toroal_index=0;
+                }
+                }
             }
             else{
                 if(NIN_THROW){
@@ -183,8 +191,14 @@ void change(){
                     NIN_THROW = false;
                     nin_throw_idxr = 0;
                     }
-                }
-
+                }else if(toroal)//start- shimla
+                {
+                toroal_indexr++;
+                if(toroal_indexr== 10){
+                    toroal=0;
+                    toroal_indexr=0;
+                }// end- shimla
+               }
             }
     }
     if(TIME_NOW%3 == 0){
@@ -222,6 +236,14 @@ void change(){
                     ninchuk[km].state = 0;
                     NIN_COUNT--;
                     jombie[ii].chaku = 0;
+            }
+        }
+        for(int ii = 0; ii < number_of_enemy ; ii++){
+            if(((GIRL_X+90 >= jombie[ii].posx && GIRL_X<=jombie[ii].posx ) ||(GIRL_X - 60<= jombie[ii].posx && GIRL_X>=jombie[ii].posx)) && jombie[ii].state !=4 && toroal==1)
+            {
+                jombie[ii].state=4;
+                jombie[ii].image_index = 0;
+                break;
             }
         }
     }

@@ -29,6 +29,12 @@ void show_girl(){
             iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throw[nin_throw_idx], 255);
             else iShowBMP2(GIRL_X, GIRL_Y, Ninchaku_throwr[nin_throw_idxr], 255);
         }
+        else if(toroal)//start- shimla
+        {
+            if(FACE == 1)
+            iShowBMP2(GIRL_X, GIRL_Y, toroal_pic[toroal_index], 255);
+            else iShowBMP2(GIRL_X, GIRL_Y, toroal_picr[toroal_indexr], 255);
+        }
         else if(jump){
             if(FACE == 1)
             iShowBMP2(GIRL_X,GIRL_Y,jumppic[jumppic_index],255);
