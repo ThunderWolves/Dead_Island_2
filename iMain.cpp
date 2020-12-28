@@ -13,6 +13,7 @@ long long int TIME_NOW = 0;
 int throwing_now = 0;
 bool jump = false;
 int r = 0,g = 255, b = 0;
+int tolowar_dmg = 0;
 int FLOOR[20][1400][1000]; // game_state & x,y,
 bool NIN_THROW = false;
 bool RUN_STATUS = false;

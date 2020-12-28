@@ -241,8 +241,10 @@ void change(){
         for(int ii = 0; ii < number_of_enemy ; ii++){
             if(((GIRL_X+90 >= jombie[ii].posx && GIRL_X<=jombie[ii].posx ) ||(GIRL_X - 60<= jombie[ii].posx && GIRL_X>=jombie[ii].posx)) && jombie[ii].state !=4 && toroal==1)
             {
+                if(abs(GIRL_Y - jombie[ii].posy) > 50 || !tolowar_dmg) continue;
                 jombie[ii].state=4;
                 jombie[ii].image_index = 0;
+                tolowar_dmg = 0;
                 break;
             }
         }
