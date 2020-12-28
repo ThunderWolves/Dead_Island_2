@@ -5,7 +5,7 @@ using namespace std;
 int GRAVITY_SPEED = 40, base= 0,touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
 int MAX_NINCHUK = 3;
-const int number_of_enemy = 4;
+const int number_of_enemy = 2;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
@@ -136,6 +136,7 @@ void place_floor(){
 }
 void place_enemy(){
     int dif = (desktop_hor-500)/number_of_enemy;
+    cout << game_state << " "<< base << " "<< UNLOCKED_CHARACTER << endl;
     for(int i = 0; i < number_of_enemy; i++){
         jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
         jombie[i].image_index = rand()%6;

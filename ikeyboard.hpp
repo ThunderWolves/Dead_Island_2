@@ -107,9 +107,9 @@ void iKeyboard(unsigned char key)
         }
         if(GIRL_X >= desktop_hor-150){
             game_state++;
-            place_enemy();
             GIRL_X = 0;
             GIRL_Y = FLOOR[game_state][0][0];
+            cout << "Here " << game_state << endl;
             if(game_state > 1){
                 UNLOCKED_CHARACTER = 2;
             }
@@ -134,6 +134,7 @@ void iKeyboard(unsigned char key)
             else if(game_state <= 13){
                 base = 2;
             }
+            place_enemy();
         }
     }
 }
