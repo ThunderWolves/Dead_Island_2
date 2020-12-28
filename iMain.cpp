@@ -4,7 +4,7 @@
 using namespace std;
 int GRAVITY_SPEED = 40, base= 0,touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
-int MAX_NINCHUK = 3, GIRL_JUMP_Y = 50;
+int MAX_NINCHUK = 3, GIRL_JUMP_Y = 35;
 const int number_of_enemy = 1;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;

@@ -18,7 +18,6 @@ void change(){
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
-        cout << GIRL_X  << " "<< GIRL_Y << " " << FLOOR[game_state][GIRL_X][GIRL_Y] << endl;
             //normal moves
         if(jump){
             if(FACE == 1){
@@ -90,6 +89,7 @@ void change(){
                 else if(jombie[i].image_index >= 7) jombie[i].image_index = 0;
             }
             if(jombie[i].state == 1 || jombie[i].state == 0){
+                if(abs(GIRL_Y - jombie[i].posy) > 150) goto hell_ya;
                 if(abs(GIRL_X - jombie[i].posx) <= ENEMY_SEEING_RANGE){
                     bool GIRL_ar_dik = 0;
                     if(GIRL_X > jombie[i].posx ){
@@ -101,9 +101,16 @@ void change(){
                     }
                 }
             }
+            cout << jombie[i].state << endl;
             if(jombie[i].state == 2 || jombie[i].state == 3){
+                if(abs(GIRL_Y - jombie[i].posy) > 150) {
+                    jombie[i].base = jombie[i].posx;
+                    jombie[i].state = 1;
+                    jombie[i].image_index = 0;
+                    goto hell_ya;
+                }
                 if(abs(GIRL_X - jombie[i].posx) <= 50 && jombie[i].state == 3){
-                    continue;
+                    goto hell_ya;
                 }
                 else if(GIRL_X > jombie[i].posx){
                         jombie[i].face = 1;
@@ -113,7 +120,8 @@ void change(){
                     jombie[i].face = 0;
                     jombie[i].posx -= 15;
                 }
-                if(abs(GIRL_X - jombie[i].posx) <= 50 && jombie[i].state == 2 ){
+                if(abs(GIRL_X - jombie[i].posx) <= 50 && jombie[i].state == 2){
+                    if(abs(GIRL_Y - jombie[i].posy) > 50) goto hell_ya;
                     jombie[i].state = 3;
                     jombie[i].image_index = 0;
                 }
@@ -125,6 +133,8 @@ void change(){
                     jombie[i].state = 2;
                 }
             }
+            hell_ya:
+            cout << jombie[i].state << endl << endl;
             if(jombie[i].state == 1){
                 if(jombie[i].face == 1){
                     jombie[i].posx += 10;
@@ -242,6 +252,7 @@ void change(){
         }
         for(int ii = 0; ii < number_of_enemy; ii++){
             if(abs(jombie[ii].posx - GIRL_X) < 50 && jombie[ii].chaku && jombie[ii].state == 4){
+                    if(abs(GIRL_Y - jombie[ii].posy) > 50) continue;
                     int km = chakus_in_dead_body.back();
                     ninchuk[km].state = 0;
                     NIN_COUNT--;
