@@ -231,8 +231,6 @@ int main()
         sum += 170;
     }
     // end, farhan
-    GIRL_X = 1200;
-    GIRL_Y = FLOOR[game_state][0][0];
     place_enemy();
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
