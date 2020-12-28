@@ -109,7 +109,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 0;
+int game_state = 4;
 struct buttonCordinate {
     int x;
     int y;
@@ -163,37 +163,20 @@ void place_floor(){
                 else if(i == 3){
                     FLOOR[i][j][k] = 150;
                 }
-                if(i == 4){
+                else if(i == 4){
                     FLOOR[i][j][k] = 81;
-                    if(j >= 50 && j <= 370){
-                        if( k >= 444){
+                    if(j >= 50 && j <= 370 && k >= 444){
                             FLOOR[i][j][k] = 444;
-                        }
                     }
-                    if(j >= 390 && j <= 645){
-                        if( k >= 384){
+                    else if(j >= 390 && j <= 667 && k >= 384){  //bug here
                             FLOOR[i][j][k] = 384;
-                        }
                     }
-                    if(j >= 915 && j <= 1200){
-                        if( k >= 344){
+                    else if(j >= 915 && j <= 1200 && k >= 344){
                             FLOOR[i][j][k] = 344;
-                        }
                     }
-                    if(j >= 600 && j <= 915){
-                        if( k >= 239){
+                    else if(j >= 597 && j <= 915 && k >= 239){
                             FLOOR[i][j][k] = 239;
-                        }
                     }
-                    //onest = 50, oneen = 370;
-                    //twost = 390, twoen = 645;
-                    //threest = 600, threeen = 915;
-                    //fourst = 915, fouren = 1200;
-                    //floor = 81;
-                    //one = 444;
-                    //two = 384;
-                    //three = 239;
-                    //four = 344;
                 }
             }
         }
