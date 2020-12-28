@@ -5,7 +5,7 @@ using namespace std;
 int GRAVITY_SPEED = 40, base= 0,touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
 int MAX_NINCHUK = 3;
-const int number_of_enemy = 6;
+const int number_of_enemy = 1;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
@@ -68,6 +68,29 @@ int toroal_index=0,toroal_indexr=0;
 char toroal_pic[15][25]={"toroal\\1.bmp","toroal\\2.bmp","toroal\\3.bmp","toroal\\4.bmp","toroal\\5.bmp","toroal\\6.bmp","toroal\\7.bmp","toroal\\8.bmp","toroal\\9.bmp","toroal\\10.bmp"};
 char toroal_picr[15][25]={"toroalr\\1.bmp","toroalr\\2.bmp","toroalr\\3.bmp","toroalr\\4.bmp","toroalr\\5.bmp","toroalr\\6.bmp","toroalr\\7.bmp","toroalr\\8.bmp","toroalr\\9.bmp","toroalr\\10.bmp"};
 int sizt1[5] = {8,6,9,6,12};
+char p1[5][14][30] = { {"pirate\\p1\\idle\\1.bmp","pirate\\p1\\idle\\2.bmp","pirate\\p1\\idle\\3.bmp","pirate\\p1\\idle\\4.bmp","pirate\\p1\\idle\\5.bmp","pirate\\p1\\idle\\6.bmp","pirate\\p1\\idle\\7.bmp"},
+                {"pirate\\p1\\walk\\1.bmp","pirate\\p1\\walk\\2.bmp","pirate\\p1\\walk\\3.bmp","pirate\\p1\\walk\\4.bmp","pirate\\p1\\walk\\5.bmp","pirate\\p1\\walk\\6.bmp","pirate\\p1\\walk\\7.bmp"},
+                {"pirate\\p1\\run\\1.bmp","pirate\\p1\\run\\2.bmp","pirate\\p1\\run\\3.bmp","pirate\\p1\\run\\4.bmp","pirate\\p1\\run\\5.bmp","pirate\\p1\\run\\6.bmp","pirate\\p1\\run\\7.bmp"},
+                {"pirate\\p1\\atk\\1.bmp","pirate\\p1\\atk\\2.bmp","pirate\\p1\\atk\\3.bmp","pirate\\p1\\atk\\4.bmp","pirate\\p1\\atk\\5.bmp","pirate\\p1\\atk\\6.bmp","pirate\\p1\\atk\\7.bmp"},
+                {"pirate\\p1\\ded\\1.bmp","pirate\\p1\\ded\\2.bmp","pirate\\p1\\ded\\3.bmp","pirate\\p1\\ded\\4.bmp","pirate\\p1\\ded\\5.bmp","pirate\\p1\\ded\\6.bmp","pirate\\p1\\ded\\7.bmp"} };
+
+char p1r[5][14][30] = { {"pirate\\p1\\idler\\1.bmp","pirate\\p1\\idler\\2.bmp","pirate\\p1\\idler\\3.bmp","pirate\\p1\\idler\\4.bmp","pirate\\p1\\idler\\5.bmp","pirate\\p1\\idler\\6.bmp","pirate\\p1\\idler\\7.bmp"},
+                {"pirate\\p1\\walkr\\1.bmp","pirate\\p1\\walkr\\2.bmp","pirate\\p1\\walkr\\3.bmp","pirate\\p1\\walkr\\4.bmp","pirate\\p1\\walkr\\5.bmp","pirate\\p1\\walkr\\6.bmp","pirate\\p1\\walkr\\7.bmp"},
+                {"pirate\\p1\\runr\\1.bmp","pirate\\p1\\runr\\2.bmp","pirate\\p1\\runr\\3.bmp","pirate\\p1\\runr\\4.bmp","pirate\\p1\\runr\\5.bmp","pirate\\p1\\runr\\6.bmp","pirate\\p1\\runr\\7.bmp"},
+                {"pirate\\p1\\atkr\\1.bmp","pirate\\p1\\atkr\\2.bmp","pirate\\p1\\atkr\\3.bmp","pirate\\p1\\atkr\\4.bmp","pirate\\p1\\atkr\\5.bmp","pirate\\p1\\atkr\\6.bmp","pirate\\p1\\atkr\\7.bmp"},
+                {"pirate\\p1\\dedr\\1.bmp","pirate\\p1\\dedr\\2.bmp","pirate\\p1\\dedr\\3.bmp","pirate\\p1\\dedr\\4.bmp","pirate\\p1\\dedr\\5.bmp","pirate\\p1\\dedr\\6.bmp","pirate\\p1\\dedr\\7.bmp"} };
+
+char p2[5][14][30] = { {"pirate\\p2\\idle\\1.bmp","pirate\\p2\\idle\\2.bmp","pirate\\p2\\idle\\3.bmp","pirate\\p2\\idle\\4.bmp","pirate\\p2\\idle\\5.bmp","pirate\\p2\\idle\\6.bmp","pirate\\p2\\idle\\7.bmp"},
+                {"pirate\\p2\\walk\\1.bmp","pirate\\p2\\walk\\2.bmp","pirate\\p2\\walk\\3.bmp","pirate\\p2\\walk\\4.bmp","pirate\\p2\\walk\\5.bmp","pirate\\p2\\walk\\6.bmp","pirate\\p2\\walk\\7.bmp"},
+                {"pirate\\p2\\run\\1.bmp","pirate\\p2\\run\\2.bmp","pirate\\p2\\run\\3.bmp","pirate\\p2\\run\\4.bmp","pirate\\p2\\run\\5.bmp","pirate\\p2\\run\\6.bmp","pirate\\p2\\run\\7.bmp"},
+                {"pirate\\p2\\atk\\1.bmp","pirate\\p2\\atk\\2.bmp","pirate\\p2\\atk\\3.bmp","pirate\\p2\\atk\\4.bmp","pirate\\p2\\atk\\5.bmp","pirate\\p2\\atk\\6.bmp","pirate\\p2\\atk\\7.bmp"},
+                {"pirate\\p2\\ded\\1.bmp","pirate\\p2\\ded\\2.bmp","pirate\\p2\\ded\\3.bmp","pirate\\p2\\ded\\4.bmp","pirate\\p2\\ded\\5.bmp","pirate\\p2\\ded\\6.bmp","pirate\\p2\\ded\\7.bmp"} };
+char p2r[5][14][30] = { {"pirate\\p2\\idler\\1.bmp","pirate\\p2\\idler\\2.bmp","pirate\\p2\\idler\\3.bmp","pirate\\p2\\idler\\4.bmp","pirate\\p2\\idler\\5.bmp","pirate\\p2\\idler\\6.bmp","pirate\\p2\\idler\\7.bmp"},
+                {"pirate\\p2\\walkr\\1.bmp","pirate\\p2\\walkr\\2.bmp","pirate\\p2\\walkr\\3.bmp","pirate\\p2\\walkr\\4.bmp","pirate\\p2\\walkr\\5.bmp","pirate\\p2\\walkr\\6.bmp","pirate\\p2\\walkr\\7.bmp"},
+                {"pirate\\p2\\runr\\1.bmp","pirate\\p2\\runr\\2.bmp","pirate\\p2\\runr\\3.bmp","pirate\\p2\\runr\\4.bmp","pirate\\p2\\runr\\5.bmp","pirate\\p2\\runr\\6.bmp","pirate\\p2\\runr\\7.bmp"},
+                {"pirate\\p2\\atkr\\1.bmp","pirate\\p2\\atkr\\2.bmp","pirate\\p2\\atkr\\3.bmp","pirate\\p2\\atkr\\4.bmp","pirate\\p2\\atkr\\5.bmp","pirate\\p2\\atkr\\6.bmp","pirate\\p2\\atkr\\7.bmp"},
+                {"pirate\\p2\\dedr\\1.bmp","pirate\\p2\\dedr\\2.bmp","pirate\\p2\\dedr\\3.bmp","pirate\\p2\\dedr\\4.bmp","pirate\\p2\\dedr\\5.bmp","pirate\\p2\\dedr\\6.bmp","pirate\\p2\\dedr\\7.bmp"} };
+
 struct enemy1{
     int type;
     int chaku;
@@ -86,7 +109,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 0;
+int game_state = 4;
 struct buttonCordinate {
     int x;
     int y;
@@ -120,6 +143,11 @@ void iDraw()
         show_jombie();
         show_girl();
     }
+    else if(game_state == 4){
+        iShowBMP(0,0,"bk\\4.bmp");
+        show_jombie();
+        show_girl();
+    }
 }
 #include "functions.hpp"
 void place_floor(){
@@ -134,6 +162,18 @@ void place_floor(){
                 }
                 else if(i == 3){
                     FLOOR[i][j][k] = 150;
+                }
+                if(i == 4){
+                    FLOOR[i][j][k] = 344;
+                    //onest = 50, oneen = 370;
+                    //twost = 390, twoen = 645;
+                    //threest = 600, threeen = 915;
+                    //fourst = 915, fouren = ;
+                    //floor = 81;
+                    //one = 444;
+                    //two = 384;
+                    //three = 239;
+                    //four = 344;
                 }
             }
         }
@@ -153,6 +193,9 @@ void place_enemy(){
         jombie[i].posx = jombie[i].base;
         jombie[i].posy = FLOOR[game_state][0][0];
         jombie[i].walking_range = 200;
+        if(jombie[i].type > 1){
+            jombie[i].posy -= 10;
+        }
     }
 }
 #include "ikeyboard.hpp";
@@ -168,6 +211,8 @@ int main()
         sum += 170;
     }
     // end, farhan
+    GIRL_X = 1200;
+    GIRL_Y = FLOOR[game_state][0][0];
     place_enemy();
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
@@ -177,4 +222,3 @@ int main()
     iInitialize(desktop_hor, desktop_ver, "Demo!");
     return 0;
 }
-

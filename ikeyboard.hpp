@@ -33,6 +33,7 @@ void iSpecialKeyboard(unsigned char key)
 
 void iKeyboard(unsigned char key)
 {
+    if(key >= 'A' && key <= 'Z') key = char(key+32);
     if(key == 'q')
     {
         exit(0);
@@ -120,7 +121,7 @@ void iKeyboard(unsigned char key)
                 UNLOCKED_CHARACTER = 2;
             }
             if(game_state <= 3){
-                base = 0;
+                base = 2;
             }
             else if(game_state <= 6){
                 base = 2;

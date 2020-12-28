@@ -13,13 +13,12 @@ Page 3: New jombie level 2 (chele)
           Shimla : Ai jombie gulor to aro baje obostha. Kibabe alo ai virus ?
 Page 4: Enemy :
           Shimla : Aikhane ai Pirate aslo kivabe? Ara zombie hoini kano? Tarmane ki r o kono rohosho ache? Aikhane ki human traficing hocce ?
-Page 5: Enemy : jombies
-Page 6: See sara for the first time
+Page 6: See sara for the first time   (sobuj bk + gorto)
         Shimla: sara ? Tui aikhane ? Ai tomra k ? Chere daw sara k;
         Hasnain : Haha, k tumi. Ami charbo nah sara k. Tumi ja eccha koro.
         Mara mari fight hasnain + jombies
             Shimla oggan hasnain er mair a. -_-
-Page 7: Meet with farhan.
+Page 7: Meet with farhan. (same bk);
         Farhan : I am Farhan, I am from anti-terrorist squad (ATS).Tumi aikhane kano ascho?
         Shimla: Ami amar friend sara k khujte asche.
         Farhan: Aikhane tumi civilian hoya kano ascho ? Nijaka protect akhon tomake nijai korte hobe. Ami tomak akta help korte pari. Ai auto-combat drone ta rakho.
@@ -28,7 +27,7 @@ Shimla : Thank you, sir.
 Farhan : Ai island control kore akta huge human trafficking syndicate. Oita leader ar face ar name amra amadr intelligence theke retrieve korte parse. Or theke sabdhane thakba.
 Take this.
 Shimla will press ‘O’ to open (ar khulle hasnain cartoonize face ar name asbe :-) )
-Page 8:Fight with some jombies
+Page 8: Fight with some jombies
 Page 9: Fight with some pirates.
 Page 9: Meet with Ashiq.
         Shimla: Apni ki Ashiq?
@@ -41,11 +40,10 @@ Page 9: Meet with Ashiq.
         Ashiq : Accha ? ami nijao hasnain k defeat korte pari nai tomar mone hocce tumi parba ?
         Shimla: Ami just sara k bachate chai. Ar aitar jonno ami sob e korte raji ache.
         Ashiq: Accha cholo ami tomak sikhacci.
-
-
         A FEW MOMENTS LATER
         Ashiq : Ajk tomar training sesh holo (Shimlar new arms asbe)
         May be a co-fight or not
+Page 5: Enemy : jombies
 Page 10: Trainning finished ( may be an automatic fight);
 Page 11: Jombie Attack
 Page 12: pirate attack

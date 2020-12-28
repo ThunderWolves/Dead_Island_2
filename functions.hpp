@@ -33,9 +33,10 @@ void change(){
                     jump = false;
                 }
                 else{
-                    GIRL_X += 30;
-                    GIRL_Y -= 35;
-                    GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
+                    int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
+                    dif= min(dif, 35);
+                    GIRL_X += max(0,dif-5);
+                    GIRL_Y -= dif;
                 }
                 GIRL_X = min(desktop_hor-80, GIRL_X);
             }
@@ -51,8 +52,10 @@ void change(){
                     jump = false;
                 }
                 else{
-                    GIRL_X -= 30;
-                    GIRL_Y -= 35;
+                    int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
+                    dif= min(dif, 35);
+                    GIRL_X -= max(0,dif-5);
+                    GIRL_Y -= dif;
                 }
             }
             GIRL_X = max(GIRL_X, 0);
@@ -79,6 +82,10 @@ void change(){
             if(jombie[i].image_index >= sizt1[jombie[i].state]){
                 if(jombie[i].state == 2) jombie[i].image_index = 3;
                 else jombie[i].image_index = 0;
+            }
+            if(jombie[i].type > 1){
+                if(jombie[i].state == 4 && jombie[i].image_index >= 7) jombie[i].image_index = 6;
+                else if(jombie[i].image_index >= 7) jombie[i].image_index = 0;
             }
             if(jombie[i].state == 1 || jombie[i].state == 0){
                 if(abs(GIRL_X - jombie[i].posx) <= ENEMY_SEEING_RANGE){

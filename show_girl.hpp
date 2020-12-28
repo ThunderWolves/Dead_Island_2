@@ -16,6 +16,23 @@ void show_jombie(){
                         iShowBMP2(jombie[i].posx, jombie[i].posy, t2enemyr[jombie[i].state][jombie[i].image_index], 255);
                     }
             }
+            else if(jombie[i].type == 2){
+                    if(jombie[i].face == 1){
+                        iShowBMP2(jombie[i].posx, jombie[i].posy, p1[jombie[i].state][jombie[i].image_index], 255);
+                    }
+                    else{
+                        iShowBMP2(jombie[i].posx, jombie[i].posy, p1r[jombie[i].state][jombie[i].image_index], 255);
+                    }
+            }
+            else if(jombie[i].type == 3){
+                    if(jombie[i].face == 1){
+                        iShowBMP2(jombie[i].posx, jombie[i].posy, p2[jombie[i].state][jombie[i].image_index], 255);
+                    }
+                    else{
+                        iShowBMP2(jombie[i].posx, jombie[i].posy, p2r[jombie[i].state][jombie[i].image_index], 255);
+                    }
+            }
+
         }
 }
 
