@@ -34,6 +34,14 @@ void show_jombie(){
             }
 
         }
+        for(auto a: show){
+            if(bullet[a].face){
+                iShowBMP2(bullet[a].posx, bullet[a].posy, "bk\\b1.bmp", 255);
+            }
+            else{
+                iShowBMP2(bullet[a].posx, bullet[a].posy, "bk\\b0.bmp", 255);
+            }
+        }
 }
 
 void show_girl(){

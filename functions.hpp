@@ -101,7 +101,6 @@ void change(){
                     }
                 }
             }
-            cout << jombie[i].state << endl;
             if(jombie[i].state == 2 || jombie[i].state == 3){
                 if(abs(GIRL_Y - jombie[i].posy) > 150) {
                     jombie[i].base = jombie[i].posx;
@@ -111,6 +110,9 @@ void change(){
                 }
                 if(abs(GIRL_X - jombie[i].posx) <= 50 && jombie[i].state == 3){
                     goto hell_ya;
+                }
+                if(jombie[i].type == 3){
+                    jombie[i].state = 3;
                 }
                 else if(GIRL_X > jombie[i].posx){
                         jombie[i].face = 1;
@@ -126,6 +128,7 @@ void change(){
                     jombie[i].image_index = 0;
                 }
                 else if(abs(GIRL_X - jombie[i].posx) > 50 && jombie[i].state == 3){
+                    if(jombie[i].type == 3) continue;
                     jombie[i].state = 2;
                     jombie[i].image_index = 0;
                 }
@@ -134,7 +137,6 @@ void change(){
                 }
             }
             hell_ya:
-            cout << jombie[i].state << endl << endl;
             if(jombie[i].state == 1){
                 if(jombie[i].face == 1){
                     jombie[i].posx += 10;
@@ -159,7 +161,7 @@ void change(){
         touch_continue=0;
         for(int i = 0; i < number_of_enemy; i++)
          {
-            if(jombie[i].state==3)
+            if(jombie[i].state==3 && jombie[i].type != 3)
             {
                 touch_continue=1;
             if(touch_sound==0 && music)
@@ -221,9 +223,25 @@ void change(){
             }
     }
     if(TIME_NOW%3 == 0){
+            vector<int>temp;
+            for(int a:show){
+                if(bullet[a].face) bullet[a].posx += 65;
+                else bullet[a].posx -= 65;
+                if(abs(bullet[a].posx - GIRL_X) <= 66 && bullet[a].posy <= GIRL_Y+150 && bullet[a].posy >= GIRL_Y){
+                    bullet[a].state = 0;
+                    temp.push_back(a);
+                    life_left--;
+                }
+                else if(bullet[a].posx < -100 || bullet[a].posx > 1400){
+                    bullet[a].state = 0;
+                    temp.push_back(a);
+                }
+            }
+            for(auto a: temp){
+                show.erase(a);
+                ase.insert(a);
+            }
         if(GIRL_Y > FLOOR[game_state][GIRL_X][GIRL_Y] && !jump){
-            cout << "Here " << endl;
-            cout << GIRL_Y << " "<< FLOOR[game_state][GIRL_X][GIRL_Y] << endl;
             int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
             GIRL_Y -= min(dif, GRAVITY_SPEED);
         }
@@ -236,6 +254,7 @@ void change(){
                 NIN_COUNT--;
             }
             for(int ii = 0; ii < number_of_enemy; ii++){
+                    int ma = jombie[ii].posx;
                 if(ninchuk[i].posy > jombie[ii].posy+150+(50*(jombie[ii].state == 1)) || ninchuk[i].posy < jombie[ii].posy) continue;
                 if(jombie[ii].state == 4) continue;
                 if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx ||
@@ -269,6 +288,23 @@ void change(){
                 break;
             }
         }
+    }
+    if(TIME_NOW%20 == 0){
+            cout << GIRL_X <<  " " << GIRL_Y << endl;
+        for(int i = 0; i <  number_of_enemy; i++){
+            cout << jombie[i].posx << " "<< jombie[i].posy << endl;
+            cout << endl;
+                if(jombie[i].state == 3 && jombie[i].type == 3){
+                    int pic = *ase.begin();
+                    ase.erase(ase.begin());
+                    show.insert(pic);
+                    bullet[pic].state = 1;
+                    bullet[pic].face = jombie[i].face;
+                    int fic = 80; if(bullet[pic].face) fic *= -1;
+                    bullet[pic].posx = jombie[i].posx+fic;
+                    bullet[pic].posy = jombie[i].posy + 75;
+                 }
+            }
     }
     if(TIME_NOW == TIME_TO_STOP ){
         RUN_STATUS = false;
