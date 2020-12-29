@@ -18,8 +18,8 @@ void change(){
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
-        cout << GIRL_X << " "<< GIRL_Y << " " << FLOOR[game_state][GIRL_X][GIRL_Y] << endl;
-            //normal moves
+        if(GIRL_X >= 120 && GIRL_X <= 280 && GIRL_Y == 140)
+            life_left = 0;
         GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
         if(jump){
             if(FACE == 1){
@@ -90,6 +90,10 @@ void change(){
             if(jombie[i].type > 1){
                 if(jombie[i].state == 4 && jombie[i].image_index >= 7) jombie[i].image_index = 6;
                 else if(jombie[i].image_index >= 7) jombie[i].image_index = 0;
+            }
+            if( (game_state == 5 || game_state == 6) && jombie[i].posx >= 120 && jombie[i].posx <= 280) {
+                jombie[i].state = 4;
+                jombie[i].showoff = 1;
             }
             if(jombie[i].state == 1 || jombie[i].state == 0){
                 if(abs(GIRL_Y - jombie[i].posy) > 150) goto hell_ya;

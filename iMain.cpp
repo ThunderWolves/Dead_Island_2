@@ -7,7 +7,7 @@ int ENEMY_SEEING_RANGE = 300;
 int MAX_NINCHUK = 3, GIRL_JUMP_Y = 35;
 const int number_of_enemy = 1;
 int life_left=10;
-int desktop_hor = 1200, desktop_ver = 700;
+int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
 #include <windows.h>
 int throwing_now = 0;
@@ -92,7 +92,7 @@ char p2r[5][14][30] = { {"pirate\\p2\\idler\\1.bmp","pirate\\p2\\idler\\2.bmp","
                 {"pirate\\p2\\dedr\\1.bmp","pirate\\p2\\dedr\\2.bmp","pirate\\p2\\dedr\\3.bmp","pirate\\p2\\dedr\\4.bmp","pirate\\p2\\dedr\\5.bmp","pirate\\p2\\dedr\\6.bmp","pirate\\p2\\dedr\\7.bmp"} };
 
 struct enemy1{
-    int type;
+    int type, showoff = 0;
     int chaku;
     int state; //0 idle 1 walking 2 running 3 damage 4 dead
     int walking_range, face;
@@ -156,26 +156,37 @@ void iDraw()
             iShowBMP2(968,344,"bk\\44.bmp",255);
         }
     }
-    else if(game_state == 5){
-        iShowBMP(0,0,"bk\\9.bmp");
-        show_jombie();
-        show_girl();
-    }
-    else if(game_state == 6){
-        iShowBMP(0,0,"bk\\13.bmp");
+    else if(game_state == 5 || game_state == 6){
+        iShowBMP(0,0,"bk\\bg.bmp");
+        iShowBMP2(100,60,"bk\\gorto.bmp", 255);
         show_jombie();
         show_girl();
     }
     else if(game_state == 7){
-        iShowBMP(0,0,"bk\\12.bmp");
+        iShowBMP(0,0,"bk\\9.bmp");
         show_jombie();
         show_girl();
     }
     else if(game_state == 8){
+        iShowBMP(0,0,"bk\\13.bmp");
+        show_jombie();
+        show_girl();
+    }
+    else if(game_state == 9){
+        iShowBMP(0,0,"bk\\12.bmp");
+        show_jombie();
+        show_girl();
+    }
+    else if(game_state == 10){
         iShowBMP(0,0,"bk\\8.bmp");
         show_girl();
         show_jombie();
         iShowBMP2(0,250, "bk\\81.bmp",255);
+    }
+    else if(game_state == 11){
+        iShowBMP(0,0,"bk\\11.bmp");
+        show_jombie();
+        show_girl();
     }
 }
 #include "functions.hpp"
@@ -229,15 +240,18 @@ void place_floor(){
                             FLOOR[i][j][k] = 241;
                     }
                 }
-                else if(i == 5){
+                else if(i == 5 || i == 6){
+                    FLOOR[i][j][k] = 140;
+                }
+                else if(i == 7){
                     //level 9
                     FLOOR[i][j][k] = 150;
                 }
-                else if(i == 6){
+                else if(i == 8){
                     //level 13
                     FLOOR[i][j][k] = 70;
                 }
-                else if(i == 7){
+                else if(i == 9){
                     FLOOR[i][j][k] = 90;
                     if(j >= 650 && j <= 850){
                         int kin = 90 - floor(0.225*(j-650));
@@ -264,7 +278,7 @@ void place_floor(){
                         FLOOR[i][j][k] = 400;
                     }
                 }
-                else if(i == 8){
+                else if(i == 10){
                     FLOOR[i][j][k] = 260;
                     if(j <= 650){
                         int pin = 320 - floor(0.0924*(j));
@@ -277,6 +291,9 @@ void place_floor(){
                         int pin = 258 + floor(0.1*(j-650));
                         FLOOR[i][j][k] = pin;
                     }
+                }
+                else if(i == 11){
+                    FLOOR[i][j][k] = 200;
                 }
             }
         }

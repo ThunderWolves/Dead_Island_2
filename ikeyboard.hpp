@@ -80,7 +80,7 @@ void iKeyboard(unsigned char key)
         RunPicIndex1++;
         if(RunPicIndex1>=10)
         RunPicIndex1=0;
-        if(game_state == 8){
+        if(game_state == 10){
             if(GIRL_Y < 335){
                 GIRL_X = min(GIRL_X, desktop_hor-140);
             }
@@ -121,7 +121,6 @@ void iKeyboard(unsigned char key)
             }
         }
         if(GIRL_X >= desktop_hor-100){
-                cout << "Here"  << endl;
             game_state++;
             GIRL_X = 0;
             GIRL_Y = FLOOR[game_state][0][0];
