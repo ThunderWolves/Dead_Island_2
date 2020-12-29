@@ -137,6 +137,12 @@ void change(){
                 }
             }
             hell_ya:
+            if(jombie[i].state == 3){
+                if(GIRL_X > jombie[i].posx){
+                    jombie[i].face = 1;
+                }
+                else jombie[i].face = 0;
+            }
             if(jombie[i].state == 1){
                 if(jombie[i].face == 1){
                     jombie[i].posx += 10;
@@ -300,7 +306,7 @@ void change(){
                     show.insert(pic);
                     bullet[pic].state = 1;
                     bullet[pic].face = jombie[i].face;
-                    int fic = 80; if(bullet[pic].face) fic *= -1;
+                    int fic = 80;
                     bullet[pic].posx = jombie[i].posx+fic;
                     bullet[pic].posy = jombie[i].posy + 75;
                  }
