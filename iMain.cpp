@@ -206,15 +206,7 @@ void place_enemy(){
     }
     int dif = (desktop_hor-500)/number_of_enemy;
     for(int i = 0; i < number_of_enemy; i++){
-        jombie[i].type = 3;
-
-
-        // base+(rand()%UNLOCKED_CHARACTER);
-
-
-
-
-
+        jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
         //cng here
         jombie[i].image_index = rand()%6;
         if(i&1) jombie[i].base = 400+(i*dif);

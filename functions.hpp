@@ -296,10 +296,7 @@ void change(){
         }
     }
     if(TIME_NOW%20 == 0){
-            cout << GIRL_X <<  " " << GIRL_Y << endl;
         for(int i = 0; i <  number_of_enemy; i++){
-            cout << jombie[i].posx << " "<< jombie[i].posy << endl;
-            cout << endl;
                 if(jombie[i].state == 3 && jombie[i].type == 3){
                     int pic = *ase.begin();
                     ase.erase(ase.begin());
