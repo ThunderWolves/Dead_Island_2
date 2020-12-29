@@ -111,7 +111,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 9;
+int game_state = 14;
 struct buttonCordinate {
     int x;
     int y;
@@ -168,13 +168,14 @@ void iDraw()
         show_girl();
         iShowBMP2(0,250, "bk\\81.bmp",255);
     }
-    else if(game_state == 9){
+    else if(game_state == 10){
         iShowBMP(0,0,"bk\\15.bmp");
         show_jombie();
         show_girl();
     }
-    else if(game_state == 10){
-        //code
+    else if(game_state == 9){
+        iShowBMP(0,0,"bk\\trn.bmp");
+        show_girl();
     }
     else if(game_state == 12){
         iShowBMP(0,0,"bk\\12.bmp");
@@ -226,7 +227,7 @@ void place_enemy(){
     }
 }
 void place_floor(){
-    for(int i = 1; i <= 13; i++){
+    for(int i = 1; i <= 15; i++){
         for(int j = 0; j <= 1300; j++){
             for(int k = 0; k <= 800; k++){
                 if(i == 1){
@@ -270,7 +271,7 @@ void place_floor(){
                         FLOOR[i][j][k] = pin;
                     }
                 }
-                else if(i == 10){
+                else if(i == 12){
                     FLOOR[i][j][k] = 90;
                     if(j >= 650 && j <= 850){
                         int kin = 90 - floor(0.225*(j-650));
@@ -306,7 +307,7 @@ void place_floor(){
                 else if(i == 13){
                     FLOOR[i][j][k] = 110;
                 }
-                else if(i==9)// start - shimla
+                else if(i==10)// start - shimla
                 {
                     if(j<=650)
                     {
@@ -319,7 +320,13 @@ void place_floor(){
                         FLOOR[i][j][k] = pin;
                     }
                     else FLOOR[i][j][k] = 330;
-                }// end - shimla
+                }
+                else if(i == 9){
+                    FLOOR[i][j][k] = 390;
+                }
+                else if(i == 14){
+                    FLOOR[i][j][k] = 60;
+                }
             }
         }
     }
@@ -335,7 +342,7 @@ int main()
         bCordinate[i].y = sum;
         sum += 170;
     }
-    GIRL_X = 1020;
+    GIRL_X = 1045;
     place_enemy();
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);

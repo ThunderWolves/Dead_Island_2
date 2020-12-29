@@ -46,6 +46,55 @@ void iKeyboard(unsigned char key)
         }
         else PlaySound(0,0,0);
     }
+    if(key=='m' && game_state>=1)
+    {
+        toroal=1;
+        RUN_STATUS = 0;
+        NIN_THROW = 0;tolowar_dmg = 1;
+    }
+    if(key == 'n'){
+        for(int i = 0;i < number_of_enemy; i++){
+            if(jombie[i].state != 4 && game_state != 9){
+                return;
+            }
+        }
+        if(GIRL_X >= desktop_hor-100|| game_state == 9){
+            game_state++;
+            GIRL_X = 0;
+            GIRL_Y = FLOOR[game_state][0][0];
+            if(game_state > 1){
+                UNLOCKED_CHARACTER = 2;
+            }
+            if(game_state <= 3){
+                base = 2;
+            }
+            else if(game_state <= 6){
+                base = 2;
+            }
+            else if(game_state == 7){
+                base = 0;
+            }
+            else if(game_state == 8){
+                base = 2;
+            }
+            else if(game_state <= 9){
+                base = 0;
+            }
+            else if(game_state <= 11){
+                base = 0;
+            }
+            else if(game_state <= 13){
+                base = 2;
+            }
+            place_enemy();
+            if(game_state == 9){
+                FACE = 0;
+                GIRL_X = 1045;
+            }
+            cout << game_state << endl;
+        }
+    }
+    if(game_state == 9) return;
     if(key == 'w'){
         jump = true;
     }
@@ -80,9 +129,9 @@ void iKeyboard(unsigned char key)
         RunPicIndex1++;
         if(RunPicIndex1>=10)
         RunPicIndex1=0;
-        if(game_state == 8){
+        if(game_state == 7){
             if(GIRL_Y < 335){
-                GIRL_X = min(GIRL_X, desktop_hor-140);
+                GIRL_X = min(GIRL_X, desktop_hor-240);
             }
         }
         GIRL_X = min(desktop_hor-100, GIRL_X);
@@ -108,47 +157,5 @@ void iKeyboard(unsigned char key)
         GIRL_X = min(desktop_hor-100, GIRL_X);
         GIRL_X = max(GIRL_X, 0);
     }
-    if(key=='m' && game_state>=1)
-    {
-        toroal=1;
-        RUN_STATUS = 0;
-        NIN_THROW = 0;tolowar_dmg = 1;
-    }
-    if(key == 'n'){
-        for(int i = 0;i < number_of_enemy; i++){
-            if(jombie[i].state != 4){
-                return;
-            }
-        }
-        if(GIRL_X >= desktop_hor-100){
-            game_state++;
-            GIRL_X = 0;
-            GIRL_Y = FLOOR[game_state][0][0];
-            if(game_state > 1){
-                UNLOCKED_CHARACTER = 2;
-            }
-            if(game_state <= 3){
-                base = 2;
-            }
-            else if(game_state <= 6){
-                base = 2;
-            }
-            else if(game_state == 7){
-                base = 0;
-            }
-            else if(game_state == 8){
-                base = 2;
-            }
-            else if(game_state <= 9){
-                base = 0;
-            }
-            else if(game_state <= 11){
-                base = 0;
-            }
-            else if(game_state <= 13){
-                base = 2;
-            }
-            place_enemy();
-        }
-    }
+
 }
