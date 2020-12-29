@@ -133,6 +133,7 @@ void iDraw()
         iShowBMP(0,0,"bk\\0.bmp");
         show_jombie();
         show_girl();
+        iShowBMP2(0,0,"bk\\talk..bmp",255);
     }
     else if(game_state == 2){
         iShowBMP(0,0,"bk\\1.bmp");
