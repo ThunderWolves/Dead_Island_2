@@ -120,7 +120,7 @@ void iKeyboard(unsigned char key)
                 return;
             }
         }
-        if(GIRL_X >= desktop_hor-150){
+        if(GIRL_X >= desktop_hor-100){
                 cout << "Here"  << endl;
             game_state++;
             GIRL_X = 0;

@@ -75,6 +75,7 @@ void change(){
         }
 
         for(int i = 0; i < number_of_enemy; i++){
+            jombie[i].posy = max(jombie[i].posy, FLOOR[game_state][jombie[i].posx][jombie[i].posy]);
             if(jombie[i].state == 4 ){
                 if(jombie[i].image_index >= 10){
                     jombie[i].image_index = 7;
@@ -249,6 +250,12 @@ void change(){
                 show.erase(a);
                 ase.insert(a);
             }
+        for(int i = 0; i < number_of_enemy; i++){
+            if(jombie[i].posy > FLOOR[game_state][jombie[i].posx][jombie[i].posy]){
+                int dif = jombie[i].posy - FLOOR[game_state][jombie[i].posx][jombie[i].posy];
+                jombie[i].posy -= min(dif, GRAVITY_SPEED);
+            }
+        }
         if(GIRL_Y > FLOOR[game_state][GIRL_X][GIRL_Y] && !jump){
             int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
             GIRL_Y -= min(dif, GRAVITY_SPEED);
