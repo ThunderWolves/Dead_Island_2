@@ -18,6 +18,7 @@ void change(){
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
+        cout << GIRL_X << " "<< GIRL_Y << " " << FLOOR[game_state][GIRL_X][GIRL_Y] << endl;
             //normal moves
         GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
         if(jump){

@@ -111,7 +111,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 7;
+int game_state = 8;
 struct buttonCordinate {
     int x;
     int y;
@@ -175,6 +175,7 @@ void iDraw()
         iShowBMP(0,0,"bk\\8.bmp");
         show_girl();
         show_jombie();
+        iShowBMP2(0,250, "bk\\81.bmp",255);
     }
 }
 #include "functions.hpp"
@@ -264,9 +265,23 @@ void place_floor(){
                     }
                 }
                 else if(i == 8){
-                      FLOOR[i][j][k]=260;
-                      if(j>=1120 && j<=1300 && k>=261)
-                       FLOOR[i][j][k]=330;
+                    //low = 260 hi = 290;
+                    //big = 650;
+                    FLOOR[i][j][k] = 260;
+                    if(j <= 650){
+                        int pin = 320 - floor(0.0924*(j));
+                        FLOOR[i][j][k] = pin;
+                    }
+                    //hight of pathor = 335;
+                    if(j >= 1051 && k >= 335){
+                        FLOOR[i][j][k] = 335;
+                    }
+                    //upp = 300, low = 260
+                    //lox = 650; hix = 1050;
+                    if(j >= 650 && j <= 1080){
+                        int pin = 258 + floor(0.1*(j-650));
+                        FLOOR[i][j][k] = pin;
+                    }
                 }
             }
         }
@@ -275,8 +290,8 @@ void place_floor(){
 #include "ikeyboard.hpp";
 int main()
 {
-    GIRL_X = 815;
-    GIRL_Y = 143;
+    GIRL_X = 1060;
+    GIRL_Y = 300;
     srand(time(NULL));
     place_floor();
      int sum  = 100;
