@@ -65,6 +65,7 @@ void iKeyboard(unsigned char key)
     }
     if(key=='d')
     {
+        GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
         NIN_THROW = 0;
         if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
         if(jump) return;
@@ -84,6 +85,7 @@ void iKeyboard(unsigned char key)
     }
     if(key=='a')
     {
+        GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
         NIN_THROW = 0;
         if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
         if(jump) return;
@@ -118,7 +120,6 @@ void iKeyboard(unsigned char key)
             game_state++;
             GIRL_X = 0;
             GIRL_Y = FLOOR[game_state][0][0];
-            cout << "Here " << game_state << endl;
             if(game_state > 1){
                 UNLOCKED_CHARACTER = 2;
             }

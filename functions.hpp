@@ -19,6 +19,7 @@ void change(){
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
             //normal moves
+        GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
         if(jump){
             if(FACE == 1){
                 jumppic_index++;

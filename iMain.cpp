@@ -7,7 +7,7 @@ int ENEMY_SEEING_RANGE = 300;
 int MAX_NINCHUK = 3, GIRL_JUMP_Y = 35;
 const int number_of_enemy = 1;
 int life_left=10;
-int desktop_hor = 800, desktop_ver = 700;
+int desktop_hor = 1200, desktop_ver = 700;
 long long int TIME_NOW = 0;
 #include <windows.h>
 int throwing_now = 0;
@@ -111,7 +111,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 4;
+int game_state = 7;
 struct buttonCordinate {
     int x;
     int y;
@@ -161,8 +161,45 @@ void iDraw()
         show_jombie();
         show_girl();
     }
+    else if(game_state == 6){
+        iShowBMP(0,0,"bk\\13.bmp");
+        show_jombie();
+        show_girl();
+    }
+    else if(game_state == 7){
+        iShowBMP(0,0,"bk\\12.bmp");
+        show_jombie();
+        show_girl();
+    }
+    else if(game_state == 8){
+        iShowBMP(0,0,"bk\\8.bmp");
+        show_girl();
+        show_jombie();
+    }
 }
 #include "functions.hpp"
+void place_enemy(){
+    show.clear();
+    for(int i = 0; i < 30; i++){
+        ase.insert(i);
+    }
+    int dif = (desktop_hor-500)/number_of_enemy;
+    for(int i = 0; i < number_of_enemy; i++){
+        jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
+        //cng here
+        jombie[i].image_index = rand()%6;
+        if(i&1) jombie[i].base = 400+(i*dif);
+        else jombie[i].base = 400+(i*dif);
+        jombie[i].chaku = 0;
+        jombie[i].face = 0;
+        jombie[i].image_index = 0;
+        jombie[i].state = i%2;
+        jombie[i].posx = jombie[i].base;
+        jombie[i].posy = FLOOR[game_state][0][0];
+        jombie[i].walking_range = 200;
+        if(jombie[i].type > 1) jombie[i].posy -= 20;
+    }
+}
 void place_floor(){
     for(int i = 1; i <= 13; i++){
         for(int j = 0; j <= 1300; j++){
@@ -195,36 +232,51 @@ void place_floor(){
                     //level 9
                     FLOOR[i][j][k] = 150;
                 }
+                else if(i == 6){
+                    //level 13
+                    FLOOR[i][j][k] = 70;
+                }
+                else if(i == 7){
+                    FLOOR[i][j][k] = 90;
+                    if(j >= 650 && j <= 850){
+                        int kin = 90 - floor(0.225*(j-650));
+                        FLOOR[i][j][k] = kin;
+                    }
+                    if(j > 850 && j < 1100){
+                        int kin = 45+ floor(0.225*(j-850));
+                        FLOOR[i][j][k] = kin;
+                    }
+                    if(j >= 1050 && k >= 175){
+                        FLOOR[i][j][k] = 175;
+                    }
+                    if(j >= 810 && j <= 930){
+                        if(k >= 143){
+                            FLOOR[i][j][k] = 143;
+                        }
+                    }
+                    if(j >= 780 && j <= 955){
+                        if(k >= 235){
+                            FLOOR[i][j][k] = 235;
+                        }
+                    }
+                    if(j >= 815 && k >= 400){
+                        FLOOR[i][j][k] = 400;
+                    }
+                }
+                else if(i == 8){
+                      FLOOR[i][j][k]=260;
+                      if(j>=1120 && j<=1300 && k>=261)
+                       FLOOR[i][j][k]=330;
+                }
             }
         }
-    }
-}
-void place_enemy(){
-    show.clear();
-    for(int i = 0; i < 30; i++){
-        ase.insert(i);
-    }
-    int dif = (desktop_hor-500)/number_of_enemy;
-    for(int i = 0; i < number_of_enemy; i++){
-        jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
-        //cng here
-        jombie[i].image_index = rand()%6;
-        if(i&1) jombie[i].base = 400+(i*dif);
-        else jombie[i].base = 400+(i*dif);
-        jombie[i].chaku = 0;
-        jombie[i].face = 0;
-        jombie[i].image_index = 0;
-        jombie[i].state = i%2;
-        jombie[i].posx = jombie[i].base;
-        jombie[i].posy = FLOOR[game_state][0][0];
-        jombie[i].walking_range = 200;
-        if(jombie[i].type > 1) jombie[i].posy -= 20;
     }
 }
 #include "ikeyboard.hpp";
 int main()
 {
-    // for homemenu, by farhan, start
+    GIRL_X = 815;
+    GIRL_Y = 143;
     srand(time(NULL));
     place_floor();
      int sum  = 100;
@@ -233,7 +285,6 @@ int main()
         bCordinate[i].y = sum;
         sum += 170;
     }
-    // end, farhan
     place_enemy();
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
