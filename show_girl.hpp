@@ -82,6 +82,7 @@ void show_girl(){
             }
         }
         if(game_state == 11) iShowBMP2(0,0,"bk\\111.bmp",255);
+        if(game_state == 13) iShowBMP2(777,10, "bk\\13bu.bmp",255);
         iShowBMP2(5,desktop_ver-55,"bk//x.bmp",255);
         iShowBMP2(35, desktop_ver-45, num[MAX_NINCHUK-NIN_COUNT], 255);
         for(int i = 1; i <= life_left;i++){

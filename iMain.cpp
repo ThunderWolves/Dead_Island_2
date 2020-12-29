@@ -111,7 +111,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 0;
+int game_state = 9;
 struct buttonCordinate {
     int x;
     int y;
@@ -133,7 +133,6 @@ void iDraw()
         iShowBMP(0,0,"bk\\0.bmp");
         show_jombie();
         show_girl();
-        iShowBMP2(0,0,"bk\\talk..bmp",255);
     }
     else if(game_state == 2){
         iShowBMP(0,0,"bk\\1.bmp");
@@ -164,25 +163,38 @@ void iDraw()
         show_girl();
     }
     else if(game_state == 7){
-        iShowBMP(0,0,"bk\\9.bmp");
+        iShowBMP(0,0,"bk\\8.bmp");
         show_jombie();
         show_girl();
-    }
-    else if(game_state == 8){
-        iShowBMP(0,0,"bk\\13.bmp");
-        show_jombie();
-        show_girl();
+        iShowBMP2(0,250, "bk\\81.bmp",255);
     }
     else if(game_state == 9){
-        iShowBMP(0,0,"bk\\12.bmp");
+        iShowBMP(0,0,"bk\\15.bmp");
         show_jombie();
         show_girl();
     }
     else if(game_state == 10){
-        iShowBMP(0,0,"bk\\8.bmp");
-        show_girl();
+        //code
+    }
+    else if(game_state == 12){
+        iShowBMP(0,0,"bk\\12.bmp");
         show_jombie();
-        iShowBMP2(0,250, "bk\\81.bmp",255);
+        show_girl();
+    }
+    else if(game_state == 13){
+        iShowBMP(0,0,"bk\\13b.bmp");
+        show_jombie();
+        show_girl();
+    }
+    else if(game_state == 14){
+        iShowBMP(0,0,"bk\\13.bmp");
+        show_jombie();
+        show_girl();
+    }
+    else if(game_state == 8){
+         iShowBMP(0,0,"bk\\9.bmp");
+        show_jombie();
+        show_girl();
     }
     else if(game_state == 11){
         iShowBMP(0,0,"bk\\11.bmp");
@@ -245,14 +257,20 @@ void place_floor(){
                     FLOOR[i][j][k] = 140;
                 }
                 else if(i == 7){
-                    //level 9
-                    FLOOR[i][j][k] = 150;
+                    FLOOR[i][j][k] = 260;
+                    if(j <= 650){
+                        int pin = 320 - floor(0.0924*(j));
+                        FLOOR[i][j][k] = pin;
+                    }
+                    if(j >= 1051 && k >= 335){
+                        FLOOR[i][j][k] = 335;
+                    }
+                    if(j >= 650 && j <= 1080){
+                        int pin = 258 + floor(0.1*(j-650));
+                        FLOOR[i][j][k] = pin;
+                    }
                 }
-                else if(i == 8){
-                    //level 13
-                    FLOOR[i][j][k] = 70;
-                }
-                else if(i == 9){
+                else if(i == 10){
                     FLOOR[i][j][k] = 90;
                     if(j >= 650 && j <= 850){
                         int kin = 90 - floor(0.225*(j-650));
@@ -279,23 +297,29 @@ void place_floor(){
                         FLOOR[i][j][k] = 400;
                     }
                 }
-                else if(i == 10){
-                    FLOOR[i][j][k] = 260;
-                    if(j <= 650){
-                        int pin = 320 - floor(0.0924*(j));
-                        FLOOR[i][j][k] = pin;
-                    }
-                    if(j >= 1051 && k >= 335){
-                        FLOOR[i][j][k] = 335;
-                    }
-                    if(j >= 650 && j <= 1080){
-                        int pin = 258 + floor(0.1*(j-650));
-                        FLOOR[i][j][k] = pin;
-                    }
+                else if(i == 8){
+                    FLOOR[i][j][k] = 150;
                 }
                 else if(i == 11){
                     FLOOR[i][j][k] = 200;
                 }
+                else if(i == 13){
+                    FLOOR[i][j][k] = 110;
+                }
+                else if(i==9)// start - shimla
+                {
+                    if(j<=650)
+                    {
+                       int pin = 275 - floor(0.0924*(j));
+                       FLOOR[i][j][k]=pin;
+                    }
+                    //low 650 - 220
+                    else if(j <= 1085){
+                        int pin = 220+(.23*(j-650));
+                        FLOOR[i][j][k] = pin;
+                    }
+                    else FLOOR[i][j][k] = 330;
+                }// end - shimla
             }
         }
     }
@@ -311,6 +335,7 @@ int main()
         bCordinate[i].y = sum;
         sum += 170;
     }
+    GIRL_X = 1020;
     place_enemy();
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);

@@ -80,7 +80,7 @@ void iKeyboard(unsigned char key)
         RunPicIndex1++;
         if(RunPicIndex1>=10)
         RunPicIndex1=0;
-        if(game_state == 10){
+        if(game_state == 8){
             if(GIRL_Y < 335){
                 GIRL_X = min(GIRL_X, desktop_hor-140);
             }
