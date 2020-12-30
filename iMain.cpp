@@ -241,9 +241,6 @@ void iDraw()
          iShowBMP(0,0,"bk\\9.bmp");
         show_jombie();
         show_girl();
-    }
-    else if(game_state == 9){
-        iShowBMP(0,0,"bk\\trn.bmp");
         if(pos[game_state]){ freez = 1;
         iShowBMP2(0,0,"conversation\\20.bmp",255);}
         else if(cnt8==0) { freez = 1;
@@ -268,7 +265,11 @@ void iDraw()
         iShowBMP2(0,0,"conversation\\30.bmp",255);}
         else if(cnt8==10) { freez = 1;
         iShowBMP2(0,0,"conversation\\31.bmp",255);}// end- shimla
+    }
+    else if(game_state == 9){
+        iShowBMP(0,0,"bk\\trn.bmp");
         show_girl();
+
     }
     else if(game_state == 10){
         iShowBMP(0,0,"bk\\15.bmp");
@@ -311,6 +312,7 @@ void place_enemy(){
         hasnain.image_index = 0;
         hasnain.state = 0;
     }
+    else hasnain.state = 6;
     int dif = (desktop_hor-500)/number_of_enemy;
     for(int i = 0; i < number_of_enemy; i++){
         jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
@@ -396,8 +398,11 @@ void place_floor(){
                             FLOOR[i][j][k] = 235;
                         }
                     }
-                    if(j >= 815 && k >= 400){
-                        FLOOR[i][j][k] = 400;
+                    if(j >= 815 && k >= 405){
+                        FLOOR[i][j][k] = 405;
+                    }
+                    if(j >= 1150 && k >= 405){
+                        FLOOR[i][j][k] = 420;
                     }
                 }
                 else if(i == 8){

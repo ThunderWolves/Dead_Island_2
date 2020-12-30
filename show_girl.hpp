@@ -38,10 +38,10 @@ void show_jombie(){
             }
             else if(jombie[i].type == 3){
                     if(jombie[i].face == 1){
-                        iShowBMP2(jombie[i].posx, jombie[i].posy, p2[jombie[i].state][jombie[i].image_index], 255);
+                        iShowBMP2(jombie[i].posx, jombie[i].posy-15, p2[jombie[i].state][jombie[i].image_index], 255);
                     }
                     else{
-                        iShowBMP2(jombie[i].posx, jombie[i].posy, p2r[jombie[i].state][jombie[i].image_index], 255);
+                        iShowBMP2(jombie[i].posx, jombie[i].posy-15, p2r[jombie[i].state][jombie[i].image_index], 255);
                     }
             }
 

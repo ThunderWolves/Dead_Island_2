@@ -48,7 +48,7 @@ void change(){
                         }
                     }
                 }
-                if(hasnain.posx - GIRL_X <= has_pas && hasnain.state != 3){
+                if(hasnain.posx - GIRL_X <= has_pas && hasnain.state != 3 && hasnain.state <= 3){
                         hasnain.state = 3;
                         hasnain.image_index = 0;
                     }
@@ -74,7 +74,7 @@ void change(){
                         }
                     }
                 }
-                if(-hasnain.posx + GIRL_X <= has_pas+150 && hasnain.state != 3){
+                if(-hasnain.posx + GIRL_X <= has_pas+150 && hasnain.state != 3 && hasnain.state <= 3){
                     hasnain.state = 3;
                     hasnain.image_index = 0;
                 }
@@ -338,6 +338,17 @@ void change(){
                 NIN_COUNT--;
             }
             for(int ii = 0; ii < number_of_enemy; ii++){
+                if(GIRL_X <= hasnain.posx && ninchuk[i].posx >= hasnain.posx ||
+                        (GIRL_X >= hasnain.posx && ninchuk[i].posx <= hasnain.posx)){
+                            ninchuk[i].state = 2;
+                            chakus_in_dead_body.push_back(i);
+                            hasnain.chaku ++;
+                            hasnain.life--;
+                            if(hasnain.life <= 0){
+                                hasnain.state = 4;
+                                hasnain.image_index = 0;
+                            }
+                    }
                     int ma = jombie[ii].posx;
                 if(ninchuk[i].posy > jombie[ii].posy+150+(50*(jombie[ii].state == 1)) || ninchuk[i].posy < jombie[ii].posy) continue;
                 if(jombie[ii].state == 4) continue;
