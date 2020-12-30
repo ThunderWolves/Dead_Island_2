@@ -28,12 +28,9 @@ void change(){
         else{
             if(abs(hasnain.posx - GIRL_X) <= hasnain.feel_range && hasnain.state == 0) hasnain.state = 2;
             if(hasnain.posx > GIRL_X){
-                cout << "FUCK " << hasnain.state << endl;
                 if(hasnain.state == 3){
-                    cout << "OK" << endl;
                     hasnain.face = 0;
                     if(hasnain.posx - GIRL_X > has_pas){
-                        cout << "HER" << endl;
                         hasnain.state = 2;
                         hasnain.image_index = 0;
                         hasnain.posx -= 10;
