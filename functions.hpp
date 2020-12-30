@@ -21,7 +21,7 @@ void change(){
         int has_pas = 80;
         hasnain.image_index++;
         hasnain.image_index %= 10;
-        cout << hasnain.state << " "<< hasnain.image_index << " " << hasnain.posx << " "<< GIRL_X << endl;
+       // cout << hasnain.state << " "<< hasnain.image_index << " " << hasnain.posx << " "<< GIRL_X << endl;
         if(abs(hasnain.posy - GIRL_Y) >= 300) {
             hasnain.state = 0; hasnain.image_index= 0;
         }

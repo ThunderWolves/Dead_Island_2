@@ -35,11 +35,12 @@ void iSpecialKeyboard(unsigned char key)
 void iKeyboard(unsigned char key)
 {
     if(key >= 'A' && key <= 'Z') key = char(key+32);
-    if(key=='m' && game_state>=1)
-    {
-        toroal=1;
-        RUN_STATUS = 0;
-        NIN_THROW = 0;tolowar_dmg = 1;
+    if(key == 'p'){
+            music ^= 1;
+        if(music){
+        PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+        }
+        else PlaySound(0,0,0);
     }
     if(key == 'q')
     {
@@ -58,12 +59,11 @@ void iKeyboard(unsigned char key)
         cnt8++;
     }// end- shimla
     if(freez) return;
-    if(key == 'p'){
-            music ^= 1;
-        if(music){
-        PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
-        }
-        else PlaySound(0,0,0);
+    if(key=='m' && game_state>=1)
+    {
+        toroal=1;
+        RUN_STATUS = 0;
+        NIN_THROW = 0;tolowar_dmg = 1;
     }
     if(key == 'n'){
         for(int i = 0;i < number_of_enemy; i++){

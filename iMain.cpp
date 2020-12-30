@@ -153,9 +153,10 @@ void iDraw()
         iShowBMP(0,0,"bk\\0.bmp");
         show_jombie();
         show_girl();
+        if(pos[game_state]){//-start - shimla
             freez = 1;
-        if(pos[game_state])//-start - shimla
-        iShowBMP2(0,0,"conversation\\1.bmp",255);//end - shimla
+        iShowBMP2(0,0,"conversation\\1.bmp",255);
+        }//end - shimla
     }
     else if(game_state == 2){
         iShowBMP(0,0,"bk\\1.bmp");
@@ -167,17 +168,18 @@ void iDraw()
         iShowBMP(0,0,"bk\\3.bmp");
         show_jombie();
         show_girl();
+        if(pos[game_state]){//start - shimla
         freez = 1;
-        if(pos[game_state])//start - shimla
         iShowBMP2(0,0,"conversation\\3.bmp",255);//end - shimla
+        }
     }
     else if(game_state == 4){
         iShowBMP(0,0,"bk\\4.bmp");
         show_jombie();
         show_girl();
+        if(pos[game_state]){//start - shimla
         freez = 1;
-        if(pos[game_state])//start - shimla
-        iShowBMP2(0,0,"conversation\\4.bmp",255);//end - shimla
+        iShowBMP2(0,0,"conversation\\4.bmp",255); }
         if(!jump){
             iShowBMP2(100,448,"bk\\41.bmp",255);
             iShowBMP2(444,388,"bk\\42.bmp",255);
@@ -190,11 +192,12 @@ void iDraw()
         iShowBMP2(100,60,"bk\\gorto.bmp", 255);
         show_jombie();
         show_girl();
+        if(pos[game_state]){//start - shimla
         freez = 1;
-        if(pos[game_state])//start - shimla
-        iShowBMP2(0,0,"conversation\\8.bmp",255);
+        iShowBMP2(0,0,"conversation\\8.bmp",255); }
         else if(cnt5==0)
         {
+        freez = 1;
           iShowBMP2(0,0,"conversation\\9.bmp",255);
         }//end - shimla
     }
@@ -204,27 +207,28 @@ void iDraw()
         print_swat();
         show_jombie();
         show_girl();
+        if(pos[game_state]){//start - shimla
         freez = 1;
-        if(pos[game_state])//start - shimla
-        iShowBMP2(0,0,"conversation\\10.bmp",255);
+        iShowBMP2(0,0,"conversation\\10.bmp",255); }
         else if(cnt6==0)
         {
+            freez = 1;
           iShowBMP2(0,0,"conversation\\11.bmp",255);
         }
-        else if(cnt6==1)
-        iShowBMP2(0,0,"conversation\\12.bmp",255);
-        else if(cnt6==2)
-        iShowBMP2(0,0,"conversation\\13.bmp",255);
-        else if(cnt6==3)
-        iShowBMP2(0,0,"conversation\\14.bmp",255);
-        else if(cnt6==4)
-        iShowBMP2(0,0,"conversation\\15.bmp",255);
-        else if(cnt6==5)
-        iShowBMP2(0,0,"conversation\\16.bmp",255);
-        else if(cnt6==6)
-        iShowBMP2(0,0,"conversation\\17.bmp",255);
-        else if(cnt6==7)
-        iShowBMP2(0,0,"conversation\\18.bmp",255);
+        else if(cnt6==1){ freez = 1;
+        iShowBMP2(0,0,"conversation\\12.bmp",255);}
+        else if(cnt6==2) { freez = 1;
+        iShowBMP2(0,0,"conversation\\13.bmp",255);}
+        else if(cnt6==3) { freez = 1;
+        iShowBMP2(0,0,"conversation\\14.bmp",255);}
+        else if(cnt6==4) { freez = 1;
+        iShowBMP2(0,0,"conversation\\15.bmp",255);}
+        else if(cnt6==5) { freez = 1;
+        iShowBMP2(0,0,"conversation\\16.bmp",255);}
+        else if(cnt6==6) { freez = 1;
+        iShowBMP2(0,0,"conversation\\17.bmp",255);}
+        else if(cnt6==7) { freez = 1;
+        iShowBMP2(0,0,"conversation\\18.bmp",255);}
             // end - shimla
     }
     else if(game_state == 7){
@@ -238,30 +242,30 @@ void iDraw()
         show_jombie();
         show_girl();
         freez = 1;
-        if(pos[game_state])// start- shimla
-        iShowBMP2(0,0,"conversation\\20.bmp",255);
-        else if(cnt8==0)
-        iShowBMP2(0,0,"conversation\\21.bmp",255);
-        else if(cnt8==1)
-        iShowBMP2(0,0,"conversation\\22.bmp",255);
-        else if(cnt8==2)
-        iShowBMP2(0,0,"conversation\\23.bmp",255);
-        else if(cnt8==3)
-        iShowBMP2(0,0,"conversation\\24.bmp",255);
-        else if(cnt8==4)
-        iShowBMP2(0,0,"conversation\\25.bmp",255);
-        else if(cnt8==5)
-        iShowBMP2(0,0,"conversation\\26.bmp",255);
-        else if(cnt8==6)
-        iShowBMP2(0,0,"conversation\\27.bmp",255);
-        else if(cnt8==7)
-        iShowBMP2(0,0,"conversation\\28.bmp",255);
-        else if(cnt8==8)
-        iShowBMP2(0,0,"conversation\\29.bmp",255);
-        else if(cnt8==9)
-        iShowBMP2(0,0,"conversation\\30.bmp",255);
-        else if(cnt8==10)
-        iShowBMP2(0,0,"conversation\\31.bmp",255);// end- shimla
+        if(pos[game_state]){ freez = 1;
+        iShowBMP2(0,0,"conversation\\20.bmp",255);}
+        else if(cnt8==0) { freez = 1;
+        iShowBMP2(0,0,"conversation\\21.bmp",255);}
+        else if(cnt8==1) { freez = 1;
+        iShowBMP2(0,0,"conversation\\22.bmp",255);}
+        else if(cnt8==2) { freez = 1;
+        iShowBMP2(0,0,"conversation\\23.bmp",255);}
+        else if(cnt8==3) { freez = 1;
+        iShowBMP2(0,0,"conversation\\24.bmp",255);}
+        else if(cnt8==4) { freez = 1;
+        iShowBMP2(0,0,"conversation\\25.bmp",255);}
+        else if(cnt8==5) { freez = 1;
+        iShowBMP2(0,0,"conversation\\26.bmp",255);}
+        else if(cnt8==6) { freez = 1;
+        iShowBMP2(0,0,"conversation\\27.bmp",255);}
+        else if(cnt8==7) { freez = 1;
+        iShowBMP2(0,0,"conversation\\28.bmp",255);}
+        else if(cnt8==8) { freez = 1;
+        iShowBMP2(0,0,"conversation\\29.bmp",255);}
+        else if(cnt8==9) { freez = 1;
+        iShowBMP2(0,0,"conversation\\30.bmp",255);}
+        else if(cnt8==10) { freez = 1;
+        iShowBMP2(0,0,"conversation\\31.bmp",255);}// end- shimla
 
     }
     else if(game_state == 9){
