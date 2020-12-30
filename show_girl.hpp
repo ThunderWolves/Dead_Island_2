@@ -1,4 +1,15 @@
+void print_swat(){
+
+}
 void show_jombie(){
+        if(game_state == 5 || game_state == 14){
+            int bonus = 0;
+            if(hasnain.state == 3 && (hasnain.image_index >= 5 || hasnain.image_index <= 1)){
+                bonus = 45;
+            }
+            if(hasnain.face) iShowBMP2(hasnain.posx+bonus,hasnain.posy, bos[hasnain.state][hasnain.image_index],255);
+            else iShowBMP2(hasnain.posx-bonus,hasnain.posy, bosr[hasnain.state][hasnain.image_index],255);
+        }
         for(int i = 0; i < number_of_enemy; i++){
             if(jombie[i].showoff) continue;
             if(jombie[i].type == 0){

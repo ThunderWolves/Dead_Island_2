@@ -22,12 +22,12 @@ int FACE = 1; //0 mane bam , 1 mane dane
 int GIRL_X = 0, GIRL_Y = 300;
 vector<int>chakus_in_dead_body;
 int jumppic_index = 0, idle_index = 0;
-int nin_throw_idx = 0, music = 1;
+int nin_throw_idx = 0, music = 0;
 int RunPicIndex1=0;
 int RunPicIndex2=0;
 int TIME_TO_STOP = 0;
+int freez = 1;
 int jumppic_indexr = 0, idle_indexr = 0, nin_throw_idxr = 0;
-
 char jumppic[12][20] = {"jump\\1.bmp","jump\\2.bmp","jump\\3.bmp","jump\\4.bmp","jump\\5.bmp","jump\\6.bmp","jump\\7.bmp","jump\\8.bmp","jump\\9.bmp",
 "jump\\10.bmp"};
 char idlepic[12][20] = {"idle\\0.bmp","idle\\1.bmp","idle\\2.bmp","idle\\3.bmp","idle\\4.bmp","idle\\5.bmp","idle\\6.bmp","idle\\7.bmp","idle\\8.bmp","idle\\9.bmp"};
@@ -91,6 +91,17 @@ char p2r[5][14][30] = { {"pirate\\p2\\idler\\1.bmp","pirate\\p2\\idler\\2.bmp","
                 {"pirate\\p2\\atkr\\1.bmp","pirate\\p2\\atkr\\2.bmp","pirate\\p2\\atkr\\3.bmp","pirate\\p2\\atkr\\4.bmp","pirate\\p2\\atkr\\5.bmp","pirate\\p2\\atkr\\6.bmp","pirate\\p2\\atkr\\7.bmp"},
                 {"pirate\\p2\\dedr\\1.bmp","pirate\\p2\\dedr\\2.bmp","pirate\\p2\\dedr\\3.bmp","pirate\\p2\\dedr\\4.bmp","pirate\\p2\\dedr\\5.bmp","pirate\\p2\\dedr\\6.bmp","pirate\\p2\\dedr\\7.bmp"} };
 
+char bos[5][14][30] = { {"has\\idle\\1.bmp","has\\idle\\2.bmp","has\\idle\\3.bmp","has\\idle\\4.bmp","has\\idle\\5.bmp","has\\idle\\6.bmp","has\\idle\\7.bmp","has\\idle\\8.bmp","has\\idle\\9.bmp","has\\idle\\10.bmp" },
+                {"has\\walk\\1.bmp","has\\walk\\2.bmp","has\\walk\\3.bmp","has\\walk\\4.bmp","has\\walk\\5.bmp","has\\walk\\6.bmp","has\\walk\\7.bmp"},
+                {"has\\run\\1.bmp","has\\run\\2.bmp","has\\run\\3.bmp","has\\run\\4.bmp","has\\run\\5.bmp","has\\run\\6.bmp","has\\run\\7.bmp","has\\run\\8.bmp","has\\run\\9.bmp","has\\run\\10.bmp" },
+                {"has\\atk\\1.bmp","has\\atk\\2.bmp","has\\atk\\3.bmp","has\\atk\\4.bmp","has\\atk\\5.bmp","has\\atk\\6.bmp","has\\atk\\7.bmp","has\\atk\\8.bmp","has\\atk\\9.bmp","has\\atk\\10.bmp" },
+                {"has\\ded\\1.bmp","has\\ded\\2.bmp","has\\ded\\3.bmp","has\\ded\\4.bmp","has\\ded\\5.bmp","has\\ded\\6.bmp","has\\ded\\7.bmp","has\\ded\\8.bmp","has\\ded\\9.bmp","has\\ded\\10.bmp" } };
+char bosr[5][14][30] = { {"has\\idler\\1.bmp","has\\idler\\2.bmp","has\\idler\\3.bmp","has\\idler\\4.bmp","has\\idler\\5.bmp","has\\idler\\6.bmp","has\\idler\\7.bmp","has\\idler\\8.bmp","has\\idler\\9.bmp","has\\idler\\10.bmp" },
+                {"has\\walkr\\1.bmp","has\\walkr\\2.bmp","has\\walkr\\3.bmp","has\\walkr\\4.bmp","has\\walkr\\5.bmp","has\\walkr\\6.bmp","has\\walkr\\7.bmp"},
+                {"has\\runr\\1.bmp","has\\runr\\2.bmp","has\\runr\\3.bmp","has\\runr\\4.bmp","has\\runr\\5.bmp","has\\runr\\6.bmp","has\\runr\\7.bmp","has\\runr\\8.bmp","has\\runr\\9.bmp","has\\runr\\10.bmp" },
+                {"has\\atkr\\1.bmp","has\\atkr\\2.bmp","has\\atkr\\3.bmp","has\\atkr\\4.bmp","has\\atkr\\5.bmp","has\\atkr\\6.bmp","has\\atkr\\7.bmp","has\\atkr\\8.bmp","has\\atkr\\9.bmp","has\\atkr\\10.bmp" },
+                {"has\\dedr\\1.bmp","has\\dedr\\2.bmp","has\\dedr\\3.bmp","has\\dedr\\4.bmp","has\\dedr\\5.bmp","has\\dedr\\6.bmp","has\\dedr\\7.bmp","has\\dedr\\8.bmp","has\\dedr\\9.bmp","has\\dedr\\10.bmp" } };
+int pos[14]={0,1,0,1,1,1,1,0,1,0,0,0,0,0},cnt5=0,cnt6=0, cnt8=0;
 struct enemy1{
     int type, showoff = 0;
     int chaku;
@@ -105,13 +116,22 @@ struct arm1{
     int posx, posy;
     int face;
 };
+struct boss{
+    int state, seeing_range = 750;
+    int feel_range = 200,calcu_x;
+    int posx, posy, face, chaku;
+    int image_index;
+    int base;
+    int life = 20;
+};
+boss hasnain;
 arm1 bullet[300];
 arm1 ninchuk[30];
 enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 14;
+int game_state = 0;
 struct buttonCordinate {
     int x;
     int y;
@@ -133,6 +153,9 @@ void iDraw()
         iShowBMP(0,0,"bk\\0.bmp");
         show_jombie();
         show_girl();
+            freez = 1;
+        if(pos[game_state])//-start - shimla
+        iShowBMP2(0,0,"conversation\\1.bmp",255);//end - shimla
     }
     else if(game_state == 2){
         iShowBMP(0,0,"bk\\1.bmp");
@@ -144,11 +167,17 @@ void iDraw()
         iShowBMP(0,0,"bk\\3.bmp");
         show_jombie();
         show_girl();
+        freez = 1;
+        if(pos[game_state])//start - shimla
+        iShowBMP2(0,0,"conversation\\3.bmp",255);//end - shimla
     }
     else if(game_state == 4){
         iShowBMP(0,0,"bk\\4.bmp");
         show_jombie();
         show_girl();
+        freez = 1;
+        if(pos[game_state])//start - shimla
+        iShowBMP2(0,0,"conversation\\4.bmp",255);//end - shimla
         if(!jump){
             iShowBMP2(100,448,"bk\\41.bmp",255);
             iShowBMP2(444,388,"bk\\42.bmp",255);
@@ -156,11 +185,47 @@ void iDraw()
             iShowBMP2(968,344,"bk\\44.bmp",255);
         }
     }
-    else if(game_state == 5 || game_state == 6){
+    else if(game_state == 5){
         iShowBMP(0,0,"bk\\bg.bmp");
         iShowBMP2(100,60,"bk\\gorto.bmp", 255);
         show_jombie();
         show_girl();
+        freez = 1;
+        if(pos[game_state])//start - shimla
+        iShowBMP2(0,0,"conversation\\8.bmp",255);
+        else if(cnt5==0)
+        {
+          iShowBMP2(0,0,"conversation\\9.bmp",255);
+        }//end - shimla
+    }
+    else if(game_state == 6){
+        iShowBMP(0,0,"bk\\bg.bmp");
+        iShowBMP2(100,60,"bk\\gorto.bmp", 255);
+        print_swat();
+        show_jombie();
+        show_girl();
+        freez = 1;
+        if(pos[game_state])//start - shimla
+        iShowBMP2(0,0,"conversation\\10.bmp",255);
+        else if(cnt6==0)
+        {
+          iShowBMP2(0,0,"conversation\\11.bmp",255);
+        }
+        else if(cnt6==1)
+        iShowBMP2(0,0,"conversation\\12.bmp",255);
+        else if(cnt6==2)
+        iShowBMP2(0,0,"conversation\\13.bmp",255);
+        else if(cnt6==3)
+        iShowBMP2(0,0,"conversation\\14.bmp",255);
+        else if(cnt6==4)
+        iShowBMP2(0,0,"conversation\\15.bmp",255);
+        else if(cnt6==5)
+        iShowBMP2(0,0,"conversation\\16.bmp",255);
+        else if(cnt6==6)
+        iShowBMP2(0,0,"conversation\\17.bmp",255);
+        else if(cnt6==7)
+        iShowBMP2(0,0,"conversation\\18.bmp",255);
+            // end - shimla
     }
     else if(game_state == 7){
         iShowBMP(0,0,"bk\\8.bmp");
@@ -172,6 +237,32 @@ void iDraw()
         iShowBMP(0,0,"bk\\15.bmp");
         show_jombie();
         show_girl();
+        freez = 1;
+        if(pos[game_state])// start- shimla
+        iShowBMP2(0,0,"conversation\\20.bmp",255);
+        else if(cnt8==0)
+        iShowBMP2(0,0,"conversation\\21.bmp",255);
+        else if(cnt8==1)
+        iShowBMP2(0,0,"conversation\\22.bmp",255);
+        else if(cnt8==2)
+        iShowBMP2(0,0,"conversation\\23.bmp",255);
+        else if(cnt8==3)
+        iShowBMP2(0,0,"conversation\\24.bmp",255);
+        else if(cnt8==4)
+        iShowBMP2(0,0,"conversation\\25.bmp",255);
+        else if(cnt8==5)
+        iShowBMP2(0,0,"conversation\\26.bmp",255);
+        else if(cnt8==6)
+        iShowBMP2(0,0,"conversation\\27.bmp",255);
+        else if(cnt8==7)
+        iShowBMP2(0,0,"conversation\\28.bmp",255);
+        else if(cnt8==8)
+        iShowBMP2(0,0,"conversation\\29.bmp",255);
+        else if(cnt8==9)
+        iShowBMP2(0,0,"conversation\\30.bmp",255);
+        else if(cnt8==10)
+        iShowBMP2(0,0,"conversation\\31.bmp",255);// end- shimla
+
     }
     else if(game_state == 9){
         iShowBMP(0,0,"bk\\trn.bmp");
@@ -206,8 +297,16 @@ void iDraw()
 #include "functions.hpp"
 void place_enemy(){
     show.clear();
-    for(int i = 0; i < 30; i++){
+    for(int i = 0; i < 50; i++){
         ase.insert(i);
+    }
+    if(game_state == 5 || game_state == 14){
+        hasnain.posx = 900;
+        hasnain.posy = FLOOR[game_state][0][0] ;
+        hasnain.face = 0,
+        hasnain.chaku = 0;
+        hasnain.image_index = 0;
+        hasnain.state = 0;
     }
     int dif = (desktop_hor-500)/number_of_enemy;
     for(int i = 0; i < number_of_enemy; i++){
@@ -334,6 +433,7 @@ void place_floor(){
 #include "ikeyboard.hpp";
 int main()
 {
+    //SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
     srand(time(NULL));
     place_floor();
      int sum  = 100;
@@ -342,7 +442,6 @@ int main()
         bCordinate[i].y = sum;
         sum += 170;
     }
-    GIRL_X = 1045;
     place_enemy();
     if(music){
         PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);

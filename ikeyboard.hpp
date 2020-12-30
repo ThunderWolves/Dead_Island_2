@@ -35,22 +35,35 @@ void iSpecialKeyboard(unsigned char key)
 void iKeyboard(unsigned char key)
 {
     if(key >= 'A' && key <= 'Z') key = char(key+32);
+    if(key=='m' && game_state>=1)
+    {
+        toroal=1;
+        RUN_STATUS = 0;
+        NIN_THROW = 0;tolowar_dmg = 1;
+    }
     if(key == 'q')
     {
         exit(0);
     }
+    if(key=='e')// start- shimla
+    {
+        freez = 0;
+        if(pos[game_state]==1)
+        pos[game_state]=0;
+        else if(cnt5==0 && game_state==5)
+            cnt5=-1;
+        else if(cnt6<=7 && game_state==6 && pos[game_state]==0)
+        cnt6++;
+        else if(game_state==8 && cnt8<=10 && pos[game_state]==0)
+        cnt8++;
+    }// end- shimla
+    if(freez) return;
     if(key == 'p'){
             music ^= 1;
         if(music){
         PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
         }
         else PlaySound(0,0,0);
-    }
-    if(key=='m' && game_state>=1)
-    {
-        toroal=1;
-        RUN_STATUS = 0;
-        NIN_THROW = 0;tolowar_dmg = 1;
     }
     if(key == 'n'){
         for(int i = 0;i < number_of_enemy; i++){
@@ -91,7 +104,6 @@ void iKeyboard(unsigned char key)
                 FACE = 0;
                 GIRL_X = 1045;
             }
-            cout << game_state << endl;
         }
     }
     if(game_state == 9) return;

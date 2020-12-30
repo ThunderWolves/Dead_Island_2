@@ -18,6 +18,73 @@ void change(){
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
+        int has_pas = 80;
+        hasnain.image_index++;
+        hasnain.image_index %= 10;
+        cout << hasnain.state << " "<< hasnain.image_index << " " << hasnain.posx << " "<< GIRL_X << endl;
+        if(abs(hasnain.posy - GIRL_Y) >= 300) {
+            hasnain.state = 0; hasnain.image_index= 0;
+        }
+        else{
+            if(abs(hasnain.posx - GIRL_X) <= hasnain.feel_range && hasnain.state == 0) hasnain.state = 2;
+            if(hasnain.posx > GIRL_X){
+                cout << "FUCK " << hasnain.state << endl;
+                if(hasnain.state == 3){
+                    cout << "OK" << endl;
+                    hasnain.face = 0;
+                    if(hasnain.posx - GIRL_X > has_pas){
+                        cout << "HER" << endl;
+                        hasnain.state = 2;
+                        hasnain.image_index = 0;
+                        hasnain.posx -= 10;
+                    }
+                }
+                else if(hasnain.state == 2){
+                    hasnain.face = 0;
+                    hasnain.posx -= 15;
+                }
+                else if(hasnain.state == 0){
+                    if(hasnain.face == 0){
+                        if(hasnain.posx - GIRL_X <= hasnain.seeing_range){
+                            hasnain.state = 2;
+                            hasnain.image_index = 0;
+                        }
+                    }
+                }
+                if(hasnain.posx - GIRL_X <= has_pas && hasnain.state != 3){
+                        hasnain.state = 3;
+                        hasnain.image_index = 0;
+                    }
+            }
+            else{
+                if(hasnain.state == 3){
+                    hasnain.face = 1;
+                    if(0-hasnain.posx + GIRL_X > has_pas+150){
+                        hasnain.state = 2;
+                        hasnain.image_index = 0;
+                        hasnain.posx += 10;
+                    }
+                }
+                else if(hasnain.state == 2){
+                    hasnain.face = 1;
+                    hasnain.posx += 15;
+                }
+                else if(hasnain.state == 0){
+                    if(hasnain.face == 1){
+                        if(-hasnain.posx + GIRL_X <= hasnain.seeing_range){
+                            hasnain.state = 2;
+                            hasnain.image_index = 0;
+                        }
+                    }
+                }
+                if(-hasnain.posx + GIRL_X <= has_pas+150 && hasnain.state != 3){
+                    hasnain.state = 3;
+                    hasnain.image_index = 0;
+                }
+            }
+        }
+
+
         if(GIRL_X >= 120 && GIRL_X <= 280 && GIRL_Y == 140)
             life_left = 0;
         GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
@@ -191,6 +258,7 @@ void change(){
           PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
          }
       }
+      if(hasnain.state == 3) life_left--;
     }
     if(TIME_NOW%4==0){
             if(FACE == 1){
