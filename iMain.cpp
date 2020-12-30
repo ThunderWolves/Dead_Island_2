@@ -26,7 +26,7 @@ int nin_throw_idx = 0, music = 0;
 int RunPicIndex1=0;
 int RunPicIndex2=0;
 int TIME_TO_STOP = 0;
-int freez = 1;
+int freez = 0;
 int jumppic_indexr = 0, idle_indexr = 0, nin_throw_idxr = 0;
 char jumppic[12][20] = {"jump\\1.bmp","jump\\2.bmp","jump\\3.bmp","jump\\4.bmp","jump\\5.bmp","jump\\6.bmp","jump\\7.bmp","jump\\8.bmp","jump\\9.bmp",
 "jump\\10.bmp"};
@@ -131,7 +131,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 0;
+int game_state = 4;
 struct buttonCordinate {
     int x;
     int y;
@@ -177,15 +177,11 @@ void iDraw()
         iShowBMP(0,0,"bk\\4.bmp");
         show_jombie();
         show_girl();
+        if(!jump) iShowBMP2(0,0,"bk\\thik.bmp",255);
         if(pos[game_state]){//start - shimla
         freez = 1;
         iShowBMP2(0,0,"conversation\\4.bmp",255); }
-        if(!jump){
-            iShowBMP2(100,448,"bk\\41.bmp",255);
-            iShowBMP2(444,388,"bk\\42.bmp",255);
-            iShowBMP2(658,241,"bk\\43.bmp",255);
-            iShowBMP2(968,344,"bk\\44.bmp",255);
-        }
+
     }
     else if(game_state == 5){
         iShowBMP(0,0,"bk\\bg.bmp");

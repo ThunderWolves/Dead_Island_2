@@ -20,7 +20,10 @@ void change(){
     if(TIME_NOW%5 == 0){
         int has_pas = 80;
         hasnain.image_index++;
-        hasnain.image_index %= 10;
+        if(hasnain.image_index >= 10){
+            if(hasnain.image_index == 4) hasnain.image_index = 9;
+            hasnain.image_index = 0;
+        }
        // cout << hasnain.state << " "<< hasnain.image_index << " " << hasnain.posx << " "<< GIRL_X << endl;
         if(abs(hasnain.posy - GIRL_Y) >= 300) {
             hasnain.state = 0; hasnain.image_index= 0;
@@ -381,6 +384,16 @@ void change(){
                 jombie[ii].image_index = 0;
                 tolowar_dmg = 0;
                 break;
+            }
+        }
+        if(((GIRL_X+90 >= hasnain.posx && GIRL_X<=hasnain.posx ) ||(GIRL_X - 80<= hasnain.posx && GIRL_X>= hasnain.posx)) && hasnain.state != 4 && toroal==1){
+            if(abs(GIRL_Y - hasnain.posy) > 200 || !tolowar_dmg) {}
+            else {
+                hasnain.life--;
+                if(hasnain.state == 0){
+                    hasnain.state = 4; hasnain.image_index = 0;
+                    tolowar_dmg = 0;
+                }
             }
         }
     }
