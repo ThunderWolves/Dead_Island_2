@@ -18,6 +18,12 @@ void change(){
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
+        if(case_ache == 0) {
+          if(sara_x > GIRL_X + 65) sara_x -= min(sara_x - GIRL_X - 65, 20);
+          else sara_x = GIRL_X + 65;
+          sara_index++;
+          sara_index %= 20;
+      }
         int has_pas = 80;
         hasnain.image_index++;
         if(hasnain.image_index >= 10){
@@ -258,7 +264,13 @@ void change(){
           PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
          }
       }
-      if(hasnain.state == 3) life_left--;
+      int mora = 0;
+      for(int i = 0; i < number_of_enemy; i++) {
+            if(jombie[i].state == 4) mora++;
+      }
+      if(number_of_enemy == mora) {
+            case_ache = 0;
+      }
     }
     if(TIME_NOW%4==0){
             if(FACE == 1){

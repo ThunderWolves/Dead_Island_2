@@ -29,6 +29,7 @@ int RunPicIndex2=0;
 int TIME_TO_STOP = 0;
 int freez = 0;
 int jumppic_indexr = 0, idle_indexr = 0, nin_throw_idxr = 0;
+int hasnain_dead = 0,case_ache = 1,sara_x = 1100, sara_y = 60, sara_index = 0;
 char jumppic[12][20] = {"jump\\1.bmp","jump\\2.bmp","jump\\3.bmp","jump\\4.bmp","jump\\5.bmp","jump\\6.bmp","jump\\7.bmp","jump\\8.bmp","jump\\9.bmp",
 "jump\\10.bmp"};
 char idlepic[12][20] = {"idle\\0.bmp","idle\\1.bmp","idle\\2.bmp","idle\\3.bmp","idle\\4.bmp","idle\\5.bmp","idle\\6.bmp","idle\\7.bmp","idle\\8.bmp","idle\\9.bmp"};
@@ -102,6 +103,14 @@ char bosr[5][14][30] = { {"has\\idler\\1.bmp","has\\idler\\2.bmp","has\\idler\\3
                 {"has\\runr\\1.bmp","has\\runr\\2.bmp","has\\runr\\3.bmp","has\\runr\\4.bmp","has\\runr\\5.bmp","has\\runr\\6.bmp","has\\runr\\7.bmp","has\\runr\\8.bmp","has\\runr\\9.bmp","has\\runr\\10.bmp" },
                 {"has\\atkr\\1.bmp","has\\atkr\\2.bmp","has\\atkr\\3.bmp","has\\atkr\\4.bmp","has\\atkr\\5.bmp","has\\atkr\\6.bmp","has\\atkr\\7.bmp","has\\atkr\\8.bmp","has\\atkr\\9.bmp","has\\atkr\\10.bmp" },
                 {"has\\dedr\\1.bmp","has\\dedr\\2.bmp","has\\dedr\\3.bmp","has\\dedr\\4.bmp","has\\dedr\\5.bmp","has\\dedr\\6.bmp","has\\dedr\\7.bmp","has\\dedr\\8.bmp","has\\dedr\\9.bmp","has\\dedr\\10.bmp" } };
+
+char sara_idle[20][30] = {"sara\\idle\\1.bmp", "sara\\idle\\2.bmp", "sara\\idle\\3.bmp", "sara\\idle\\4.bmp", "sara\\idle\\5.bmp", "sara\\idle\\6.bmp", "sara\\idle\\7.bmp", "sara\\idle\\8.bmp", "sara\\idle\\9.bmp", "sara\\idle\\10.bmp", "sara\\idle\\11.bmp", "sara\\idle\\12.bmp", "sara\\idle\\13.bmp", "sara\\idle\\14.bmp", "sara\\idle\\15.bmp", "sara\\idle\\16.bmp"};
+char sara_run[20][30] = {"sara\\run\\1.bmp", "sara\\run\\2.bmp", "sara\\run\\3.bmp", "sara\\run\\4.bmp", "sara\\run\\5.bmp", "sara\\run\\6.bmp", "sara\\run\\7.bmp", "sara\\run\\8.bmp", "sara\\run\\9.bmp", "sara\\run\\10.bmp", "sara\\run\\11.bmp", "sara\\run\\12.bmp", "sara\\run\\13.bmp", "sara\\run\\14.bmp", "sara\\run\\15.bmp", "sara\\run\\16.bmp", "sara\\run\\17.bmp", "sara\\run\\18.bmp", "sara\\run\\19.bmp", "sara\\run\\20.bmp"};
+
+char sara_idler[20][30] = {"sara\\idler\\1.bmp", "sara\\idler\\2.bmp", "sara\\idler\\3.bmp", "sara\\idler\\4.bmp", "sara\\idler\\5.bmp", "sara\\idler\\6.bmp", "sara\\idler\\7.bmp", "sara\\idler\\8.bmp", "sara\\idler\\9.bmp", "sara\\idler\\10.bmp", "sara\\idler\\11.bmp", "sara\\idler\\12.bmp", "sara\\idler\\13.bmp", "sara\\idler\\14.bmp", "sara\\idler\\15.bmp", "sara\\idler\\16.bmp"};
+char sara_runr[20][30] = {"sara\\runr\\1.bmp", "sara\\runr\\2.bmp", "sara\\runr\\3.bmp", "sara\\runr\\4.bmp", "sara\\runr\\5.bmp", "sara\\runr\\6.bmp", "sara\\runr\\7.bmp", "sara\\runr\\8.bmp", "sara\\runr\\9.bmp", "sara\\runr\\10.bmp", "sara\\runr\\11.bmp", "sara\\runr\\12.bmp", "sara\\runr\\13.bmp", "sara\\runr\\14.bmp", "sara\\runr\\15.bmp", "sara\\runr\\16.bmp", "sara\\runr\\17.bmp", "sara\\runr\\18.bmp", "sara\\runr\\19.bmp", "sara\\runr\\20.bmp"};
+
+
 int pos[14]={0,1,0,1,1,1,1,0,1,0,0,0,0,0},cnt5=0,cnt6=0, cnt8=0;
 struct enemy1{
     int type, showoff = 0;
@@ -133,7 +142,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 0;
+int game_state = 14;
 struct buttonCordinate {
     int x;
     int y;
@@ -294,7 +303,20 @@ void iDraw()
         iShowBMP(0,0,"bk\\13.bmp");
         show_jombie();
         show_girl();
+        if(case_ache == 1) {
+            for(int i = 0; i < 16; i++) {
+                iShowBMP2(1100, 60, sara_idle[i], 255);
+            }
+            iShowBMP2(1030, 50,"case\\1.bmp", 255);
+        }
+        show_jombie();
+        show_girl();
+        if(case_ache == 0) {
+                if(sara_x > GIRL_X + 65) iShowBMP2(sara_x, sara_y, sara_runr[sara_index], 255);
+                else iShowBMP2(sara_x, sara_y, sara_idler[0], 255);
+        }
     }
+
 }
 #include "functions.hpp"
 void place_enemy(){
@@ -310,7 +332,7 @@ void place_enemy(){
         hasnain.image_index = 0;
         hasnain.state = 0;
     }
-    else hasnain.state = 6;
+    else hasnain.state = 4;
     int dif = (desktop_hor-500)/number_of_enemy;
     for(int i = 0; i < number_of_enemy; i++){
         //jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
