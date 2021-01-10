@@ -21,8 +21,8 @@ void change(){
         int has_pas = 80;
         hasnain.image_index++;
         if(hasnain.image_index >= 10){
-            if(hasnain.image_index == 4) hasnain.image_index = 9;
-            hasnain.image_index = 0;
+            if(hasnain.state == 4) hasnain.image_index = 9;
+            else hasnain.image_index = 0;
         }
        // cout << hasnain.state << " "<< hasnain.image_index << " " << hasnain.posx << " "<< GIRL_X << endl;
         if(abs(hasnain.posy - GIRL_Y) >= 300) {
@@ -30,7 +30,7 @@ void change(){
         }
         else{
             if(abs(hasnain.posx - GIRL_X) <= hasnain.feel_range && hasnain.state == 0) hasnain.state = 2;
-            if(hasnain.posx > GIRL_X){
+            if(hasnain.posx > GIRL_X-65){
                 if(hasnain.state == 3){
                     hasnain.face = 0;
                     if(hasnain.posx - GIRL_X > has_pas){
@@ -332,6 +332,7 @@ void change(){
             int dif = GIRL_Y - FLOOR[game_state][GIRL_X][GIRL_Y];
             GIRL_Y -= min(dif, GRAVITY_SPEED);
         }
+
         for(int i = 0; i < MAX_NINCHUK; i++){
             if(ninchuk[i].state != 1) continue;
             if(ninchuk[i].face) ninchuk[i].posx += 51;
@@ -340,8 +341,7 @@ void change(){
                 ninchuk[i].state = 0;
                 NIN_COUNT--;
             }
-            for(int ii = 0; ii < number_of_enemy; ii++){
-                if(GIRL_X <= hasnain.posx && ninchuk[i].posx >= hasnain.posx ||
+            if(GIRL_X <= hasnain.posx && ninchuk[i].posx >= hasnain.posx ||
                         (GIRL_X >= hasnain.posx && ninchuk[i].posx <= hasnain.posx)){
                             ninchuk[i].state = 2;
                             chakus_in_dead_body.push_back(i);
@@ -351,8 +351,9 @@ void change(){
                                 hasnain.state = 4;
                                 hasnain.image_index = 0;
                             }
-                    }
-                    int ma = jombie[ii].posx;
+            }
+            for(int ii = 0; ii < number_of_enemy; ii++){
+                int ma = jombie[ii].posx;
                 if(ninchuk[i].posy > jombie[ii].posy+150+(50*(jombie[ii].state == 1)) || ninchuk[i].posy < jombie[ii].posy) continue;
                 if(jombie[ii].state == 4) continue;
                 if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx ||
@@ -376,8 +377,9 @@ void change(){
                     jombie[ii].chaku = 0;
             }
         }
+        //tolowar attack
         for(int ii = 0; ii < number_of_enemy ; ii++){
-            if(((GIRL_X+90 >= jombie[ii].posx && GIRL_X<=jombie[ii].posx ) ||(GIRL_X - 60<= jombie[ii].posx && GIRL_X>=jombie[ii].posx)) && jombie[ii].state !=4 && toroal==1)
+            if(((GIRL_X+90 >= jombie[ii].posx && GIRL_X<=jombie[ii].posx ) ||(GIRL_X - 100<= jombie[ii].posx && GIRL_X>=jombie[ii].posx)) && jombie[ii].state !=4 && toroal==1)
             {
                 if(abs(GIRL_Y - jombie[ii].posy) > 50 || !tolowar_dmg) continue;
                 jombie[ii].state=4;
@@ -386,13 +388,14 @@ void change(){
                 break;
             }
         }
-        if(((GIRL_X+90 >= hasnain.posx && GIRL_X<=hasnain.posx ) ||(GIRL_X - 80<= hasnain.posx && GIRL_X>= hasnain.posx)) && hasnain.state != 4 && toroal==1){
+        cout << GIRL_X << " "<< hasnain.posx << " "<< hasnain.state << " "<< toroal << endl;
+        if(((GIRL_X+90 >= hasnain.posx && GIRL_X<=hasnain.posx ) ||(GIRL_X - 210<= hasnain.posx )) && hasnain.state != 4 && toroal==1){
             if(abs(GIRL_Y - hasnain.posy) > 200 || !tolowar_dmg) {}
             else {
                 hasnain.life--;
-                if(hasnain.state == 0){
+                tolowar_dmg = 0;
+                if(hasnain.life <= 0){
                     hasnain.state = 4; hasnain.image_index = 0;
-                    tolowar_dmg = 0;
                 }
             }
         }

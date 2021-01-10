@@ -20,6 +20,7 @@ bool RUN_STATUS = false;
 int NIN_COUNT = 0, UNLOCKED_CHARACTER = 1;
 int FACE = 1; //0 mane bam , 1 mane dane
 int GIRL_X = 0, GIRL_Y = 300;
+char image_fix[20][20];
 vector<int>chakus_in_dead_body;
 int jumppic_index = 0, idle_index = 0;
 int nin_throw_idx = 0, music = 0;
@@ -117,12 +118,13 @@ struct arm1{
     int face;
 };
 struct boss{
+    void jinis();
     int state, seeing_range = 750;
     int feel_range = 200,calcu_x;
     int posx, posy, face, chaku;
     int image_index;
     int base;
-    int life = 20;
+    int life = 3;
 };
 boss hasnain;
 arm1 bullet[300];
@@ -131,7 +133,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 4;
+int game_state = 0;
 struct buttonCordinate {
     int x;
     int y;
@@ -311,7 +313,8 @@ void place_enemy(){
     else hasnain.state = 6;
     int dif = (desktop_hor-500)/number_of_enemy;
     for(int i = 0; i < number_of_enemy; i++){
-        jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
+        //jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
+        jombie[i].type = 2;
         //cng here
         jombie[i].image_index = rand()%6;
         if(i&1) jombie[i].base = 400+(i*dif);
@@ -319,12 +322,19 @@ void place_enemy(){
         jombie[i].chaku = 0;
         jombie[i].face = 0;
         jombie[i].image_index = 0;
-        jombie[i].state = i%2;
+        jombie[i].state = 0;
         jombie[i].posx = jombie[i].base;
         jombie[i].posy = FLOOR[game_state][0][0];
         jombie[i].walking_range = 200;
         if(jombie[i].type > 1) jombie[i].posy -= 20;
     }
+}
+void fix_image(){
+    image_fix[4][3] = 5;
+    image_fix[4][2] = 15;
+    image_fix[10][2] = 10;
+    image_fix[12][2] = 20;
+    image_fix[13][2] = 20;
 }
 void place_floor(){
     for(int i = 1; i <= 15; i++){
@@ -437,7 +447,9 @@ void place_floor(){
 #include "ikeyboard.hpp";
 int main()
 {
+
     //SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
+    fix_image();
     srand(time(NULL));
     place_floor();
      int sum  = 100;

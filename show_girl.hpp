@@ -14,34 +14,34 @@ void show_jombie(){
             if(jombie[i].showoff) continue;
             if(jombie[i].type == 0){
                 if(jombie[i].face == 1){
-                    iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmy[jombie[i].state][jombie[i].image_index], 255);
+                    iShowBMP2(jombie[i].posx, jombie[i].posy-image_fix[game_state][jombie[i].type], t1enmy[jombie[i].state][jombie[i].image_index], 255);
                 }
                 else{
-                    iShowBMP2(jombie[i].posx, jombie[i].posy, t1enmyr[jombie[i].state][jombie[i].image_index], 255);
+                    iShowBMP2(jombie[i].posx, jombie[i].posy-image_fix[game_state][jombie[i].type], t1enmyr[jombie[i].state][jombie[i].image_index], 255);
                 }
             }
             else if(jombie[i].type == 1){
                     if(jombie[i].face == 1){
-                        iShowBMP2(jombie[i].posx, jombie[i].posy, t2enemy[jombie[i].state][jombie[i].image_index], 255);
+                        iShowBMP2(jombie[i].posx, jombie[i].posy-image_fix[game_state][jombie[i].type], t2enemy[jombie[i].state][jombie[i].image_index], 255);
                     }
                     else{
-                        iShowBMP2(jombie[i].posx, jombie[i].posy, t2enemyr[jombie[i].state][jombie[i].image_index], 255);
+                        iShowBMP2(jombie[i].posx, jombie[i].posy-image_fix[game_state][jombie[i].type], t2enemyr[jombie[i].state][jombie[i].image_index], 255);
                     }
             }
             else if(jombie[i].type == 2){
                     if(jombie[i].face == 1){
-                        iShowBMP2(jombie[i].posx+20, jombie[i].posy, p1[jombie[i].state][jombie[i].image_index], 255);
+                        iShowBMP2(jombie[i].posx+20, jombie[i].posy-image_fix[game_state][jombie[i].type], p1[jombie[i].state][jombie[i].image_index], 255);
                     }
                     else{
-                        iShowBMP2(jombie[i].posx-20, jombie[i].posy, p1r[jombie[i].state][jombie[i].image_index], 255);
+                        iShowBMP2(jombie[i].posx-20, jombie[i].posy-image_fix[game_state][jombie[i].type], p1r[jombie[i].state][jombie[i].image_index], 255);
                     }
             }
             else if(jombie[i].type == 3){
                     if(jombie[i].face == 1){
-                        iShowBMP2(jombie[i].posx, jombie[i].posy-15, p2[jombie[i].state][jombie[i].image_index], 255);
+                        iShowBMP2(jombie[i].posx, jombie[i].posy-15-image_fix[game_state][jombie[i].type], p2[jombie[i].state][jombie[i].image_index], 255);
                     }
                     else{
-                        iShowBMP2(jombie[i].posx, jombie[i].posy-15, p2r[jombie[i].state][jombie[i].image_index], 255);
+                        iShowBMP2(jombie[i].posx, jombie[i].posy-15-image_fix[game_state][jombie[i].type], p2r[jombie[i].state][jombie[i].image_index], 255);
                     }
             }
 
@@ -70,7 +70,7 @@ void show_girl(){
         {
             if(FACE == 1)
             iShowBMP2(GIRL_X, GIRL_Y, toroal_pic[toroal_index], 255);
-            else iShowBMP2(GIRL_X, GIRL_Y, toroal_picr[toroal_indexr], 255);
+            else iShowBMP2(GIRL_X-50, GIRL_Y, toroal_picr[toroal_indexr], 255);
         }
         else if(jump){
             if(FACE == 1)
