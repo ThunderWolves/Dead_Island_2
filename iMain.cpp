@@ -142,7 +142,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 14;
+int game_state = 5;
 struct buttonCordinate {
     int x;
     int y;
@@ -207,6 +207,8 @@ void iDraw()
         freez = 1;
           iShowBMP2(0,0,"conversation\\9.bmp",255);
         }//end - shimla
+        iShowBMP2(35,10,"bk\\gto.bmp",255);
+        iShowBMP2(0,0,"bk\\gto2.bmp",255); // end -shimla
     }
     else if(game_state == 6){
         iShowBMP(0,0,"bk\\bg.bmp");
@@ -237,6 +239,8 @@ void iDraw()
         else if(cnt6==7) { freez = 1;
         iShowBMP2(0,0,"conversation\\18.bmp",255);}
             // end - shimla
+        iShowBMP2(35,10,"bk\\gto.bmp",255);
+        iShowBMP2(0,0,"bk\\gto2.bmp",255); // end -shimla
     }
     else if(game_state == 7){
         iShowBMP(0,0,"bk\\8.bmp");
@@ -388,6 +392,8 @@ void place_floor(){
                 }
                 else if(i == 5 || i == 6){
                     FLOOR[i][j][k] = 140;
+                    if(j>=120 && j<=280)
+                        FLOOR[i][j][k]=0;
                 }
                 else if(i == 7){
                     FLOOR[i][j][k] = 260;
