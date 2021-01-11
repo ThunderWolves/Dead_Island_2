@@ -29,6 +29,11 @@ void change(){
                 hat_mstr++;
             }
        //image index start
+       if(sara_x == GIRL_X + 65) {
+        for(int i = 0; i < 7; i++) {
+            emoji_ind[i] += 20;
+        }
+      }
             sara_idle_index++;
             sara_idle_index %= 16;
         for(int i = 0; i < number_of_enemy; i++){
