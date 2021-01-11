@@ -25,6 +25,7 @@ void change(){
           sara_index %= 20;
       }
         int has_pas = 80;
+        if(hasnain.image_index == 6 && hasnain.state == 3) life_left--;
         hasnain.image_index++;
         if(hasnain.image_index >= 10){
             if(hasnain.state == 4) hasnain.image_index = 9;
