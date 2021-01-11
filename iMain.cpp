@@ -1,6 +1,7 @@
 #include "iGraphics.h"
-#include<bits/stdc++.h>\
+#include<bits/stdc++.h>
 #include <mmsystem.h>
+#include <windows.h>
 using namespace std;
 int GRAVITY_SPEED = 40, base= 0,touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300;
@@ -9,15 +10,14 @@ const int number_of_enemy = 1;
 int life_left=10;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
-#include <windows.h>
 int throwing_now = 0;
 bool jump = false;
 int r = 0,g = 255, b = 0;
 int tolowar_dmg = 0;
 int FLOOR[20][1400][1000]; // game_state & x,y,
 bool NIN_THROW = false;
-bool RUN_STATUS = false;
-int NIN_COUNT = 0, UNLOCKED_CHARACTER = 1;
+bool RUN_STATUS = false, ZOMBIE_DONE = false;
+int NIN_COUNT = 0, UNLOCKED_CHARACTER = 1, press_n = 0;
 int FACE = 1; //0 mane bam , 1 mane dane
 int GIRL_X = 0, GIRL_Y = 300;
 char image_fix[20][20];
@@ -110,8 +110,8 @@ char sara_run[20][30] = {"sara\\run\\1.bmp", "sara\\run\\2.bmp", "sara\\run\\3.b
 char sara_idler[20][30] = {"sara\\idler\\1.bmp", "sara\\idler\\2.bmp", "sara\\idler\\3.bmp", "sara\\idler\\4.bmp", "sara\\idler\\5.bmp", "sara\\idler\\6.bmp", "sara\\idler\\7.bmp", "sara\\idler\\8.bmp", "sara\\idler\\9.bmp", "sara\\idler\\10.bmp", "sara\\idler\\11.bmp", "sara\\idler\\12.bmp", "sara\\idler\\13.bmp", "sara\\idler\\14.bmp", "sara\\idler\\15.bmp", "sara\\idler\\16.bmp"};
 char sara_runr[20][30] = {"sara\\runr\\1.bmp", "sara\\runr\\2.bmp", "sara\\runr\\3.bmp", "sara\\runr\\4.bmp", "sara\\runr\\5.bmp", "sara\\runr\\6.bmp", "sara\\runr\\7.bmp", "sara\\runr\\8.bmp", "sara\\runr\\9.bmp", "sara\\runr\\10.bmp", "sara\\runr\\11.bmp", "sara\\runr\\12.bmp", "sara\\runr\\13.bmp", "sara\\runr\\14.bmp", "sara\\runr\\15.bmp", "sara\\runr\\16.bmp", "sara\\runr\\17.bmp", "sara\\runr\\18.bmp", "sara\\runr\\19.bmp", "sara\\runr\\20.bmp"};
 
-
-int pos[14]={0,1,0,1,1,1,1,0,1,0,0,0,0,0},cnt5=0,cnt6=0, cnt8=0;
+int SWAT_COME = 0;
+int pos[14]={0,1,0,1,1,1,1,0,1,0,0,0,0,0},cnt5=0,cnt6=0, cnt8=-1, cnt9 = 0,cnt10 = 0;
 struct enemy1{
     int type, showoff = 0;
     int chaku;
@@ -130,7 +130,7 @@ struct boss{
     int MAX_LIFE = 3;
     int state, seeing_range = 750;
     int feel_range = 200,calcu_x;
-    int posx, posy, face, chaku;
+    int posx, posy, face, chaku = 0;
     int image_index;
     int base;
     int life = MAX_LIFE;
@@ -142,7 +142,8 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 5;
+int game_state = 14;
+
 struct buttonCordinate {
     int x;
     int y;
@@ -153,7 +154,6 @@ void iDraw()
 {
     //place your drawing codes here
     iClear();
-    // for handeling button, change by farhan
     if(game_state == 0) {
         iShowBMP(0, 0, "mainmenu\\menu.bmp");
         for(int i = 0; i < 3; i++) {
@@ -209,13 +209,16 @@ void iDraw()
         }//end - shimla
         iShowBMP2(35,10,"bk\\gto.bmp",255);
         iShowBMP2(0,0,"bk\\gto2.bmp",255); // end -shimla
+        if(SWAT_COME){
+            print_swat();
+        }
     }
     else if(game_state == 6){
         iShowBMP(0,0,"bk\\bg.bmp");
         iShowBMP2(100,60,"bk\\gorto.bmp", 255);
-        print_swat();
         show_jombie();
         show_girl();
+        print_swat();
         if(pos[game_state]){//start - shimla
         freez = 1;
         iShowBMP2(0,0,"conversation\\10.bmp",255); }
@@ -236,8 +239,9 @@ void iDraw()
         iShowBMP2(0,0,"conversation\\16.bmp",255);}
         else if(cnt6==6) { freez = 1;
         iShowBMP2(0,0,"conversation\\17.bmp",255);}
-        else if(cnt6==7) { freez = 1;
-        iShowBMP2(0,0,"conversation\\18.bmp",255);}
+        else if(cnt6 == 7){
+            iShowBMP2(0,0,"conversation\\n.bmp", 255);
+        }
             // end - shimla
         iShowBMP2(35,10,"bk\\gto.bmp",255);
         iShowBMP2(0,0,"bk\\gto2.bmp",255); // end -shimla
@@ -252,41 +256,56 @@ void iDraw()
          iShowBMP(0,0,"bk\\9.bmp");
         show_jombie();
         show_girl();
-        if(pos[game_state]){ freez = 1;
-        iShowBMP2(0,0,"conversation\\20.bmp",255);}
-        else if(cnt8==0) { freez = 1;
-        iShowBMP2(0,0,"conversation\\21.bmp",255);}
-        else if(cnt8==1) { freez = 1;
-        iShowBMP2(0,0,"conversation\\22.bmp",255);}
-        else if(cnt8==2) { freez = 1;
-        iShowBMP2(0,0,"conversation\\23.bmp",255);}
-        else if(cnt8==3) { freez = 1;
-        iShowBMP2(0,0,"conversation\\24.bmp",255);}
-        else if(cnt8==4) { freez = 1;
-        iShowBMP2(0,0,"conversation\\25.bmp",255);}
-        else if(cnt8==5) { freez = 1;
-        iShowBMP2(0,0,"conversation\\26.bmp",255);}
-        else if(cnt8==6) { freez = 1;
-        iShowBMP2(0,0,"conversation\\27.bmp",255);}
-        else if(cnt8==7) { freez = 1;
-        iShowBMP2(0,0,"conversation\\28.bmp",255);}
-        else if(cnt8==8) { freez = 1;
-        iShowBMP2(0,0,"conversation\\29.bmp",255);}
-        else if(cnt8==9) { freez = 1;
-        iShowBMP2(0,0,"conversation\\30.bmp",255);}
-        else if(cnt8==10) { freez = 1;
-        iShowBMP2(0,0,"conversation\\31.bmp",255);}// end- shimla
+        if(ZOMBIE_DONE){
+            //print ashiq here
+            iShowBMP2(GIRL_X + 100, GIRL_Y-10, "bk\\as.bmp",255);
+            if(pos[game_state]){ freez = 1;
+            iShowBMP2(0,0,"conversation\\18.bmp",255);}
+            else if(cnt8 == -1){
+                freez = 1;
+                iShowBMP2(0,0,"conversation\\19.bmp", 255);
+            }
+            else if(cnt8==0) { freez = 1;
+            iShowBMP2(0,0,"conversation\\20.bmp",255);}
+            else if(cnt8==1) { freez = 1;
+            iShowBMP2(0,0,"conversation\\21.bmp",255);}
+            else if(cnt8==2) { freez = 1;
+            iShowBMP2(0,0,"conversation\\22.bmp",255);}
+            else if(cnt8==3) { freez = 1;
+            iShowBMP2(0,0,"conversation\\23.bmp",255);}
+            else if(cnt8==4) { freez = 1;
+            iShowBMP2(0,0,"conversation\\24.bmp",255);}
+            else if(cnt8==5) { freez = 1;
+            iShowBMP2(0,0,"conversation\\25.bmp",255);}
+            else if(cnt8==6) { freez = 1;
+            iShowBMP2(0,0,"conversation\\26.bmp",255);}
+            else if(cnt8==7) { freez = 1;
+            iShowBMP2(0,0,"conversation\\27.bmp",255);}
+            else if(cnt8==8) { freez = 1;
+            iShowBMP2(0,0,"conversation\\28.bmp",255);}
+            else if(cnt8==9) { freez = 1;
+            iShowBMP2(0,0,"conversation\\29.bmp",255);}
+            else if(cnt8==10) { freez = 1;
+            iShowBMP2(0,0,"conversation\\30.bmp",255);}
+            else if(cnt8 == 11){
+                iShowBMP2(0,0,"conversation\\n.bmp", 255);
+            }
+        }
     }
     else if(game_state == 9){
         iShowBMP(0,0,"bk\\trn.bmp");
         show_girl();
-
+        if(cnt9 == 0){
+            iShowBMP2(0,0,"conversation\\30.bmp", 255);
+        }
+        else if(cnt9 == 1){
+            iShowBMP2(0,0,"conversation\\31.bmp",255);
+        }
     }
     else if(game_state == 10){
         iShowBMP(0,0,"bk\\15.bmp");
         show_jombie();
         show_girl();
-
     }
     else if(game_state == 11){
         iShowBMP(0,0,"bk\\11.bmp");
@@ -311,13 +330,22 @@ void iDraw()
             for(int i = 0; i < 16; i++) {
                 iShowBMP2(1100, 60, sara_idle[i], 255);
             }
-            iShowBMP2(1030, 50,"case\\1.bmp", 255);
+            iShowBMP2(1070, 20,"bk\\case.bmp", 255);
         }
         show_jombie();
         show_girl();
         if(case_ache == 0) {
                 if(sara_x > GIRL_X + 65) iShowBMP2(sara_x, sara_y, sara_runr[sara_index], 255);
                 else iShowBMP2(sara_x, sara_y, sara_idler[0], 255);
+        }
+        if(cnt10 == 0){ freez = 1;
+            iShowBMP2(0,0,"conversation\\32.bmp", 255);
+        }
+        else if(cnt10 == 1){ freez = 1;
+            iShowBMP2(0,0,"conversation\\33.bmp", 255);
+        }
+        else if(cnt10 == 2){ freez = 1;
+            iShowBMP2(0,0,"conversation\\34.bmp", 255);
         }
     }
 
@@ -338,13 +366,17 @@ void place_enemy(){
     }
     else hasnain.state = 4;
     int dif = (desktop_hor-500)/number_of_enemy;
+    int space = 0;
+    if(game_state == 6 ){
+        space = 2000;
+    }
     for(int i = 0; i < number_of_enemy; i++){
         //jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
         jombie[i].type = 2;
         //cng here
         jombie[i].image_index = rand()%6;
         if(i&1) jombie[i].base = 400+(i*dif);
-        else jombie[i].base = 400+(i*dif);
+        else jombie[i].base = 400+(i*dif)+space;
         jombie[i].chaku = 0;
         jombie[i].face = 0;
         jombie[i].image_index = 0;
@@ -353,6 +385,9 @@ void place_enemy(){
         jombie[i].posy = FLOOR[game_state][0][0];
         jombie[i].walking_range = 200;
         if(jombie[i].type > 1) jombie[i].posy -= 20;
+        if(game_state == 6 || game_state == 9){
+            jombie[i].state = 4;
+        }
     }
 }
 void fix_image(){

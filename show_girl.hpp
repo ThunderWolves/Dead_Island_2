@@ -1,5 +1,23 @@
 void print_swat(){
-
+    if(game_state == 6){
+        iShowBMP2(350 + 400, 140,"bk/swat/1.bmp", 255);
+        iShowBMP2(350 + 100, 140,"bk/swat/3.bmp", 255);
+        iShowBMP2(350 + 800, 140,"bk/swat/4.bmp", 255);
+        iShowBMP2(350 + 730, 140,"bk/swat/2.bmp", 255);
+    }
+    if(game_state == 5){
+        iShowBMP2(300, 140,"bk/swat/1.bmp", 255);
+        iShowBMP2(60, 140,"bk/swat/3b.bmp", 255);
+        iShowBMP2(450, 140,"bk/swat/4.bmp", 255);
+        iShowBMP2(400, 140,"bk/swat/2.bmp", 255);
+        if(!press_n){
+            iShowBMP2(0,0,"conversation/sw.bmp", 255);
+            freez = 1;
+        }
+        else{
+            iShowBMP2(0,0,"conversation/n.bmp", 255);
+        }
+    }
 }
 void show_jombie(){
         if(game_state == 5 || game_state == 14){

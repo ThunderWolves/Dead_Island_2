@@ -53,25 +53,32 @@ void iKeyboard(unsigned char key)
         pos[game_state]=0;
         else if(cnt5==0 && game_state==5)
             cnt5=-1;
-        else if(cnt6<=7 && game_state==6 && pos[game_state]==0)
+        else if(cnt6<7 && game_state==6 && pos[game_state]==0)
         cnt6++;
         else if(game_state==8 && cnt8<=10 && pos[game_state]==0)
         cnt8++;
+        else if(game_state == 9){
+            cnt9++;
+        }
+        else if(game_state == 14){
+            cnt10++;
+        }
+        if(SWAT_COME || (game_state == 6 && cnt6 == 7) || (game_state == 8 && cnt8 == 11)){
+            press_n = 1;
+        }
     }// end- shimla
     if(freez) return;
-    if(key=='m' && game_state>=1)
-    {
-        toroal=1;
-        RUN_STATUS = 0;
-        NIN_THROW = 0;tolowar_dmg = 1;
-    }
     if(key == 'n'){
+            if(!press_n){
         for(int i = 0;i < number_of_enemy; i++){
             if(jombie[i].state != 4 && game_state != 9){
                 return;
             }
         }
-        if(GIRL_X >= desktop_hor-100|| game_state == 9){
+        if(hasnain.state != 4) return;
+            }
+        if(GIRL_X >= desktop_hor-100|| game_state == 9 || press_n){
+                case_ache = 1;
             game_state++;
             GIRL_X = 0;
             GIRL_Y = FLOOR[game_state][0][0];
@@ -82,16 +89,27 @@ void iKeyboard(unsigned char key)
                 base = 2;
             }
             else if(game_state <= 6){
+                    GIRL_X = 350;
                 base = 2;
             }
             else if(game_state == 7){
+                    ZOMBIE_DONE = 0;
                 base = 0;
             }
             else if(game_state == 8){
+                ZOMBIE_DONE = 0;
                 base = 2;
             }
             else if(game_state <= 9){
+                NIN_COUNT = 0;
+                for(int i =0; i < MAX_NINCHUK; i++){
+                    ninchuk[i].state = 0;
+                }
+                chakus_in_dead_body.clear();
                 base = 0;
+            }
+            else if(game_state == 10){
+                FACE = 1;
             }
             else if(game_state <= 11){
                 base = 0;
@@ -105,6 +123,14 @@ void iKeyboard(unsigned char key)
                 GIRL_X = 1045;
             }
         }
+        press_n = 0;
+    }
+    if(press_n) return;
+    if(key=='m' && game_state>=1)
+    {
+        toroal=1;
+        RUN_STATUS = 0;
+        NIN_THROW = 0;tolowar_dmg = 1;
     }
     if(game_state == 9) return;
     if(key == 'w'){

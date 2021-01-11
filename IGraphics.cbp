@@ -14,15 +14,19 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="OpenGL/include" />
+					<Add directory="graphics.h" />
 				</Compiler>
 				<Linker>
+					<Add option="-lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32" />
 					<Add library="Glaux" />
 					<Add library="GLU32" />
 					<Add library="glui32" />
 					<Add library="glut32" />
 					<Add library="OPENGL32" />
 					<Add library="gdi32" />
+					<Add library="libbgi.a" />
 					<Add directory="./OpenGL/lib" />
+					<Add directory="./graphics.h" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="xcopy /y openGL\dll\glut32.dll $TARGET_OUTPUT_DIR" />
