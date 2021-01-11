@@ -18,7 +18,19 @@ void change(){
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
+            if(game_state==9 && teacher_index<=6)
+            {
+                teacher_index++;
+            }
+            else
+            {
+                if(hat_mstr<=1)
+                teacher_index=0;
+                hat_mstr++;
+            }
        //image index start
+            sara_idle_index++;
+            sara_idle_index %= 16;
         for(int i = 0; i < number_of_enemy; i++){
             jombie[i].image_index++;
             if(jombie[i].state == 4 ){

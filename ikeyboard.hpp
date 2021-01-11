@@ -89,7 +89,6 @@ void iKeyboard(unsigned char key)
                 base = 2;
             }
             else if(game_state <= 6){
-                    GIRL_X = 350;
                 base = 2;
             }
             else if(game_state == 7){
@@ -116,6 +115,9 @@ void iKeyboard(unsigned char key)
             }
             else if(game_state <= 13){
                 base = 2;
+            }
+            if(game_state == 6){
+                GIRL_X = 350;
             }
             place_enemy();
             if(game_state == 9){

@@ -28,8 +28,12 @@ int RunPicIndex1=0;
 int RunPicIndex2=0;
 int TIME_TO_STOP = 0;
 int freez = 0;
+int sara_idle_index = 0;
 int jumppic_indexr = 0, idle_indexr = 0, nin_throw_idxr = 0;
 int hasnain_dead = 0,case_ache = 1,sara_x = 1100, sara_y = 60, sara_index = 0;
+char teacher_cku[8][30]={"teacher\\1.bmp","teacher\\2.bmp","teacher\\3.bmp","teacher\\4.bmp","teacher\\5.bmp","teacher\\6.bmp","teacher\\7.bmp","teacher\\8.bmp"};// edit- shimla
+int teacher_index=0;//edit-shimla
+int hat_mstr=0;//edit- shimla
 char jumppic[12][20] = {"jump\\1.bmp","jump\\2.bmp","jump\\3.bmp","jump\\4.bmp","jump\\5.bmp","jump\\6.bmp","jump\\7.bmp","jump\\8.bmp","jump\\9.bmp",
 "jump\\10.bmp"};
 char idlepic[12][20] = {"idle\\0.bmp","idle\\1.bmp","idle\\2.bmp","idle\\3.bmp","idle\\4.bmp","idle\\5.bmp","idle\\6.bmp","idle\\7.bmp","idle\\8.bmp","idle\\9.bmp"};
@@ -109,7 +113,7 @@ char sara_run[20][30] = {"sara\\run\\1.bmp", "sara\\run\\2.bmp", "sara\\run\\3.b
 
 char sara_idler[20][30] = {"sara\\idler\\1.bmp", "sara\\idler\\2.bmp", "sara\\idler\\3.bmp", "sara\\idler\\4.bmp", "sara\\idler\\5.bmp", "sara\\idler\\6.bmp", "sara\\idler\\7.bmp", "sara\\idler\\8.bmp", "sara\\idler\\9.bmp", "sara\\idler\\10.bmp", "sara\\idler\\11.bmp", "sara\\idler\\12.bmp", "sara\\idler\\13.bmp", "sara\\idler\\14.bmp", "sara\\idler\\15.bmp", "sara\\idler\\16.bmp"};
 char sara_runr[20][30] = {"sara\\runr\\1.bmp", "sara\\runr\\2.bmp", "sara\\runr\\3.bmp", "sara\\runr\\4.bmp", "sara\\runr\\5.bmp", "sara\\runr\\6.bmp", "sara\\runr\\7.bmp", "sara\\runr\\8.bmp", "sara\\runr\\9.bmp", "sara\\runr\\10.bmp", "sara\\runr\\11.bmp", "sara\\runr\\12.bmp", "sara\\runr\\13.bmp", "sara\\runr\\14.bmp", "sara\\runr\\15.bmp", "sara\\runr\\16.bmp", "sara\\runr\\17.bmp", "sara\\runr\\18.bmp", "sara\\runr\\19.bmp", "sara\\runr\\20.bmp"};
-
+int emoji_ind[] = {130, 100, 140, 120, 145, 170, 140};
 int SWAT_COME = 0;
 int pos[14]={0,1,0,1,1,1,1,0,1,0,0,0,0,0},cnt5=0,cnt6=0, cnt8=-1, cnt9 = 0,cnt10 = 0;
 struct enemy1{
@@ -142,7 +146,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 14;
+int game_state = 0;
 
 struct buttonCordinate {
     int x;
@@ -295,6 +299,7 @@ void iDraw()
     else if(game_state == 9){
         iShowBMP(0,0,"bk\\trn.bmp");
         show_girl();
+        iShowBMP2(50,380,teacher_cku[teacher_index],255);
         if(cnt9 == 0){
             iShowBMP2(0,0,"conversation\\30.bmp", 255);
         }
@@ -327,16 +332,14 @@ void iDraw()
         show_jombie();
         show_girl();
         if(case_ache == 1) {
-            for(int i = 0; i < 16; i++) {
-                iShowBMP2(1100, 60, sara_idle[i], 255);
-            }
+            iShowBMP2(1100, 60, sara_idle[sara_idle_index], 255);
             iShowBMP2(1070, 20,"bk\\case.bmp", 255);
         }
         show_jombie();
         show_girl();
         if(case_ache == 0) {
                 if(sara_x > GIRL_X + 65) iShowBMP2(sara_x, sara_y, sara_runr[sara_index], 255);
-                else iShowBMP2(sara_x, sara_y, sara_idler[0], 255);
+                else iShowBMP2(sara_x, sara_y, sara_idler[sara_idle_index], 255);
         }
         if(cnt10 == 0){ freez = 1;
             iShowBMP2(0,0,"conversation\\32.bmp", 255);
@@ -346,6 +349,15 @@ void iDraw()
         }
         else if(cnt10 == 2){ freez = 1;
             iShowBMP2(0,0,"conversation\\34.bmp", 255);
+        }
+        if(sara_x == GIRL_X + 65) {
+            iShowBMP2(sara_x - 120, emoji_ind[0], "emoji\\1.bmp", 255);
+            iShowBMP2(sara_x - 0, emoji_ind[1], "emoji\\2.bmp", 255);
+            iShowBMP2(sara_x - 65, emoji_ind[2], "emoji\\3.bmp", 255);
+            iShowBMP2(sara_x - 35, emoji_ind[3], "emoji\\4.bmp", 255);
+            iShowBMP2(sara_x + 40, emoji_ind[4], "emoji\\5.bmp", 255);
+            iShowBMP2(sara_x + 75, emoji_ind[5], "emoji\\6.bmp", 255);
+            iShowBMP2(sara_x + 110, emoji_ind[6], "emoji\\13.bmp", 255);
         }
     }
 
@@ -357,6 +369,7 @@ void place_enemy(){
         ase.insert(i);
     }
     if(game_state == 5 || game_state == 14){
+        hasnain.life = hasnain.MAX_LIFE;
         hasnain.posx = 900;
         hasnain.posy = FLOOR[game_state][0][0] ;
         hasnain.face = 0,
