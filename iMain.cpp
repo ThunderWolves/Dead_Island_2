@@ -1,5 +1,5 @@
 #include "iGraphics.h"
-#include<bits/stdc++.h>
+#include<bits/stdc++.h>\
 #include <mmsystem.h>
 using namespace std;
 int GRAVITY_SPEED = 40, base= 0,touch_sound=0,touch_continue=0;
@@ -127,13 +127,13 @@ struct arm1{
     int face;
 };
 struct boss{
-    void jinis();
+    int MAX_LIFE = 3;
     int state, seeing_range = 750;
     int feel_range = 200,calcu_x;
     int posx, posy, face, chaku;
     int image_index;
     int base;
-    int life = 3;
+    int life = MAX_LIFE;
 };
 boss hasnain;
 arm1 bullet[300];
@@ -469,7 +469,6 @@ void place_floor(){
 #include "ikeyboard.hpp";
 int main()
 {
-
     //SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
     fix_image();
     srand(time(NULL));

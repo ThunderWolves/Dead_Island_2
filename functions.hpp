@@ -400,7 +400,6 @@ void change(){
                 break;
             }
         }
-        cout << GIRL_X << " "<< hasnain.posx << " "<< hasnain.state << " "<< toroal << endl;
         if(((GIRL_X+90 >= hasnain.posx && GIRL_X<=hasnain.posx ) ||(GIRL_X - 210<= hasnain.posx )) && hasnain.state != 4 && toroal==1){
             if(abs(GIRL_Y - hasnain.posy) > 200 || !tolowar_dmg) {}
             else {

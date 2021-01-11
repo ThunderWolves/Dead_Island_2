@@ -9,6 +9,11 @@ void show_jombie(){
             }
             if(hasnain.face) iShowBMP2(hasnain.posx+bonus,hasnain.posy, bos[hasnain.state][hasnain.image_index],255);
             else iShowBMP2(hasnain.posx-bonus,hasnain.posy, bosr[hasnain.state][hasnain.image_index],255);
+            if(hasnain.state != 4){
+                int pk = floor((200.00/hasnain.MAX_LIFE)*hasnain.life);
+                iSetColor(255, 0,0);
+                iFilledRectangle(hasnain.posx+23,hasnain.posy+200,pk ,10);
+            }
         }
         for(int i = 0; i < number_of_enemy; i++){
             if(jombie[i].showoff) continue;
