@@ -63,3 +63,37 @@
 
 1547295933 c:\users\ashiq\documents\github\game_development\graphics.h
 
+1610466792 source:c:\users\asus\documents\github\game_development\imain.cpp
+	"iGraphics.h"
+	<bits/stdc++.h>
+	<mmsystem.h>
+	<windows.h>
+	"show_girl.hpp"
+	"functions.hpp"
+	"ikeyboard.hpp"
+
+1610393413 c:\users\asus\documents\github\game_development\igraphics.h
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"glut.h"
+	<time.h>
+	<math.h>
+	"glaux.h"
+
+1610393412 c:\users\asus\documents\github\game_development\opengl\include\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1610393412 c:\users\asus\documents\github\game_development\opengl\include\glaux.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1610393414 c:\users\asus\documents\github\game_development\show_girl.hpp
+
+1610463764 c:\users\asus\documents\github\game_development\functions.hpp
+
+1610469684 c:\users\asus\documents\github\game_development\ikeyboard.hpp
+

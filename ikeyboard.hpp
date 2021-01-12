@@ -10,11 +10,37 @@ void iMouse(int button, int state, int mx, int my)
         if(game_state > 0) return;
         for(int i = 0; i < 3; i++) {
             if(mx >= bCordinate[i].x && mx <= bCordinate[i].x + 149 && my >= bCordinate[i].y && my <= bCordinate[i].y + 150) {
+                if(i == 1) {
+                    game_state = -1;
+                    //cout << "settings\n";
+
+                    continue;
+                }
+                if(i == 2) {
+                    game_state = -2;
+                    //cout << "information\n";
+                    continue;
+                }
                 game_state = 1;
                 place_enemy();
                 if(music){
                     PlaySound("music.wav", NULL,SND_LOOP | SND_ASYNC);
                 }
+            }
+        }
+
+        if(game_state == -1) {
+            if(mx >= 300 && mx <= 449 && my >= 300 && my <= 450) {
+                music ^= 1;
+                if(music) {
+                    PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+                }
+                else {
+                    PlaySound(0,0,0);
+                }
+            }
+            else if(mx >= 1300-149 && mx <= 1300 && my >= 0 && my <= 150) {
+
             }
         }
     }
@@ -196,6 +222,10 @@ void iKeyboard(unsigned char key)
                 RunPicIndex2=0;
         GIRL_X = min(desktop_hor-100, GIRL_X);
         GIRL_X = max(GIRL_X, 0);
+    }
+
+    if(key == 'g') {
+        press_g = 1;
     }
 
 }

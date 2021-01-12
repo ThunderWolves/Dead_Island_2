@@ -31,6 +31,12 @@ int freez = 0;
 int sara_idle_index = 0;
 int jumppic_indexr = 0, idle_indexr = 0, nin_throw_idxr = 0;
 int hasnain_dead = 0,case_ache = 1,sara_x = 1100, sara_y = 60, sara_index = 0;
+
+int ashiq_video_on = 0, press_g = 0, ashiq_video_index = 0;
+
+char ashiq_video[200][30] = {"ashiq_video\\ashiq (1).bmp","ashiq_video\\ashiq (2).bmp","ashiq_video\\ashiq (3).bmp","ashiq_video\\ashiq (4).bmp","ashiq_video\\ashiq (5).bmp","ashiq_video\\ashiq (6).bmp","ashiq_video\\ashiq (7).bmp","ashiq_video\\ashiq (8).bmp","ashiq_video\\ashiq (9).bmp","ashiq_video\\ashiq (10).bmp","ashiq_video\\ashiq (11).bmp","ashiq_video\\ashiq (12).bmp","ashiq_video\\ashiq (13).bmp","ashiq_video\\ashiq (14).bmp","ashiq_video\\ashiq (15).bmp","ashiq_video\\ashiq (16).bmp","ashiq_video\\ashiq (17).bmp","ashiq_video\\ashiq (18).bmp","ashiq_video\\ashiq (19).bmp","ashiq_video\\ashiq (20).bmp","ashiq_video\\ashiq (21).bmp","ashiq_video\\ashiq (22).bmp","ashiq_video\\ashiq (23).bmp","ashiq_video\\ashiq (24).bmp","ashiq_video\\ashiq (25).bmp","ashiq_video\\ashiq (26).bmp","ashiq_video\\ashiq (27).bmp","ashiq_video\\ashiq (28).bmp","ashiq_video\\ashiq (29).bmp","ashiq_video\\ashiq (30).bmp","ashiq_video\\ashiq (31).bmp","ashiq_video\\ashiq (32).bmp","ashiq_video\\ashiq (33).bmp","ashiq_video\\ashiq (34).bmp","ashiq_video\\ashiq (35).bmp","ashiq_video\\ashiq (36).bmp","ashiq_video\\ashiq (37).bmp","ashiq_video\\ashiq (38).bmp","ashiq_video\\ashiq (39).bmp","ashiq_video\\ashiq (40).bmp","ashiq_video\\ashiq (41).bmp","ashiq_video\\ashiq (42).bmp","ashiq_video\\ashiq (43).bmp","ashiq_video\\ashiq (44).bmp","ashiq_video\\ashiq (45).bmp","ashiq_video\\ashiq (46).bmp","ashiq_video\\ashiq (47).bmp","ashiq_video\\ashiq (48).bmp","ashiq_video\\ashiq (49).bmp","ashiq_video\\ashiq (50).bmp","ashiq_video\\ashiq (51).bmp","ashiq_video\\ashiq (52).bmp","ashiq_video\\ashiq (53).bmp","ashiq_video\\ashiq (54).bmp","ashiq_video\\ashiq (55).bmp","ashiq_video\\ashiq (56).bmp","ashiq_video\\ashiq (57).bmp","ashiq_video\\ashiq (58).bmp","ashiq_video\\ashiq (59).bmp","ashiq_video\\ashiq (60).bmp","ashiq_video\\ashiq (61).bmp","ashiq_video\\ashiq (62).bmp","ashiq_video\\ashiq (63).bmp","ashiq_video\\ashiq (64).bmp","ashiq_video\\ashiq (65).bmp","ashiq_video\\ashiq (66).bmp","ashiq_video\\ashiq (67).bmp","ashiq_video\\ashiq (68).bmp","ashiq_video\\ashiq (69).bmp","ashiq_video\\ashiq (70).bmp","ashiq_video\\ashiq (71).bmp","ashiq_video\\ashiq (72).bmp","ashiq_video\\ashiq (73).bmp","ashiq_video\\ashiq (74).bmp","ashiq_video\\ashiq (75).bmp","ashiq_video\\ashiq (76).bmp","ashiq_video\\ashiq (77).bmp","ashiq_video\\ashiq (78).bmp","ashiq_video\\ashiq (79).bmp","ashiq_video\\ashiq (80).bmp","ashiq_video\\ashiq (81).bmp","ashiq_video\\ashiq (82).bmp","ashiq_video\\ashiq (83).bmp","ashiq_video\\ashiq (84).bmp","ashiq_video\\ashiq (85).bmp","ashiq_video\\ashiq (86).bmp","ashiq_video\\ashiq (87).bmp","ashiq_video\\ashiq (88).bmp","ashiq_video\\ashiq (89).bmp","ashiq_video\\ashiq (90).bmp","ashiq_video\\ashiq (91).bmp","ashiq_video\\ashiq (92).bmp","ashiq_video\\ashiq (93).bmp","ashiq_video\\ashiq (94).bmp","ashiq_video\\ashiq (95).bmp","ashiq_video\\ashiq (96).bmp","ashiq_video\\ashiq (97).bmp","ashiq_video\\ashiq (98).bmp","ashiq_video\\ashiq (99).bmp","ashiq_video\\ashiq (100).bmp","ashiq_video\\ashiq (101).bmp","ashiq_video\\ashiq (102).bmp","ashiq_video\\ashiq (103).bmp","ashiq_video\\ashiq (104).bmp","ashiq_video\\ashiq (105).bmp","ashiq_video\\ashiq (106).bmp","ashiq_video\\ashiq (107).bmp","ashiq_video\\ashiq (108).bmp","ashiq_video\\ashiq (109).bmp","ashiq_video\\ashiq (110).bmp","ashiq_video\\ashiq (111).bmp","ashiq_video\\ashiq (112).bmp","ashiq_video\\ashiq (113).bmp","ashiq_video\\ashiq (114).bmp","ashiq_video\\ashiq (115).bmp","ashiq_video\\ashiq (116).bmp","ashiq_video\\ashiq (117).bmp","ashiq_video\\ashiq (118).bmp","ashiq_video\\ashiq (119).bmp","ashiq_video\\ashiq (120).bmp","ashiq_video\\ashiq (121).bmp","ashiq_video\\ashiq (122).bmp","ashiq_video\\ashiq (123).bmp","ashiq_video\\ashiq (124).bmp","ashiq_video\\ashiq (125).bmp","ashiq_video\\ashiq (126).bmp","ashiq_video\\ashiq (127).bmp","ashiq_video\\ashiq (128).bmp","ashiq_video\\ashiq (129).bmp","ashiq_video\\ashiq (130).bmp","ashiq_video\\ashiq (131).bmp","ashiq_video\\ashiq (132).bmp","ashiq_video\\ashiq (133).bmp","ashiq_video\\ashiq (134).bmp","ashiq_video\\ashiq (135).bmp","ashiq_video\\ashiq (136).bmp","ashiq_video\\ashiq (137).bmp","ashiq_video\\ashiq (138).bmp","ashiq_video\\ashiq (139).bmp","ashiq_video\\ashiq (140).bmp","ashiq_video\\ashiq (141).bmp","ashiq_video\\ashiq (142).bmp","ashiq_video\\ashiq (143).bmp","ashiq_video\\ashiq (144).bmp","ashiq_video\\ashiq (145).bmp","ashiq_video\\ashiq (146).bmp","ashiq_video\\ashiq (147).bmp","ashiq_video\\ashiq (148).bmp","ashiq_video\\ashiq (149).bmp","ashiq_video\\ashiq (150).bmp","ashiq_video\\ashiq (151).bmp","ashiq_video\\ashiq (152).bmp","ashiq_video\\ashiq (153).bmp","ashiq_video\\ashiq (154).bmp","ashiq_video\\ashiq (155).bmp"};
+
+
 char teacher_cku[8][30]={"teacher\\1.bmp","teacher\\2.bmp","teacher\\3.bmp","teacher\\4.bmp","teacher\\5.bmp","teacher\\6.bmp","teacher\\7.bmp","teacher\\8.bmp"};// edit- shimla
 int teacher_index=0;//edit-shimla
 int hat_mstr=0;//edit- shimla
@@ -146,7 +152,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 14;
+int game_state = 5;
 
 struct buttonCordinate {
     int x;
@@ -158,7 +164,17 @@ void iDraw()
 {
     //place your drawing codes here
     iClear();
-    if(game_state == 0) {
+    if(game_state == -1) {
+        if(music == 1) {
+            iShowBMP2(300, 300, "music_on_off\\music.bmp", 0);
+        } else if(music == 0) {
+            iShowBMP2(300, 300, "music_on_off\\music_off.bmp", 0);
+        }
+    }
+    else if(game_state == -2) {
+
+    }
+    else if(game_state == 0) {
         iShowBMP(0, 0, "mainmenu\\menu.bmp");
         for(int i = 0; i < 3; i++) {
             iShowBMP2(bCordinate[i].x, bCordinate[i].y, button[i], 255);
@@ -358,6 +374,11 @@ void iDraw()
             iShowBMP2(sara_x + 40, emoji_ind[4], "emoji\\5.bmp", 255);
             iShowBMP2(sara_x + 75, emoji_ind[5], "emoji\\6.bmp", 255);
             iShowBMP2(sara_x + 110, emoji_ind[6], "emoji\\13.bmp", 255);
+        }
+        //iShowBMP(0, 0, "ashiq_video\\ashiq (1).bmp");
+
+        if(press_g == 1 && ashiq_video_on == 0) {
+            iShowBMP(0, 0, ashiq_video[ashiq_video_index]);
         }
     }
 

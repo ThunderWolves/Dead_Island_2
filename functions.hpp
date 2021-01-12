@@ -465,7 +465,7 @@ void change(){
                  }
             }
     }
-    if(TIME_NOW %50){
+    if(TIME_NOW % 50 == 0){
         bool alive = 0;
         for(int i = 0; i <  number_of_enemy; i++){
                 alive |= (jombie[i].state != 4 || jombie[i].image_index < 5);
@@ -474,5 +474,12 @@ void change(){
     }
     if(TIME_NOW == TIME_TO_STOP ){
         RUN_STATUS = false;
+    }
+
+    if(TIME_NOW % 6 == 0) {
+        if(game_state == 14) {
+            if(ashiq_video_index < 154) ashiq_video_index++;
+            else ashiq_video_on = 1;
+        }
     }
 }
