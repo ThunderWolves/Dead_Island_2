@@ -27,7 +27,7 @@
 
 1608809105 c:\users\ashiq\documents\github\game-development\functions.hpp
 
-1610388043 source:c:\users\ashiq\documents\github\game_development\imain.cpp
+1610477780 source:c:\users\ashiq\documents\github\game_development\imain.cpp
 	"iGraphics.h"
 	<bits/stdc++.h>
 	<mmsystem.h>
@@ -36,7 +36,7 @@
 	"functions.hpp"
 	"ikeyboard.hpp"
 
-1608830648 c:\users\ashiq\documents\github\game_development\igraphics.h
+1610455976 c:\users\ashiq\documents\github\game_development\igraphics.h
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -45,21 +45,21 @@
 	<math.h>
 	"glaux.h"
 
-1608830648 c:\users\ashiq\documents\github\game_development\opengl\include\glut.h
+1610455973 c:\users\ashiq\documents\github\game_development\opengl\include\glut.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
-1608830648 c:\users\ashiq\documents\github\game_development\opengl\include\glaux.h
+1610455973 c:\users\ashiq\documents\github\game_development\opengl\include\glaux.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
-1610388216 c:\users\ashiq\documents\github\game_development\functions.hpp
+1610477462 c:\users\ashiq\documents\github\game_development\functions.hpp
 
-1610387687 c:\users\ashiq\documents\github\game_development\ikeyboard.hpp
+1610477544 c:\users\ashiq\documents\github\game_development\ikeyboard.hpp
 
-1610375126 c:\users\ashiq\documents\github\game_development\show_girl.hpp
+1610477591 c:\users\ashiq\documents\github\game_development\show_girl.hpp
 
 1547295933 c:\users\ashiq\documents\github\game_development\graphics.h
 

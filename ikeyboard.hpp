@@ -68,6 +68,11 @@ void iKeyboard(unsigned char key)
         }
         else PlaySound(0,0,0);
     }
+    if(key == 'f'){
+        if(game_state != 6) return;
+        act_farhan = 1;
+        PlaySound("Farhan//Farhan.wav", NULL, SND_LOOP | SND_ASYNC);
+    }
     if(key == 'q')
     {
         exit(0);
@@ -222,10 +227,6 @@ void iKeyboard(unsigned char key)
                 RunPicIndex2=0;
         GIRL_X = min(desktop_hor-100, GIRL_X);
         GIRL_X = max(GIRL_X, 0);
-    }
-
-    if(key == 'g') {
-        press_g = 1;
     }
 
 }

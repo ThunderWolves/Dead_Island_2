@@ -1,15 +1,23 @@
+
 void print_swat(){
     if(game_state == 6){
-        iShowBMP2(350 + 400, 140,"bk/swat/1.bmp", 255);
-        iShowBMP2(350 + 100, 140,"bk/swat/3.bmp", 255);
-        iShowBMP2(350 + 800, 140,"bk/swat/4.bmp", 255);
-        iShowBMP2(350 + 730, 140,"bk/swat/2.bmp", 255);
+        iShowBMP2(350 + 400, SWAT_POSY,"bk/swat/1.bmp", 255);
+        iShowBMP2(350 + 100, SWAT_POSY,"bk/swat/3.bmp", 255);
+        iShowBMP2(350 + 800, SWAT_POSY,"bk/swat/4.bmp", 255);
+        iShowBMP2(350 + 730, SWAT_POSY,"bk/swat/2.bmp", 255);
     }
     if(game_state == 5){
-        iShowBMP2(300, 140,"bk/swat/1.bmp", 255);
-        iShowBMP2(60, 140,"bk/swat/3b.bmp", 255);
-        iShowBMP2(450, 140,"bk/swat/4.bmp", 255);
-        iShowBMP2(400, 140,"bk/swat/2.bmp", 255);
+        if(SWAT_POSY > 140){
+            iShowBMP2(280, SWAT_POSY+60, "bk//para.bmp", 255);
+            iShowBMP2(0, SWAT_POSY+60,"bk/para2.bmp", 255);
+            iShowBMP2(230, SWAT_POSY+60,"bk/para.bmp", 255);
+            iShowBMP2(160, SWAT_POSY+60,"bk/para.bmp", 255);
+        }
+        iShowBMP2(300, SWAT_POSY,"bk/swat/1.bmp", 255);
+        iShowBMP2(60, SWAT_POSY,"bk/swat/3b.bmp", 255);
+        iShowBMP2(450, SWAT_POSY,"bk/swat/4.bmp", 255);
+        iShowBMP2(400, SWAT_POSY,"bk/swat/2.bmp", 255);
+
         if(!press_n){
             iShowBMP2(0,0,"conversation/sw.bmp", 255);
             freez = 1;
