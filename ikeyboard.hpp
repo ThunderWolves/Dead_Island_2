@@ -40,7 +40,7 @@ void iMouse(int button, int state, int mx, int my)
                 }
             }
             else if(mx >= 1300-149 && mx <= 1300 && my >= 0 && my <= 150) {
-
+                game_state = 0;
             }
         }
     }

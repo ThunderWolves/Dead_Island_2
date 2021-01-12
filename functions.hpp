@@ -79,7 +79,7 @@ void change(){
             if(hasnain.posx >  1350 ) hasnain.state = 4;
             return;
         }
-        if(life_left <= 0 && SWAT_COME == 0 && game_state == 5){
+        if(life_left <= -3 && SWAT_COME == 0 && game_state == 5){
             SWAT_COME = 1;
         }
         if(case_ache == 0) {

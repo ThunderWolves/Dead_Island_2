@@ -156,7 +156,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 5;
+int game_state = 0;
 
 struct buttonCordinate {
     int x;
@@ -173,6 +173,7 @@ void iDraw()
         return;
     }
     if(game_state == -1) {
+        iShowBMP2(1300-149, 0, "music_on_off\\back.bmp", 0);
         if(music == 1) {
             iShowBMP2(300, 300, "music_on_off\\music.bmp", 0);
         } else if(music == 0) {
