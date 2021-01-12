@@ -156,7 +156,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 0;
+int game_state = 3;
 
 struct buttonCordinate {
     int x;
@@ -208,6 +208,7 @@ void iDraw()
         iShowBMP(0,0,"bk\\3.bmp");
         show_jombie();
         show_girl();
+        iShowBMP2(0,135,"bk\\f1.bmp",255);
         if(pos[game_state]){//start - shimla
         freez = 1;
         iShowBMP2(0,0,"conversation\\3.bmp",255);//end - shimla
