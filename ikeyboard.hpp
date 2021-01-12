@@ -98,7 +98,7 @@ void iKeyboard(unsigned char key)
             press_n = 1;
         }
     }// end- shimla
-    if(freez) return;
+    if(freez || life_left <= 0) return;
     if(key == 'n'){
             if(!press_n){
         for(int i = 0;i < number_of_enemy; i++){

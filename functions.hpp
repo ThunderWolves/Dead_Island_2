@@ -18,13 +18,17 @@ void change(){
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
+            if(life_left<=0 && dead_shim_index<=8)
+                {
+                    dead_shim_index++;
+                }
             if(game_state==9 && teacher_index<=6)
             {
                 teacher_index++;
             }
-            else
+            else if(game_state==9 && teacher_index==7)
             {
-                if(hat_mstr<=1)
+                if(hat_mstr<=0)
                 teacher_index=0;
                 hat_mstr++;
             }
