@@ -80,9 +80,7 @@ void change(){
             return;
         }
         if(life_left <= 0 && SWAT_COME == 0 && game_state == 5){
-            life_left = 10;
             SWAT_COME = 1;
-            GIRL_X = 0;
         }
         if(case_ache == 0) {
           if(sara_x > GIRL_X + 65) sara_x -= min(sara_x - GIRL_X - 65, 20);
@@ -482,6 +480,7 @@ void change(){
     if(SWAT_COME){
                     if(SWAT_POSY > 140){
                         SWAT_POSY -= min(10, SWAT_POSY-140);
+                        SWAT_POSX += 3;
                     }
             }
         if(TIME_NOW%6 == 0){

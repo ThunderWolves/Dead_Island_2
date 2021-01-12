@@ -9,6 +9,7 @@ int act_farhan = 0, farhan_image_index = 0;
 int MAX_NINCHUK = 3, GIRL_JUMP_Y = 35;
 const int number_of_enemy = 1;
 int life_left=10;
+int SWAT_POSX = 100;
 int desktop_hor = 1300, desktop_ver = 700;
 long long int TIME_NOW = 0;
 int throwing_now = 0;

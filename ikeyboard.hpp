@@ -98,7 +98,7 @@ void iKeyboard(unsigned char key)
             press_n = 1;
         }
     }// end- shimla
-    if(freez || life_left <= 0) return;
+    if(freez) return;
     if(key == 'n'){
             if(!press_n){
         for(int i = 0;i < number_of_enemy; i++){
@@ -158,7 +158,7 @@ void iKeyboard(unsigned char key)
         }
         press_n = 0;
     }
-    if(press_n) return;
+    if(press_n || life_left <= 0) return;
     if(key=='m' && game_state>=1)
     {
         toroal=1;
