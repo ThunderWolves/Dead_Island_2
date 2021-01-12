@@ -150,7 +150,7 @@ void change(){
 
 
         if(GIRL_X >= 120 && GIRL_X <= 280 && GIRL_Y <= 140 && (game_state == 5 || game_state == 6))
-            life_left = 0;
+            life_left -= 2;
         GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
         if(jump){
             if(FACE == 1){

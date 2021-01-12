@@ -120,6 +120,7 @@ void iKeyboard(unsigned char key)
                 base = 2;
             }
             else if(game_state <= 6){
+                life_left = 10;
                 base = 2;
             }
             else if(game_state == 7){
