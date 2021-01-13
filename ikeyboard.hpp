@@ -30,7 +30,7 @@ void iMouse(int button, int state, int mx, int my)
         }
 
         if(game_state == -1 ) {
-            if(mx >= 300 && mx <= 449 && my >= 300 && my <= 450) {
+            if(mx >= 450 && mx <= 599 && my >= 300 && my <= 450) {
                 music ^= 1;
                 if(music) {
                     PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
@@ -44,6 +44,9 @@ void iMouse(int button, int state, int mx, int my)
             if(mx >= 1300-149 && mx <= 1300 && my >= 0 && my <= 150) {
                 game_state = 0;
             }
+        }
+        if(game_state == -1 && mx >= 650 && mx <= 799 && my >= 300 && my <= 450) {
+                exit(0);
         }
     }
     // by farhan, end
