@@ -24,7 +24,7 @@ void iMouse(int button, int state, int mx, int my)
                 game_state = 1;
                 place_enemy();
                 if(music){
-                    PlaySound("music.wav", NULL,SND_LOOP | SND_ASYNC);
+                    PlaySound("horror.wav", NULL,SND_LOOP | SND_ASYNC);
                 }
             }
         }
@@ -121,7 +121,10 @@ void iKeyboard(unsigned char key)
     }// end- shimla
     if(freez) return;
     if(key == 'n'){
-            one = 0;
+            if(one != 0&& music) PlaySound("music.wav",NULL, SND_LOOP | SND_ASYNC);
+            if(one != 0){
+            one = 0; return;
+            }
             if(!press_n){
         for(int i = 0;i < number_of_enemy; i++){
             if(jombie[i].state != 4 && game_state != 9){

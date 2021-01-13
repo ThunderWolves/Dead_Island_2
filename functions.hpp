@@ -33,7 +33,7 @@ void change(){
             if(act_zombie_index>=481)
             {
                 act_zombie=0;
-                PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+                PlaySound("horror.wav", NULL, SND_LOOP | SND_ASYNC);
             }
             return;
         }
