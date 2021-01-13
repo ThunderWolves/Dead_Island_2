@@ -37,7 +37,6 @@ void change(){
             }
             return;
         }
-    cout << "HERE " << act_zombie_index << endl;
     }
     if(game_state < 1) return;
         if(TIME_NOW%6 == 0){
