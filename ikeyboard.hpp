@@ -29,7 +29,7 @@ void iMouse(int button, int state, int mx, int my)
             }
         }
 
-        if(game_state == -1) {
+        if(game_state == -1 ) {
             if(mx >= 300 && mx <= 449 && my >= 300 && my <= 450) {
                 music ^= 1;
                 if(music) {
@@ -39,7 +39,9 @@ void iMouse(int button, int state, int mx, int my)
                     PlaySound(0,0,0);
                 }
             }
-            else if(mx >= 1300-149 && mx <= 1300 && my >= 0 && my <= 150) {
+        }
+        if(game_state == -1 || game_state == -2) {
+            if(mx >= 1300-149 && mx <= 1300 && my >= 0 && my <= 150) {
                 game_state = 0;
             }
         }
@@ -122,6 +124,11 @@ void iKeyboard(unsigned char key)
         if(hasnain.state != 4) return;
             }
         if(GIRL_X >= desktop_hor-100|| game_state == 9 || press_n){
+            NIN_COUNT = 0;
+                for(int i =0; i < MAX_NINCHUK; i++){
+                    ninchuk[i].state = 0;
+                }
+                chakus_in_dead_body.clear();
                 case_ache = 1;
             game_state++;
             GIRL_X = 0;
@@ -146,11 +153,6 @@ void iKeyboard(unsigned char key)
                 base = 2;
             }
             else if(game_state <= 9){
-                NIN_COUNT = 0;
-                for(int i =0; i < MAX_NINCHUK; i++){
-                    ninchuk[i].state = 0;
-                }
-                chakus_in_dead_body.clear();
                 base = 0;
             }
             else if(game_state == 10){
@@ -160,6 +162,14 @@ void iKeyboard(unsigned char key)
                 base = 0;
             }
             else if(game_state <= 13){
+                base = 2;
+            }
+            else if(game_state == 14){
+                base = 0;
+                game_state++;
+            }
+            else if(game_state == 16){
+                game_state = 14;
                 base = 2;
             }
             if(game_state == 6){
