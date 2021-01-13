@@ -14,7 +14,8 @@ void GetDesktopResolution(int& horizontal, int& vertical)
 }
 
 void change(){
-
+    TIME_NOW ++;
+    if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%6 == 0){
             if(act_ashiq){
             ashiq_image_index++;
@@ -25,7 +26,9 @@ void change(){
                 }
                 else PlaySound(0,0,0);
             }
-            if(act_zombie)
+        return;
+    }
+            if(act_zombie){
             act_zombie_index++;
             if(act_zombie_index>=481)
             {
@@ -34,7 +37,9 @@ void change(){
             }
             return;
         }
-        }
+    cout << "HERE " << act_zombie_index << endl;
+    }
+    if(game_state < 1) return;
         if(TIME_NOW%6 == 0){
         if(act_farhan)
             farhan_image_index++;
@@ -46,9 +51,6 @@ void change(){
         return;
         }
         }
-    if(game_state < 1) return;
-    TIME_NOW ++;
-    if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%5 == 0){
             if(life_left<=0 && dead_shim_index<=8 && FACE)
                 {

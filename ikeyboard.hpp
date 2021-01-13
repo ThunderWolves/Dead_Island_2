@@ -63,8 +63,9 @@ void iKeyboard(unsigned char key)
     if(key >= 'A' && key <= 'Z') key = char(key+32);
     if(key=='g')
     {
+        TIME_NOW -= TIME_NOW%6;
         act_zombie = true;
-        //PlaySound("act_zombie//zombie.wav", NULL, SND_LOOP | SND_ASYNC);
+        PlaySound("act_zombie//zombie.wav", NULL, SND_LOOP | SND_ASYNC);
     }
     if(key == 'p'){
             music ^= 1;
@@ -75,11 +76,13 @@ void iKeyboard(unsigned char key)
     }
     if(key == 'f'){
         if(game_state != 6) return;
+        TIME_NOW -= TIME_NOW%6;
         act_farhan = 1;
         PlaySound("Farhan//Farhan.wav", NULL, SND_ASYNC);
     }
     if(key == 'h'){
         if(game_state != 8) return;
+        TIME_NOW -= TIME_NOW%6;
         act_ashiq = 1;
         PlaySound("ashiq_video//ashiq.wav", NULL, SND_ASYNC);
     }
