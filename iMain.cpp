@@ -694,7 +694,7 @@ int main()
     }
     place_enemy();
     if(music){
-        PlaySound("win.wav", NULL, SND_LOOP | SND_ASYNC);
+        PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
     }
     iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);

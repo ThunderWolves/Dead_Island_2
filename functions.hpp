@@ -552,7 +552,7 @@ void change(){
             }
             if(name_dekha == 25) {
                 for(int i = 0; i < 5; i++) {
-                    end_name[i] += 8;
+                    end_name[i] += 2;
                 }
             }
       }
