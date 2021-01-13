@@ -5,6 +5,8 @@
 using namespace std;
 int hate_gulli = -110;
 int hate_gulli_left = -100;
+int act_ashiq = 0;
+int ashiq_image_index = 0;
 int GRAVITY_SPEED = 40, base = 0,touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300,SWAT_POSY = 600;
 int act_farhan = 0, farhan_image_index = 0;
@@ -161,7 +163,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 1;
+int game_state = 8;
 
 struct buttonCordinate {
     int x;
@@ -175,6 +177,10 @@ void iDraw()
     iClear();
     if(act_farhan){
         iShowBMP(0,0,farhan[min(farhan_image_index, 151)]);
+        return;
+    }
+    if(act_ashiq){
+        iShowBMP(0,0,ashiq_video[ashiq_image_index]);
         return;
     }
     if(game_state == -1) {
@@ -404,10 +410,6 @@ void iDraw()
             iShowBMP2(sara_x + 110, emoji_ind[6], "emoji\\13.bmp", 255);
         }
         //iShowBMP(0, 0, "ashiq_video\\ashiq (1).bmp");
-
-        if(press_g == 1 && ashiq_video_on == 0) {
-            iShowBMP(0, 0, ashiq_video[ashiq_video_index]);
-        }
     }
 
 }

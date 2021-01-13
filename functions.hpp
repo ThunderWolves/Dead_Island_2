@@ -14,6 +14,30 @@ void GetDesktopResolution(int& horizontal, int& vertical)
 }
 
 void change(){
+    if(TIME_NOW%6 == 0){
+            if(act_ashiq){
+            ashiq_image_index++;
+            if(ashiq_image_index >= 152){
+                act_ashiq = 0;
+                if(music){
+                    PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+                }
+                else PlaySound(0,0,0);
+            return;
+            }
+        }
+        }
+        if(TIME_NOW%6 == 0){
+        if(act_farhan)
+            farhan_image_index++;
+        if(farhan_image_index >= 154){
+            act_farhan = 0;
+            if(music)
+            PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+            else PlaySound(0,0,0);
+        return;
+        }
+        }
     if(game_state < 1) return;
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
@@ -501,13 +525,6 @@ void change(){
                         SWAT_POSX += 3;
                     }
             }
-        if(TIME_NOW%6 == 0){
-        if(act_farhan)
-            farhan_image_index++;
-        if(farhan_image_index >= 154){
-            act_farhan = 0;
-            PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
-        }
-        }
+
 
 }
