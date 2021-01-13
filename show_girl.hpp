@@ -88,8 +88,10 @@ void show_jombie(){
 }
 
 void show_girl(){
-    if(life_left<=0)
+    if(life_left<=0 && FACE)
              iShowBMP2(GIRL_X, GIRL_Y-10, dead_shim[dead_shim_index], 255);
+    else if(life_left<=0)
+        iShowBMP2(GIRL_X, GIRL_Y-10, dead_shimr[dead_shim_indexr], 255);
     else if(RUN_STATUS){
             if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
             else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);

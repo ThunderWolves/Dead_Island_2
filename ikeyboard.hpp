@@ -61,6 +61,11 @@ void iSpecialKeyboard(unsigned char key)
 void iKeyboard(unsigned char key)
 {
     if(key >= 'A' && key <= 'Z') key = char(key+32);
+    if(key=='g')
+    {
+        act_zombie = true;
+        //PlaySound("act_zombie//zombie.wav", NULL, SND_LOOP | SND_ASYNC);
+    }
     if(key == 'p'){
             music ^= 1;
         if(music){
