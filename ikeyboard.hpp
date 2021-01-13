@@ -120,7 +120,8 @@ void iKeyboard(unsigned char key)
                 base = 2;
             }
             else if(game_state <= 6){
-                life_left = 10;
+                FACE = 1;
+                SWAT_POSX = 0;
                 base = 2;
             }
             else if(game_state == 7){
@@ -149,6 +150,7 @@ void iKeyboard(unsigned char key)
                 base = 2;
             }
             if(game_state == 6){
+                life_left = 10;
                 GIRL_X = 350;
             }
             place_enemy();
@@ -177,10 +179,6 @@ void iKeyboard(unsigned char key)
             for(int i = 0; i < MAX_NINCHUK; i++){
                 if(ninchuk[i].state == 1) continue;
                 throwing_now = i;
-                ninchuk[i].face = FACE;
-                if(ninchuk[i].face == 0) ninchuk[i].posx = GIRL_X - 100;
-                else ninchuk[i].posx = GIRL_X + 100;
-                ninchuk[i].posy = GIRL_Y + 75;
                 break;
             }
     }

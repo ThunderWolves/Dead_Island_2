@@ -3,11 +3,16 @@
 #include <mmsystem.h>
 #include <windows.h>
 using namespace std;
-int GRAVITY_SPEED = 40, base= 0,touch_sound=0,touch_continue=0;
+int hate_gulli = -110;
+int hate_gulli_left = -100;
+int GRAVITY_SPEED = 40, base = 0,touch_sound=0,touch_continue=0;
 int ENEMY_SEEING_RANGE = 300,SWAT_POSY = 600;
 int act_farhan = 0, farhan_image_index = 0;
 int MAX_NINCHUK = 3, GIRL_JUMP_Y = 35;
-const int number_of_enemy = 1;
+const int number_of_enemy = 7;
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+#define rng_as uniform_int_distribution<int>(0, number_of_enemy)(rng)
+#define rng_pk uniform_int_distribution<int>(0, 200)(rng)
 int life_left=10;
 int SWAT_POSX = 100;
 int desktop_hor = 1300, desktop_ver = 700;
@@ -156,7 +161,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 3;
+int game_state = 12;
 
 struct buttonCordinate {
     int x;
@@ -217,8 +222,14 @@ void iDraw()
     else if(game_state == 4){
         iShowBMP(0,0,"bk\\4.bmp");
         show_jombie();
-        show_girl();
-        if(!jump) iShowBMP2(0,0,"bk\\thik.bmp",255);
+        if(!jump){
+                show_girl();
+                iShowBMP2(0,0,"bk\\thik.bmp",255);
+        }
+        else {
+                iShowBMP2(0,0,"bk\\thik.bmp",255);
+                show_girl();
+        }
         if(pos[game_state]){//start - shimla
         freez = 1;
         iShowBMP2(0,0,"conversation\\4.bmp",255); }
@@ -285,10 +296,16 @@ void iDraw()
     else if(game_state == 8){
          iShowBMP(0,0,"bk\\9.bmp");
         show_jombie();
-        show_girl();
         if(ZOMBIE_DONE){
             //print ashiq here
-            iShowBMP2(GIRL_X + 100, GIRL_Y-10, "bk\\as.bmp",255);
+            if(GIRL_X >= 1050){
+                iShowBMP2(GIRL_X - 200, GIRL_Y-10, "bk\\ass.bmp",255);
+                FACE = 0;
+            }
+            else {
+                iShowBMP2(GIRL_X + 100, GIRL_Y-10, "bk\\as.bmp",255);
+            }
+            show_girl();
             if(pos[game_state]){ freez = 1;
             iShowBMP2(0,0,"conversation\\18.bmp",255);}
             else if(cnt8 == -1){
@@ -316,11 +333,12 @@ void iDraw()
             else if(cnt8==9) { freez = 1;
             iShowBMP2(0,0,"conversation\\29.bmp",255);}
             else if(cnt8==10) { freez = 1;
-            iShowBMP2(0,0,"conversation\\30.bmp",255);}
+            iShowBMP2(0,0,"conversation\\s.bmp",255);}
             else if(cnt8 == 11){
-                iShowBMP2(0,0,"conversation\\n.bmp", 255);
+            iShowBMP2(0,0,"conversation\\n.bmp", 255);
             }
         }
+        else show_girl();
     }
     else if(game_state == 9){
         iShowBMP(0,0,"bk\\trn.bmp");
@@ -415,22 +433,80 @@ void place_enemy(){
         space = 2000;
     }
     for(int i = 0; i < number_of_enemy; i++){
-        //jombie[i].type = base+(rand()%UNLOCKED_CHARACTER);
-        jombie[i].type = 2;
+        jombie[i].type = base+(rng_pk%UNLOCKED_CHARACTER);
         //cng here
-        jombie[i].image_index = rand()%6;
+        jombie[i].image_index = i;
         if(i&1) jombie[i].base = 400+(i*dif);
         else jombie[i].base = 400+(i*dif)+space;
         jombie[i].chaku = 0;
-        jombie[i].face = 0;
+        jombie[i].face = rng_pk%2;
         jombie[i].image_index = 0;
-        jombie[i].state = 0;
-        jombie[i].posx = jombie[i].base;
+        jombie[i].state = i&1;
+        int typo = rng_pk%2;
+        if(typo&1 && game_state != 6) jombie[i].posx = min(jombie[i].base + (rng_pk%200), 1200);
+        else jombie[i].posx = max(space,jombie[i].base - (rng_pk%200));
         jombie[i].posy = FLOOR[game_state][0][0];
         jombie[i].walking_range = 200;
-        if(jombie[i].type > 1) jombie[i].posy -= 20;
         if(game_state == 6 || game_state == 9){
             jombie[i].state = 4;
+        }
+    }
+    if(game_state == 4){
+        vector<int>sl;
+        for(int i = 0; i < number_of_enemy; i++){
+            sl.push_back(i);
+        }
+        shuffle(sl.begin(), sl.end(), rng);
+        for(int i = 0; i < min(4, number_of_enemy); i++){
+            jombie[i].type = 3;
+            jombie[i].walking_range = 75;
+            jombie[i].posy = 448;
+            jombie[i].state = rng_pk%2;
+            if(i == 0){
+                jombie[i].base = 140;
+                jombie[i].posy = 448;
+            }
+            if(i == 1){
+                jombie[i].base = 410;
+                jombie[i].posy = 388;
+            }
+            if(i == 2){
+                jombie[i].base = 970;
+                jombie[i].posy = 344;
+            }
+            if(i == 3){
+                jombie[i].base =  650;
+                jombie[i].posy = 241;
+            }
+            jombie[i].posx = jombie[i].base;
+            int typo = rng_pk%2;
+            if(typo&1) jombie[i].posx = min(jombie[i].base + (rng_pk%75), 1200);
+            else jombie[i].posx = max(space,jombie[i].base - (rng_pk%75));
+        }
+        for(int i = 4; i< number_of_enemy; i++){
+            jombie[i].type = 2;
+        }
+    }
+    if(game_state == 6){
+        vector<int>sl;
+        for(int i = 0; i < number_of_enemy; i++){
+            sl.push_back(i);
+        }
+        shuffle(sl.begin(), sl.end(), rng);
+        for(int i = 0; i < min(2, number_of_enemy); i++){
+            jombie[i].type = 3;
+            jombie[i].walking_range = 75;
+            jombie[i].posy = 448;
+            jombie[i].state = rng_pk%2;
+            if(i == 0){
+                jombie[i].base = 140;
+                jombie[i].posy = 235;
+            }
+            if(i == 1){
+                jombie[i].base = 410;
+                jombie[i].posy = 388;
+            }
+            jombie[i].posx = jombie[i].base;
         }
     }
 }
@@ -480,12 +556,12 @@ void place_floor(){
                         int pin = 320 - floor(0.0924*(j));
                         FLOOR[i][j][k] = pin;
                     }
-                    if(j >= 1051 && k >= 335){
-                        FLOOR[i][j][k] = 335;
-                    }
                     if(j >= 650 && j <= 1080){
                         int pin = 258 + floor(0.1*(j-650));
                         FLOOR[i][j][k] = pin;
+                    }
+                    if(j >= 1070){
+                        FLOOR[i][j][k] = 335;
                     }
                 }
                 else if(i == 12){
@@ -529,8 +605,7 @@ void place_floor(){
                 }
                 else if(i==10)// start - shimla
                 {
-                    if(j<=650)
-                    {
+                    if(j<=650){
                        int pin = 275 - floor(0.0924*(j));
                        FLOOR[i][j][k]=pin;
                     }
@@ -551,6 +626,7 @@ void place_floor(){
         }
     }
 }
+
 #include "ikeyboard.hpp";
 int main()
 {

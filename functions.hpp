@@ -205,7 +205,13 @@ void change(){
             }
         }
         for(int i = 0; i < number_of_enemy; i++){
-            jombie[i].posy = max(jombie[i].posy, FLOOR[game_state][jombie[i].posx][jombie[i].posy]);
+            int chinpin = 0;
+            if(jombie[i].type == 3 && jombie[i].face == 1) chinpin = hate_gulli;
+            if(jombie[i].type == 3 && jombie[i].face == 0) chinpin = hate_gulli_left;
+            if(jombie[i].base == 600){
+                cout << chinpin << endl;
+            }
+            jombie[i].posy = max(jombie[i].posy, FLOOR[game_state][jombie[i].posx-chinpin][jombie[i].posy]);
             if( (game_state == 5 || game_state == 6) && jombie[i].posx >= 120 && jombie[i].posx <= 280) {
                 jombie[i].state = 4;
                 jombie[i].showoff = 1;
@@ -321,6 +327,11 @@ void change(){
                 if(nin_throw_idx == 8){
                     NIN_COUNT++;
                     ninchuk[throwing_now].state = 1;
+                    int i = throwing_now;
+                    ninchuk[i].face = FACE;
+                    if(ninchuk[i].face == 0) ninchuk[i].posx = GIRL_X - 100;
+                    else ninchuk[i].posx = GIRL_X + 100;
+                    ninchuk[i].posy = GIRL_Y + 75;
                 }
                 if(nin_throw_idx == 10){
                     NIN_THROW = false;
@@ -377,8 +388,11 @@ void change(){
                 ase.insert(a);
             }
         for(int i = 0; i < number_of_enemy; i++){
-            if(jombie[i].posy > FLOOR[game_state][jombie[i].posx][jombie[i].posy]){
-                int dif = jombie[i].posy - FLOOR[game_state][jombie[i].posx][jombie[i].posy];
+            int chinpin = 0;
+            if(jombie[i].type == 3 && jombie[i].face == 1) chinpin = hate_gulli;
+            if(jombie[i].type == 3 && jombie[i].face == 0) chinpin = hate_gulli_left;
+            if(jombie[i].posy > FLOOR[game_state][jombie[i].posx-chinpin][jombie[i].posy]){
+                int dif = jombie[i].posy - FLOOR[game_state][jombie[i].posx-chinpin][jombie[i].posy];
                 jombie[i].posy -= min(dif, GRAVITY_SPEED);
             }
         }
@@ -467,7 +481,7 @@ void change(){
                  }
             }
     }
-    if(TIME_NOW % 50 == 0){
+    if(TIME_NOW % 30 == 0){
         bool alive = 0;
         for(int i = 0; i <  number_of_enemy; i++){
                 alive |= (jombie[i].state != 4 || jombie[i].image_index < 5);
