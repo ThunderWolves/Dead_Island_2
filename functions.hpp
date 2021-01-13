@@ -208,9 +208,6 @@ void change(){
             int chinpin = 0;
             if(jombie[i].type == 3 && jombie[i].face == 1) chinpin = hate_gulli;
             if(jombie[i].type == 3 && jombie[i].face == 0) chinpin = hate_gulli_left;
-            if(jombie[i].base == 600){
-                cout << chinpin << endl;
-            }
             jombie[i].posy = max(jombie[i].posy, FLOOR[game_state][jombie[i].posx-chinpin][jombie[i].posy]);
             if( (game_state == 5 || game_state == 6) && jombie[i].posx >= 120 && jombie[i].posx <= 280) {
                 jombie[i].state = 4;
@@ -353,6 +350,11 @@ void change(){
                     if(nin_throw_idxr == 8){
                         NIN_COUNT++;
                         ninchuk[throwing_now].state = 1;
+                        int i = throwing_now;
+                        ninchuk[i].face = FACE;
+                        if(ninchuk[i].face == 0) ninchuk[i].posx = GIRL_X - 100;
+                        else ninchuk[i].posx = GIRL_X + 100;
+                        ninchuk[i].posy = GIRL_Y + 75;
                     }
                     if(nin_throw_idxr == 10){
                     NIN_THROW = false;
@@ -373,7 +375,7 @@ void change(){
             for(int a:show){
                 if(bullet[a].face) bullet[a].posx += 65;
                 else bullet[a].posx -= 65;
-                if(abs(bullet[a].posx - GIRL_X) <= 66 && bullet[a].posy <= GIRL_Y+150 && bullet[a].posy >= GIRL_Y){
+                if(abs(bullet[a].posx - GIRL_X) <= 66 && bullet[a].posy <= GIRL_Y+125 && bullet[a].posy >= GIRL_Y){
                     bullet[a].state = 0;
                     temp.push_back(a);
                     life_left--;
@@ -419,7 +421,6 @@ void change(){
                                 hasnain.image_index = 0;
                             }
             }
-        cout << "THRER " << number_of_enemy << endl;
             for(int ii = 0; ii < number_of_enemy; ii++){
                 int ma = jombie[ii].posx;
                 if(ninchuk[i].posy > jombie[ii].posy+150 || ninchuk[i].posy < jombie[ii].posy) continue;
@@ -447,7 +448,9 @@ void change(){
         }
         //tolowar attack
         for(int ii = 0; ii < number_of_enemy ; ii++){
-            if(((GIRL_X+90 >= jombie[ii].posx && GIRL_X<=jombie[ii].posx ) ||(GIRL_X - 100<= jombie[ii].posx && GIRL_X>=jombie[ii].posx)) && jombie[ii].state !=4 && toroal==1)
+            int bonus = 0;
+            if(jombie[ii].face == 1 && jombie[ii].type == 3) bonus = 50;
+            if(((GIRL_X+90 >= jombie[ii].posx && GIRL_X<=jombie[ii].posx ) ||(GIRL_X - 100-bonus<= jombie[ii].posx && GIRL_X>=jombie[ii].posx)) && jombie[ii].state !=4 && toroal==1)
             {
                 if(abs(GIRL_Y - jombie[ii].posy) > 50 || !tolowar_dmg) continue;
                 jombie[ii].state=4;
@@ -475,7 +478,8 @@ void change(){
                     show.insert(pic);
                     bullet[pic].state = 1;
                     bullet[pic].face = jombie[i].face;
-                    int fic = 80;
+                    int fic = 40;
+                    if(jombie[i].face == 1) fic += 180;
                     bullet[pic].posx = jombie[i].posx+fic;
                     bullet[pic].posy = jombie[i].posy + 75;
                  }

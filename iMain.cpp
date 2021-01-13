@@ -161,7 +161,7 @@ enemy1 jombie[number_of_enemy];
 // for handeling button, change by farhan
 char button[10][30] = {"mainmenu\\play.bmp", "mainmenu\\setting.bmp", "mainmenu\\about.bmp"}; // for home page button
 // for homemenu image
-int game_state = 12;
+int game_state = 1;
 
 struct buttonCordinate {
     int x;
@@ -487,7 +487,7 @@ void place_enemy(){
             jombie[i].type = 2;
         }
     }
-    if(game_state == 6){
+    if(game_state == 12){
         vector<int>sl;
         for(int i = 0; i < number_of_enemy; i++){
             sl.push_back(i);
@@ -499,12 +499,17 @@ void place_enemy(){
             jombie[i].posy = 448;
             jombie[i].state = rng_pk%2;
             if(i == 0){
-                jombie[i].base = 140;
+                jombie[i].face = 0;
+                jombie[i].type = 3;
+                jombie[i].state = 0;
+                jombie[i].base = 775;
                 jombie[i].posy = 235;
             }
             if(i == 1){
-                jombie[i].base = 410;
-                jombie[i].posy = 388;
+                jombie[i].type = 3;
+                jombie[i].face = 0;
+                jombie[i].base = 1000;
+                jombie[i].posy = 420;
             }
             jombie[i].posx = jombie[i].base;
         }
@@ -570,11 +575,15 @@ void place_floor(){
                         int kin = 90 - floor(0.225*(j-650));
                         FLOOR[i][j][k] = kin;
                     }
-                    if(j > 850 && j < 1100){
-                        int kin = 45+ floor(0.225*(j-850));
+                    if(j > 850 && j <= 1075){
+                        int kin = 45 + floor(0.225*(j-850));
                         FLOOR[i][j][k] = kin;
                     }
-                    if(j >= 1050 && k >= 175){
+                    if(j > 1075 && j <= 1270){
+                        int kin = 45+50.625 + floor(0.63782*(j-1075));
+                        FLOOR[i][j][k] = kin;
+                    }
+                    if(j > 1270 && k >= 175 && k < 405){
                         FLOOR[i][j][k] = 175;
                     }
                     if(j >= 810 && j <= 930){
