@@ -68,6 +68,7 @@ void iKeyboard(unsigned char key)
     if(key >= 'A' && key <= 'Z') key = char(key+32);
     if(key=='g')
     {
+        one = 2;
         TIME_NOW -= TIME_NOW%6;
         act_zombie = true;
         PlaySound("act_zombie//zombie.wav", NULL, SND_LOOP | SND_ASYNC);
@@ -75,7 +76,9 @@ void iKeyboard(unsigned char key)
     if(key == 'p'){
             music ^= 1;
         if(music){
+        if(game_state >= 1 && one == 0)
         PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+        else PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
         }
         else PlaySound(0,0,0);
     }
@@ -118,6 +121,7 @@ void iKeyboard(unsigned char key)
     }// end- shimla
     if(freez) return;
     if(key == 'n'){
+            one = 0;
             if(!press_n){
         for(int i = 0;i < number_of_enemy; i++){
             if(jombie[i].state != 4 && game_state != 9){

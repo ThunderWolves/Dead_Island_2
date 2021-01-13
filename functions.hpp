@@ -539,7 +539,11 @@ void change(){
     if(TIME_NOW%3 == 0){
         if(game_state == 14 && case_ache == 0 && GIRL_X + 65 == sara_x) {//
             //end_music = 1;
-            //PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
+            if(music && !done){
+                //cout << "HEre" << endl;
+                done = 1;
+                PlaySound("win.wav", NULL, SND_LOOP | SND_ASYNC);
+            }
             //if(end_music == 0) end_music = 1;
             //if(end_music == 1) end_music = 2;
             if(name_dekha < 25) {
