@@ -33,7 +33,7 @@ void iMouse(int button, int state, int mx, int my)
             if(mx >= 450 && mx <= 599 && my >= 300 && my <= 450) {
                 music ^= 1;
                 if(music) {
-                    PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+                    PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
                 }
                 else {
                     PlaySound(0,0,0);
@@ -78,6 +78,7 @@ void iKeyboard(unsigned char key)
         if(music){
         if(game_state >= 1 && one == 0)
         PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
+        else if(game_state > 1) PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
         else PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
         }
         else PlaySound(0,0,0);
@@ -121,6 +122,7 @@ void iKeyboard(unsigned char key)
     }// end- shimla
     if(freez) return;
     if(key == 'n'){
+            life_left = 10;
             if(one != 0&& music) PlaySound("music.wav",NULL, SND_LOOP | SND_ASYNC);
             if(one != 0){
             one = 0; return;
@@ -146,7 +148,10 @@ void iKeyboard(unsigned char key)
             if(game_state > 1){
                 UNLOCKED_CHARACTER = 2;
             }
-            if(game_state <= 3){
+            if(game_state <= 2){
+                base = 0;
+            }
+            else if(game_state <= 3){
                 base = 2;
             }
             else if(game_state <= 6){

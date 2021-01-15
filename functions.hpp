@@ -520,7 +520,8 @@ void change(){
                  }
             }
     }
-    if(TIME_NOW % 30 == 0){
+    if(TIME_NOW % 10 == 0){
+        if(game_state != 8) return;
         bool alive = 0;
         for(int i = 0; i <  number_of_enemy; i++){
                 alive |= (jombie[i].state != 4 || jombie[i].image_index < 5);

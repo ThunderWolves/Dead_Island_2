@@ -97,6 +97,7 @@ void iResumeTimer(int index){
 //
 //                To disable this feature, put -1 in this parameter
 //
+
 void iShowBMP2(int x, int y, char filename[], int ignoreColor)
 {
     AUX_RGBImageRec *TextureImage;
