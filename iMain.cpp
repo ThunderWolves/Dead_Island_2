@@ -8,6 +8,7 @@ int hate_gulli = -110;
 int hate_gulli_left = -100;
 int act_ashiq = 0;
 int ashiq_image_index = 0;
+sf::Music touch;
 bool act_zombie=0;//start- shimla
 int  act_zombie_index=0;//end- shimla
 int GRAVITY_SPEED = 40, base = 0,touch_sound=0,touch_continue=0;
