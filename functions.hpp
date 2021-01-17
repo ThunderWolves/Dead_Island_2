@@ -37,6 +37,17 @@ void change(){
             }
             return;
         }
+        if((dead_shim_index==2 || dead_shim_indexr==2) && (shim_dead_sound==0))
+            {
+                shim_dead_sound=1;
+                if(off_game_sound==0)
+                {
+                    off_game_sound=1;
+                    PlaySound(0,0,0);
+                }
+                sounds[4].stop();
+                sounds[4].play();
+            }
     }
     if(game_state < 1) return;
         if(TIME_NOW%6 == 0){
@@ -51,24 +62,20 @@ void change(){
         }
         }
     if(TIME_NOW%5 == 0){
+            if(hasnain.state == 4 && hasnain_dead_music == 0 && game_state == 14) {
+            //cout << "dead\n";
+            hasnain_dead_music = 1;
+            sounds[6].stop();
+            sounds[6].play();
+            //sounds[4].setPlayingOffset(sf::seconds((float)2.0));
+        }
             if(life_left<=0 && dead_shim_index<=8 && FACE)
                 {
                     dead_shim_index++;
                 }
             else if(life_left<=0 && dead_shim_indexr<=8)
                 dead_shim_indexr++;
-            if((dead_shim_index==2 || dead_shim_indexr==2) && (shim_dead_sound==0))
-            {
-                //cout<<1<<endl;
-                shim_dead_sound=1;
-                if(off_game_sound==0)
-                {
-                    off_game_sound=1;
-                    PlaySound(0,0,0);
-                }
-                sounds[4].stop();
-                sounds[4].play();
-            }
+
             if(game_state==9 && teacher_index<=6)
             {
                 teacher_index++;
@@ -80,7 +87,7 @@ void change(){
                 hat_mstr++;
             }
        //image index start
-       if(sara_x == GIRL_X + 65) {
+       if(sara_x == GIRL_X + 65 && hasnain.state == 4) {
         for(int i = 0; i < 7; i++) {
             emoji_ind[i] += 20;
         }
@@ -104,7 +111,12 @@ void change(){
                 else if(jombie[i].image_index >= 7) jombie[i].image_index = 0;
             }
         }
-        if(hasnain.image_index == 6 && hasnain.state == 3) life_left--;
+        if(hasnain.image_index == 6 && hasnain.state == 3){ life_left--;
+        }
+        if(hasnain.state == 3 && hasnain.image_index == 4){
+            sounds[7].stop();
+            sounds[7].play();
+        }
         hasnain.image_index++;
         if(hasnain.image_index >= 10){
             if(hasnain.state == 4) hasnain.image_index = 9;
@@ -578,6 +590,8 @@ void change(){
                     if(jombie[i].face == 1) fic += 180;
                     bullet[pic].posx = jombie[i].posx+fic;
                     bullet[pic].posy = jombie[i].posy + 75;
+                    sounds[8].stop();
+                    sounds[8].play();
                  }
             }
     }

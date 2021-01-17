@@ -8,7 +8,8 @@ int hate_gulli = -110;
 int hate_gulli_left = -100;
 int act_ashiq = 0;
 int ashiq_image_index = 0;
-sf::Music sounds[6];
+int hasnain_dead_music = 0;
+sf::Music sounds[20];
 int throw_music_on = 0, sward_music= 0;
 bool shim_dead_sound=0,off_game_sound=0,pirat_sword_sound=0,keo_toroal_mare=0;
 bool act_zombie=0;//start- shimla
@@ -433,7 +434,7 @@ void iDraw()
         else if(cnt10 == 2){ freez = 1;
             iShowBMP2(0,0,"conversation\\34.bmp", 255);
         }
-        if(sara_x == GIRL_X + 65) {
+        if(sara_x == GIRL_X + 65 && hasnain.state == 4) {
             iShowBMP2(sara_x - 120, emoji_ind[0], "emoji\\1.bmp", 255);
             iShowBMP2(sara_x - 0, emoji_ind[1], "emoji\\2.bmp", 255);
             iShowBMP2(sara_x - 65, emoji_ind[2], "emoji\\3.bmp", 255);
@@ -700,6 +701,7 @@ void place_floor(){
 #include "ikeyboard.hpp";
 int main()
 {
+    base = 2;
     //SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
     fix_image();
     //SWAT_POSX = 0;
@@ -727,6 +729,9 @@ int main()
     sounds[3].setVolume(bol);
     sounds[3].setVolume(bol);
     sounds[5].openFromFile("pirate_sword.wav");
+    sounds[6].openFromFile("hasnain_dead.wav");
+    sounds[7].openFromFile("hammer.wav");
+    sounds[8].openFromFile("pistol.wav");
     iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
