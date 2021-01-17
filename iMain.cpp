@@ -2,6 +2,7 @@
 #include<bits/stdc++.h>
 #include <mmsystem.h>
 #include <windows.h>
+#include "SFML/Audio.hpp"
 using namespace std;
 int hate_gulli = -110;
 int hate_gulli_left = -100;
@@ -711,8 +712,15 @@ int main()
     }
     place_enemy();
     if(music){
-        PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
+        PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
     }
+    sf::Music music;
+    if(!music.openFromFile("win.wav")){
+        cout << "Music Error" << endl;
+        exit(0);
+    }
+    music.play();
+
     iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
