@@ -12,9 +12,11 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=gnu++14" />
 					<Add option="-g" />
 					<Add directory="OpenGL/include" />
 					<Add directory="graphics.h" />
+					<Add directory="SFML-2.5.1/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32" />
@@ -25,8 +27,14 @@
 					<Add library="OPENGL32" />
 					<Add library="gdi32" />
 					<Add library="libbgi.a" />
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-audio-d" />
+					<Add library="sfml-network-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
 					<Add directory="./OpenGL/lib" />
 					<Add directory="./graphics.h" />
+					<Add directory="SFML-2.5.1/lib" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="xcopy /y openGL\dll\glut32.dll $TARGET_OUTPUT_DIR" />
@@ -42,6 +50,11 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-audio" />
+					<Add library="sfml-network" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
 				</Linker>
 			</Target>
 		</Build>
@@ -60,6 +73,17 @@
 		<ExtraCommands>
 			<Add after="xcopy /y OpenGL\DLL\glut32.dll $TARGET_OUTPUT_DIR" />
 		</ExtraCommands>
+		<Unit filename="SFML-2.5.1/bin/openal32.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-audio-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-audio-d-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-graphics-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-graphics-d-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-network-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-network-d-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-system-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-system-d-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-window-2.dll" />
+		<Unit filename="SFML-2.5.1/bin/sfml-window-d-2.dll" />
 		<Unit filename="Story.txt" />
 		<Unit filename="functions.hpp" />
 		<Unit filename="iMain.cpp" />
