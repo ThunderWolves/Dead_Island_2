@@ -331,7 +331,7 @@ void change(){
             {
                 touch_continue=1;
             if(touch_sound==0 && music)
-                PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
+                sounds[0].play();
             life_left=life_left-1;
             touch_sound=1;
             }
@@ -355,6 +355,12 @@ void change(){
     if(TIME_NOW%4==0){
             if(FACE == 1){
                 if(NIN_THROW){
+                if(!throw_music_on){
+                    sounds[1].stop();
+                    sounds[1].play();
+                    sounds[1].setPlayingOffset(sf::seconds((float)1.7));
+                    throw_music_on = 1;
+                    }
                 nin_throw_idx++;
                 if(nin_throw_idx == 8){
                     NIN_COUNT++;
@@ -368,19 +374,33 @@ void change(){
                 if(nin_throw_idx == 10){
                     NIN_THROW = false;
                     nin_throw_idx = 0;
+                    throw_music_on = 0;
                 }
                 }
                  else if(toroal)//start- shimla
                 {
                 toroal_index++;
+                if(!sward_music){
+                    sward_music = 1;
+                    sounds[2].stop();
+                    sounds[2].play();
+                }
                 if(toroal_index== 10){
                     toroal=0;
                     toroal_index=0;
+                    throw_music_on = 0;
+                    sward_music = 0;
                 }
                 }
             }
             else{
                 if(NIN_THROW){
+                    if(!throw_music_on){
+                    sounds[1].stop();
+                    sounds[1].play();
+                    sounds[1].setPlayingOffset(sf::seconds(3.f));
+                    throw_music_on = 1;
+                    }
                     nin_throw_idxr++;
                     if(nin_throw_idxr == 8){
                         NIN_COUNT++;
@@ -394,13 +414,20 @@ void change(){
                     if(nin_throw_idxr == 10){
                     NIN_THROW = false;
                     nin_throw_idxr = 0;
+                    throw_music_on = 0;
                     }
                 }else if(toroal)//start- shimla
                 {
+                    if(!sward_music){
+                    sward_music = 1;
+                    sounds[2].stop();
+                    sounds[2].play();
+                }
                 toroal_indexr++;
                 if(toroal_indexr== 10){
                     toroal=0;
                     toroal_indexr=0;
+                    sward_music = 0;
                 }// end- shimla
                }
             }
