@@ -712,15 +712,8 @@ int main()
     }
     place_enemy();
     if(music){
-        PlaySound("touch.wav", NULL, SND_LOOP | SND_ASYNC);
+        PlaySound("start.wav", NULL, SND_LOOP | SND_ASYNC);
     }
-    sf::Music music;
-    if(!music.openFromFile("win.wav")){
-        cout << "Music Error" << endl;
-        exit(0);
-    }
-    music.play();
-
     iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
