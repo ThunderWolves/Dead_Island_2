@@ -57,6 +57,18 @@ void change(){
                 }
             else if(life_left<=0 && dead_shim_indexr<=8)
                 dead_shim_indexr++;
+            if((dead_shim_index==2 || dead_shim_indexr==2) && (shim_dead_sound==0))
+            {
+                //cout<<1<<endl;
+                shim_dead_sound=1;
+                if(off_game_sound==0)
+                {
+                    off_game_sound=1;
+                    PlaySound(0,0,0);
+                }
+                sounds[4].stop();
+                sounds[4].play();
+            }
             if(game_state==9 && teacher_index<=6)
             {
                 teacher_index++;
@@ -325,9 +337,10 @@ void change(){
     if(TIME_NOW%15==0 && life_left > 0)
     {
         touch_continue=0;
+        keo_toroal_mare=0;
         for(int i = 0; i < number_of_enemy; i++)
          {
-            if(jombie[i].state==3 && jombie[i].type != 3)
+            if(jombie[i].state==3 && jombie[i].type != 3 && jombie[i].type != 2)
             {
                 touch_continue=1;
             if(touch_sound==0 && music)
@@ -335,12 +348,31 @@ void change(){
             life_left=life_left-1;
             touch_sound=1;
             }
+            if(jombie[i].state==3 && jombie[i].type==2 && pirat_sword_sound==0)
+            {
+              pirat_sword_sound=1;
+              sounds[5].stop();
+              sounds[5].play();
+            }
+            if(jombie[i].state==3 && jombie[i].type==2)
+            {keo_toroal_mare=1;
+            life_left=max(life_left-1,0);}
+         }
+         if(keo_toroal_mare==0)
+         {
+             if(pirat_sword_sound==1 && music)
+             {
+                 pirat_sword_sound=0;
+                 sounds[5].stop();
+             }
+
          }
       if(touch_continue==0)
       {
           if(touch_sound==1 && music)
          {
             touch_sound=0;
+            sounds[0].stop();
          }
       }
       int mora = 0;

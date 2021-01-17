@@ -8,8 +8,9 @@ int hate_gulli = -110;
 int hate_gulli_left = -100;
 int act_ashiq = 0;
 int ashiq_image_index = 0;
-sf::Music sounds[5];
+sf::Music sounds[6];
 int throw_music_on = 0, sward_music= 0;
+bool shim_dead_sound=0,off_game_sound=0,pirat_sword_sound=0,keo_toroal_mare=0;
 bool act_zombie=0;//start- shimla
 int  act_zombie_index=0;//end- shimla
 int GRAVITY_SPEED = 40, base = 0,touch_sound=0,touch_continue=0;
@@ -721,6 +722,11 @@ int main()
     sounds[1].openFromFile("knife1.wav");
     sounds[2].openFromFile("sword.wav");
     sounds[3].openFromFile("knife3.wav");
+    sounds[4].openFromFile("shim_dead.wav");//shimla/////////////////////////////////////////////////////////////////////
+    float bol = 40;
+    sounds[3].setVolume(bol);
+    sounds[3].setVolume(bol);
+    sounds[5].openFromFile("pirate_sword.wav");
     iSetTimer(10, change);
     //GetDesktopResolution(desktop_hor, desktop_ver);
     iInitialize(desktop_hor, desktop_ver, "Demo!");
