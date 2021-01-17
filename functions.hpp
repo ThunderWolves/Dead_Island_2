@@ -116,6 +116,7 @@ void change(){
         if(hasnain.state == 3 && hasnain.image_index == 4){
             sounds[7].stop();
             sounds[7].play();
+            sounds[7].setPlayingOffset(sf::seconds(float(0.8)));
         }
         hasnain.image_index++;
         if(hasnain.image_index >= 10){

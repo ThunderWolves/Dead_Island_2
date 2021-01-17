@@ -197,20 +197,27 @@ void iKeyboard(unsigned char key)
                 GIRL_X = 1045;
             }
         }
+        if(game_state >= 10){
+            MAX_NINCHUK = 5;
+        }
         press_n = 0;
     }
     if(press_n || life_left <= 0) return;
     if(key=='m' && game_state>=1)
     {
+        if(max(toroal_index, toroal_indexr) != 0) return;
         toroal=1;
         RUN_STATUS = 0;
         NIN_THROW = 0;tolowar_dmg = 1;
     }
     if(game_state == 9) return;
     if(key == 'w'){
+            toroal_index = 0, toroal_indexr = 0;
         jump = true;
     }
     if(key == ' '){
+        toroal_index = 0;
+         toroal_indexr = 0;
             RUN_STATUS = 0;
             if(NIN_COUNT >= MAX_NINCHUK || NIN_THROW) return;
             NIN_THROW = 1;
@@ -222,6 +229,7 @@ void iKeyboard(unsigned char key)
     }
     if(key=='d')
     {
+        toroal_index = 0, toroal_indexr = 0;
         GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
         NIN_THROW = 0;
         if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
@@ -247,6 +255,7 @@ void iKeyboard(unsigned char key)
     }
     if(key=='a')
     {
+        toroal_index = 0, toroal_indexr = 0;
         GIRL_Y = max(GIRL_Y, FLOOR[game_state][GIRL_X][GIRL_Y]);
         NIN_THROW = 0;
         if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
