@@ -341,7 +341,6 @@ void change(){
           if(touch_sound==1 && music)
          {
             touch_sound=0;
-          PlaySound("music.wav", NULL, SND_LOOP | SND_ASYNC);
          }
       }
       int mora = 0;
@@ -358,7 +357,7 @@ void change(){
                 if(!throw_music_on){
                     sounds[1].stop();
                     sounds[1].play();
-                    sounds[1].setPlayingOffset(sf::seconds((float)1.7));
+                   sounds[1].setPlayingOffset(sf::seconds((float)1.7));
                     throw_music_on = 1;
                     }
                 nin_throw_idx++;
@@ -380,7 +379,7 @@ void change(){
                  else if(toroal)//start- shimla
                 {
                 toroal_index++;
-                if(!sward_music){
+                if(!sward_music && toroal_index == 3){
                     sward_music = 1;
                     sounds[2].stop();
                     sounds[2].play();
@@ -398,7 +397,7 @@ void change(){
                     if(!throw_music_on){
                     sounds[1].stop();
                     sounds[1].play();
-                    sounds[1].setPlayingOffset(sf::seconds(3.f));
+                    sounds[1].setPlayingOffset(sf::seconds((float)1.7));
                     throw_music_on = 1;
                     }
                     nin_throw_idxr++;
@@ -418,12 +417,12 @@ void change(){
                     }
                 }else if(toroal)//start- shimla
                 {
-                    if(!sward_music){
+                toroal_indexr++;
+                    if(!sward_music && toroal_indexr == 3){
                     sward_music = 1;
                     sounds[2].stop();
                     sounds[2].play();
                 }
-                toroal_indexr++;
                 if(toroal_indexr== 10){
                     toroal=0;
                     toroal_indexr=0;
@@ -490,6 +489,9 @@ void change(){
                 if(GIRL_X <= jombie[ii].posx && ninchuk[i].posx >= jombie[ii].posx ||
                         (GIRL_X >= jombie[ii].posx && ninchuk[i].posx <= jombie[ii].posx)){
                     chakus_in_dead_body.push_back(i);
+                    sounds[3].stop();
+                    sounds[3].play();
+                    sounds[3].setPlayingOffset(sf::seconds((float)0.1));
                     ninchuk[i].state = 2;
                     jombie[ii].state = 4;
                     jombie[ii].chaku = 1;
