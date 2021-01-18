@@ -136,6 +136,7 @@ void iKeyboard(unsigned char key)
         if(hasnain.state != 4) return;
             }
         if(GIRL_X >= desktop_hor-100|| game_state == 9 || press_n){
+            shim_dead_sound=1;
             NIN_COUNT = 0;
                 for(int i =0; i < MAX_NINCHUK; i++){
                     ninchuk[i].state = 0;

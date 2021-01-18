@@ -5,7 +5,7 @@
 #include "SFML/Audio.hpp"
 using namespace std;
 int hate_gulli = -110;
-int game_state = 5;
+int game_state = 8;
 int hate_gulli_left = -100;
 int act_ashiq = 0;
 int ashiq_image_index = 0;
@@ -435,7 +435,7 @@ void iDraw()
         else if(cnt10 == 2){ freez = 1;
             iShowBMP2(0,0,"conversation\\34.bmp", 255);
         }
-        if(sara_x == GIRL_X + 65 && hasnain.state == 4) {
+        if(abs(sara_x-GIRL_X) <= 65 && hasnain.state == 4) {
             iShowBMP2(sara_x - 120, emoji_ind[0], "emoji\\1.bmp", 255);
             iShowBMP2(sara_x - 0, emoji_ind[1], "emoji\\2.bmp", 255);
             iShowBMP2(sara_x - 65, emoji_ind[2], "emoji\\3.bmp", 255);
@@ -702,12 +702,10 @@ void place_floor(){
 #include "ikeyboard.hpp";
 int main()
 {
-    base = 2;
     //SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
     fix_image();
     //SWAT_POSX = 0;
     //SWAT_POSY = 140;
-    one = 0;
     srand(time(NULL));
     place_floor();
      int sum  = 100;
