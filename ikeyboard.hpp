@@ -188,6 +188,10 @@ void iKeyboard(unsigned char key)
                 base = 2;
             }
             if(game_state == 6){
+                if(music){
+                    sounds[4].stop();
+                    PlaySound("music.wav", NULL,SND_LOOP | SND_ASYNC);
+                }
                 life_left = 10;
                 GIRL_X = 350;
             }
