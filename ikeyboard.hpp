@@ -156,7 +156,12 @@ void iKeyboard(unsigned char key)
             }
             else if(game_state <= 6){
                 FACE = 1;
-                SWAT_POSX = 0;
+                if(game_state == 5)
+                SWAT_POSX = 100;
+                else {
+                    SWAT_POSX = 0;
+                    RUN_STATUS = 0;
+                }
                 base = 2;
             }
             else if(game_state == 7){

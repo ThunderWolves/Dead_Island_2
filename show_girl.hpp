@@ -9,7 +9,7 @@ void print_swat(){
     if(game_state == 5){
         if(SWAT_POSY > 140){
             iShowBMP2(SWAT_POSX+280, SWAT_POSY+60, "bk//para.bmp", 255);
-            iShowBMP2(SWAT_POSX+0, SWAT_POSY+60,"bk/para2.bmp", 255);
+            iShowBMP2(SWAT_POSX-90, SWAT_POSY+40,"bk/para3.bmp", 255);
             iShowBMP2(SWAT_POSX+230, SWAT_POSY+60,"bk/para.bmp", 255);
             iShowBMP2(SWAT_POSX+160, SWAT_POSY+60,"bk/para.bmp", 255);
         }
