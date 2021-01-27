@@ -20,6 +20,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32" />
+					<Add option="-lwinmm" />
 					<Add library="Glaux" />
 					<Add library="GLU32" />
 					<Add library="glui32" />

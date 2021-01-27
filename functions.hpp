@@ -15,22 +15,6 @@ void GetDesktopResolution(int& horizontal, int& vertical)
 
 void change(){
 
-    //farhan
-    if(jump == 0 && GIRL_Y > FLOOR[game_state][GIRL_X][GIRL_Y] + 60)  {
-        glid_on = 1;
-        if(FACE == 1) {
-            glid_index++;
-            glid_index %= 10;
-        } else {
-            glid_indexr++;
-            glid_indexr %= 10;
-        }
-
-    } else {
-        glid_on = 0;
-    }
-
-
     TIME_NOW ++;
     if(TIME_NOW > 1e18) TIME_NOW = 0;
     if(TIME_NOW%6 == 0){
@@ -78,6 +62,21 @@ void change(){
         return;
         }
         }
+        //farhan
+    if(jump == 0 && GIRL_Y > FLOOR[game_state][GIRL_X][GIRL_Y] + 60)  {
+        glid_on = 1;
+        if(FACE == 1) {
+            glid_index++;
+            glid_index %= 10;
+        } else {
+            glid_indexr++;
+            glid_indexr %= 10;
+        }
+
+    } else {
+        glid_on = 0;
+    }
+
     if(TIME_NOW%5 == 0){
             if(hasnain.state == 4 && hasnain_dead_music == 0 && game_state == 14) {
             //cout << "dead\n";
