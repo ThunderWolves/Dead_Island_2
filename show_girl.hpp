@@ -101,8 +101,21 @@ void show_girl(){
     else if(life_left<=0)
         iShowBMP2(GIRL_X, GIRL_Y-10, dead_shimr[dead_shim_indexr], 255);
     else if(RUN_STATUS){
-            if(FACE) iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
-            else iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
+            if(FACE) {
+                //farhan
+                if(glid_on) {
+                        iShowBMP2(GIRL_X, GIRL_Y, shimla_glid[glid_index], 255);
+                } else {
+                    iShowBMP2(GIRL_X,GIRL_Y,RunningPic[RunPicIndex1],255);
+                }
+            }
+            else {
+                if(glid_on) {
+                        iShowBMP2(GIRL_X, GIRL_Y, shimla_glidr[glid_indexr], 255);
+                } else {
+                    iShowBMP2(GIRL_X,GIRL_Y,LeftRun[RunPicIndex2],255);
+                }
+            }
         }
         else if(NIN_THROW){
             if(FACE == 1)
