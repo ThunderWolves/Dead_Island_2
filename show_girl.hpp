@@ -88,6 +88,14 @@ void show_jombie(){
 }
 
 void show_girl(){
+
+    //farhan
+    if(glid_on) {
+        //iShowBMP2(GIRL_X, GIRL_Y, shimla_glid[glid_index], 255);
+        //return;
+    }
+
+
     if(life_left<=0 && FACE)
              iShowBMP2(GIRL_X, GIRL_Y-10, dead_shim[dead_shim_index], 255);
     else if(life_left<=0)
@@ -113,9 +121,23 @@ void show_girl(){
             else iShowBMP2(GIRL_X,GIRL_Y,jumppicr[jumppic_indexr],255);
         }
         else{
-            if(FACE == 1)
-            iShowBMP2(GIRL_X, GIRL_Y, idlepic[idle_index],255);
-            else iShowBMP2(GIRL_X, GIRL_Y, idlepicr[idle_indexr],255);
+            if(FACE == 1) {
+                if(glid_on == 1) {
+                    iShowBMP2(GIRL_X, GIRL_Y, shimla_glid[glid_index], 255);
+                } else {
+                    //farhan
+                    iShowBMP2(GIRL_X, GIRL_Y, idlepic[idle_index],255);
+                }
+            }
+            else {
+                //farhan
+                if(glid_on == 1) {
+                    iShowBMP2(GIRL_X, GIRL_Y, shimla_glidr[glid_indexr], 255);
+                } else {
+                    //farhan
+                    iShowBMP2(GIRL_X, GIRL_Y, idlepicr[idle_indexr],255);
+                }
+            }
         }
         for(int nin = 0; nin < MAX_NINCHUK; nin++){
             if(ninchuk[nin].state == 1){
