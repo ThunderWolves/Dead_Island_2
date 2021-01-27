@@ -146,6 +146,7 @@ void iKeyboard(unsigned char key)
             game_state++;
             GIRL_X = 0;
             GIRL_Y = FLOOR[game_state][0][0];
+            cout << GIRL_Y << endl;
             if(game_state > 1){
                 UNLOCKED_CHARACTER = 2;
             }
