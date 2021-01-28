@@ -245,7 +245,7 @@ void iKeyboard(unsigned char key)
         NIN_THROW = 0;
         if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
         if(jump) return;
-        TIME_TO_STOP = TIME_NOW + 20;
+        TIME_TO_STOP = TIME_NOW + 15;
         if(TIME_TO_STOP > 1e18) TIME_TO_STOP -= 1e18-1;
         RUN_STATUS = true;
         if(FACE==0)
@@ -271,7 +271,7 @@ void iKeyboard(unsigned char key)
         NIN_THROW = 0;
         if(NIN_THROW && max(nin_throw_idx, nin_throw_idxr) < 4) return;
         if(jump) return;
-        TIME_TO_STOP = TIME_NOW + 20;
+        TIME_TO_STOP = TIME_NOW + 15;
         if(TIME_TO_STOP > 1e18) TIME_TO_STOP -= 1e18-1;
         RUN_STATUS = true;
         if(FACE==1)
