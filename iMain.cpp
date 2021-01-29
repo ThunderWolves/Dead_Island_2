@@ -250,6 +250,7 @@ void iDraw()
         iShowBMP(0,0,"bk\\0.bmp");
         show_jombie();
         show_girl();
+        iShowBMP2(0,83,"bk\\00.bmp",255);
         if(pos[game_state]){//-start - shimla
             freez = 1;
         iShowBMP2(0,0,"conversation\\1.bmp",255);
