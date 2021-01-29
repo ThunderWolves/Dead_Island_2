@@ -620,9 +620,9 @@ void change(){
             }
         if(ZOMBIE_DONE == 0) ZOMBIE_DONE = alive^1;
     }
-    if(TIME_NOW == TIME_TO_STOP ){
-        RUN_STATUS = false;
-    }
+        if(TIME_NOW >= TIME_TO_STOP){
+            RUN_STATUS = 0;
+        }
     if(SWAT_COME){
                     if(SWAT_POSY > 140){
                         SWAT_POSY -= min(10, SWAT_POSY-140);
