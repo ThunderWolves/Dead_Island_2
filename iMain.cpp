@@ -11,6 +11,7 @@ int act_ashiq = 0;
 int ashiq_image_index = 0;
 int hasnain_dead_music = 0;
 sf::Music sounds[20];
+int pause = 0;
 int throw_music_on = 0, sward_music= 0;
 bool shim_dead_sound=0,off_game_sound=0,pirat_sword_sound=0,keo_toroal_mare=0;
 bool act_zombie=0;//start- shimla
@@ -198,12 +199,6 @@ void iDraw()
 {
     //place your drawing codes here
     iClear();
-
-
-    //farhan
-
-
-
     if(act_zombie){
         iShowBMP(0,0,act_zombiePic[act_zombie_index]);
         iShowBMP2(0,636, "bk\\not.bmp",255);
@@ -476,7 +471,14 @@ void iDraw()
       show_girl();
       iShowBMP2(344,205,"bk\\27.bmp",255);
     }//
-
+    if(pause) {
+        //cout << life_left << endl;
+        //cout << "ses\n";
+        iShowBMP2(200, 200, "mainmenu\\lost.bmp", 0);
+        iShowBMP2(460, 80, "mainmenu\\restart.bmp", 0);
+        iShowBMP2(660, 80, "bk\\close.bmp", 0);
+        //return;
+    }
 
 }
 #include "functions.hpp"

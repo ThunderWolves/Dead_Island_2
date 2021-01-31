@@ -7,6 +7,88 @@ void iMouse(int button, int state, int mx, int my)
     // by farhan, start
     if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
+        if(pause == 1){
+            int one_x = 149, one_y = 150, two_x = 149, two_y = 150;
+            if(mx >= 460 && mx <= 460+one_x && my >= 80 && my <= 80+one_y){
+                //restart
+                pause = 0;
+                life_left = 10;
+                NIN_COUNT = 0;
+                for(int i =0; i < MAX_NINCHUK; i++){
+                    ninchuk[i].state = 0;
+                }
+                chakus_in_dead_body.clear();
+                case_ache = 1;
+                GIRL_X = 0;
+            GIRL_Y = FLOOR[game_state][0][0];
+            if(game_state > 1){
+                UNLOCKED_CHARACTER = 2;
+            }
+            if(game_state <= 2){
+                base = 0;
+            }
+            else if(game_state <= 3){
+                base = 2;
+            }
+            else if(game_state <= 6){
+                FACE = 1;
+                if(game_state == 5)
+                SWAT_POSX = 100;
+                else {
+                    SWAT_POSX = 0;
+                    RUN_STATUS = 0;
+                }
+                base = 2;
+            }
+            else if(game_state == 7){
+                    ZOMBIE_DONE = 0;
+                base = 0;
+            }
+            else if(game_state == 8){
+                ZOMBIE_DONE = 0;
+                base = 2;
+            }
+            else if(game_state <= 9){
+                base = 0;
+            }
+            else if(game_state == 10){
+                FACE = 1;
+            }
+            else if(game_state <= 11){
+                base = 0;
+            }
+            else if(game_state <= 13){
+                base = 2;
+            }
+            else if(game_state == 14){
+                base = 0;
+                game_state++;
+            }
+            else if(game_state == 16){
+                game_state = 14;
+                base = 2;
+            }
+            if(game_state == 6){
+                if(music){
+                    sounds[4].stop();
+                    PlaySound("music.wav", NULL,SND_LOOP | SND_ASYNC);
+                }
+                life_left = 10;
+                GIRL_X = 350;
+            }
+            place_enemy();
+            if(game_state == 9){
+                FACE = 0;
+                GIRL_X = 1045;
+            }
+        }
+        if(game_state >= 10){
+            MAX_NINCHUK = 5;
+        }
+            if(mx >= 660 && mx <= 660+two_x && my >= 80 && my <= 80+one_y){
+                exit(0);
+            }
+        }
         if(game_state > 0) return;
         for(int i = 0; i < 3; i++) {
             if(mx >= bCordinate[i].x && mx <= bCordinate[i].x + 149 && my >= bCordinate[i].y && my <= bCordinate[i].y + 150) {
