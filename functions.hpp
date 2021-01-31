@@ -78,7 +78,8 @@ void change(){
     }
 
     if(TIME_NOW%5 == 0){
-            if(life_left <= 0 && game_state != 5){
+            if(life_left <= 0 && game_state != 5 && pause == 0){
+                sounds[4].play();
                 pause = 1;
             }
             if(hasnain.state == 4 && hasnain_dead_music == 0 && game_state == 14) {

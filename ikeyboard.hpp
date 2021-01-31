@@ -7,6 +7,10 @@ void iMouse(int button, int state, int mx, int my)
     // by farhan, start
     if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
+        if(music){
+        sounds[4].stop();
+        PlaySound("music.wav", NULL,SND_LOOP | SND_ASYNC);
+    }
         if(pause == 1){
             int one_x = 149, one_y = 150, two_x = 149, two_y = 150;
             if(mx >= 460 && mx <= 460+one_x && my >= 80 && my <= 80+one_y){
@@ -85,7 +89,7 @@ void iMouse(int button, int state, int mx, int my)
         if(game_state >= 10){
             MAX_NINCHUK = 5;
         }
-            if(mx >= 660 && mx <= 660+two_x && my >= 80 && my <= 80+one_y){
+        if(mx >= 660 && mx <= 660+two_x && my >= 80 && my <= 80+one_y){
                 exit(0);
             }
         }
