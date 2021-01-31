@@ -82,9 +82,9 @@ void change(){
                 sounds[4].play();
                 pause = 1;
             }
-            if(hasnain.state == 4 && hasnain_dead_music == 0 && game_state == 14) {
+            if(niloy.state == 4 && niloy_dead_music == 0 && game_state == 14) {
             //cout << "dead\n";
-            hasnain_dead_music = 1;
+            niloy_dead_music = 1;
             sounds[6].stop();
             sounds[6].play();
             //sounds[4].setPlayingOffset(sf::seconds((float)2.0));
@@ -107,7 +107,7 @@ void change(){
                 hat_mstr++;
             }
        //image index start
-       if(sara_x == GIRL_X + 65 && hasnain.state == 4) {
+       if(sara_x == GIRL_X + 65 && niloy.state == 4) {
         for(int i = 0; i < 7; i++) {
             emoji_ind[i] += 20;
         }
@@ -131,17 +131,17 @@ void change(){
                 else if(jombie[i].image_index >= 7) jombie[i].image_index = 0;
             }
         }
-        if(hasnain.image_index == 6 && hasnain.state == 3){ life_left--;
+        if(niloy.image_index == 6 && niloy.state == 3){ life_left--;
         }
-        if(hasnain.state == 3 && hasnain.image_index == 4){
+        if(niloy.state == 3 && niloy.image_index == 4){
             sounds[7].stop();
             sounds[7].play();
             sounds[7].setPlayingOffset(sf::seconds(float(0.8)));
         }
-        hasnain.image_index++;
-        if(hasnain.image_index >= 10){
-            if(hasnain.state == 4) hasnain.image_index = 9;
-            else hasnain.image_index = 0;
+        niloy.image_index++;
+        if(niloy.image_index >= 10){
+            if(niloy.state == 4) niloy.image_index = 9;
+            else niloy.image_index = 0;
         }
     //image index done
         if((SWAT_COME || press_n) && game_state == 5){
@@ -153,10 +153,10 @@ void change(){
                     if(jombie[i].posx > 1350) jombie[i].state = 4;
                 }
             }
-            hasnain.state = 2;
-            hasnain.face = 1;
-            hasnain.posx += 20;
-            if(hasnain.posx >  1350 ) hasnain.state = 4;
+            niloy.state = 2;
+            niloy.face = 1;
+            niloy.posx += 20;
+            if(niloy.posx >  1350 ) niloy.state = 4;
             return;
         }
         if(life_left <= -3 && SWAT_COME == 0 && game_state == 5){
@@ -169,61 +169,61 @@ void change(){
           sara_index %= 20;
       }
         int has_pas = 80;
-        if(abs(hasnain.posy - GIRL_Y) >= 300 && hasnain.state != 4) {
-            hasnain.state = 0; hasnain.image_index= 0;
+        if(abs(niloy.posy - GIRL_Y) >= 300 && niloy.state != 4) {
+            niloy.state = 0; niloy.image_index= 0;
         }
-        else if(hasnain.state != 4){
-            if(abs(hasnain.posx - GIRL_X) <= hasnain.feel_range && hasnain.state == 0) hasnain.state = 2;
-            if(hasnain.posx > GIRL_X-65){
-                if(hasnain.state == 3){
-                    hasnain.face = 0;
-                    if(hasnain.posx - GIRL_X > has_pas){
-                        hasnain.state = 2;
-                        hasnain.image_index = 0;
-                        hasnain.posx -= 10;
+        else if(niloy.state != 4){
+            if(abs(niloy.posx - GIRL_X) <= niloy.feel_range && niloy.state == 0) niloy.state = 2;
+            if(niloy.posx > GIRL_X-65){
+                if(niloy.state == 3){
+                    niloy.face = 0;
+                    if(niloy.posx - GIRL_X > has_pas){
+                        niloy.state = 2;
+                        niloy.image_index = 0;
+                        niloy.posx -= 10;
                     }
                 }
-                else if(hasnain.state == 2){
-                    hasnain.face = 0;
-                    hasnain.posx -= 15;
+                else if(niloy.state == 2){
+                    niloy.face = 0;
+                    niloy.posx -= 15;
                 }
-                else if(hasnain.state == 0){
-                    if(hasnain.face == 0){
-                        if(hasnain.posx - GIRL_X <= hasnain.seeing_range){
-                            hasnain.state = 2;
-                            hasnain.image_index = 0;
+                else if(niloy.state == 0){
+                    if(niloy.face == 0){
+                        if(niloy.posx - GIRL_X <= niloy.seeing_range){
+                            niloy.state = 2;
+                            niloy.image_index = 0;
                         }
                     }
                 }
-                if(hasnain.posx - GIRL_X <= has_pas && hasnain.state != 3 && hasnain.state <= 3){
-                        hasnain.state = 3;
-                        hasnain.image_index = 0;
+                if(niloy.posx - GIRL_X <= has_pas && niloy.state != 3 && niloy.state <= 3){
+                        niloy.state = 3;
+                        niloy.image_index = 0;
                     }
             }
             else{
-                if(hasnain.state == 3){
-                    hasnain.face = 1;
-                    if(0-hasnain.posx + GIRL_X > has_pas+150){
-                        hasnain.state = 2;
-                        hasnain.image_index = 0;
-                        hasnain.posx += 10;
+                if(niloy.state == 3){
+                    niloy.face = 1;
+                    if(0-niloy.posx + GIRL_X > has_pas+150){
+                        niloy.state = 2;
+                        niloy.image_index = 0;
+                        niloy.posx += 10;
                     }
                 }
-                else if(hasnain.state == 2){
-                    hasnain.face = 1;
-                    hasnain.posx += 15;
+                else if(niloy.state == 2){
+                    niloy.face = 1;
+                    niloy.posx += 15;
                 }
-                else if(hasnain.state == 0){
-                    if(hasnain.face == 1){
-                        if(-hasnain.posx + GIRL_X <= hasnain.seeing_range){
-                            hasnain.state = 2;
-                            hasnain.image_index = 0;
+                else if(niloy.state == 0){
+                    if(niloy.face == 1){
+                        if(-niloy.posx + GIRL_X <= niloy.seeing_range){
+                            niloy.state = 2;
+                            niloy.image_index = 0;
                         }
                     }
                 }
-                if(-hasnain.posx + GIRL_X <= has_pas+150 && hasnain.state != 3 && hasnain.state <= 3){
-                    hasnain.state = 3;
-                    hasnain.image_index = 0;
+                if(-niloy.posx + GIRL_X <= has_pas+150 && niloy.state != 3 && niloy.state <= 3){
+                    niloy.state = 3;
+                    niloy.image_index = 0;
                 }
             }
         }
@@ -412,7 +412,7 @@ void change(){
       for(int i = 0; i < number_of_enemy; i++) {
             if(jombie[i].state == 4) mora++;
       }
-      if(number_of_enemy == mora && hasnain.state == 4) {
+      if(number_of_enemy == mora && niloy.state == 4) {
             case_ache = 0;
       }
     }
@@ -536,15 +536,15 @@ void change(){
                 ninchuk[i].state = 0;
                 NIN_COUNT--;
             }
-            if((GIRL_X <= hasnain.posx && ninchuk[i].posx >= hasnain.posx ||
-                        (GIRL_X >= hasnain.posx && ninchuk[i].posx <= hasnain.posx)) && hasnain.state != 4 ){
+            if((GIRL_X <= niloy.posx && ninchuk[i].posx >= niloy.posx ||
+                        (GIRL_X >= niloy.posx && ninchuk[i].posx <= niloy.posx)) && niloy.state != 4 ){
                             ninchuk[i].state = 2;
                             chakus_in_dead_body.push_back(i);
-                            hasnain.chaku ++;
-                            hasnain.life--;
-                            if(hasnain.life <= 0){
-                                hasnain.state = 4;
-                                hasnain.image_index = 0;
+                            niloy.chaku ++;
+                            niloy.life--;
+                            if(niloy.life <= 0){
+                                niloy.state = 4;
+                                niloy.image_index = 0;
                             }
             }
             for(int ii = 0; ii < number_of_enemy; ii++){
@@ -588,13 +588,13 @@ void change(){
                 break;
             }
         }
-        if(((GIRL_X+90 >= hasnain.posx && GIRL_X<=hasnain.posx ) ||(GIRL_X - 220<= hasnain.posx && GIRL_X >= hasnain.posx )) && hasnain.state != 4 && toroal==1){
-            if(abs(GIRL_Y - hasnain.posy) > 200 || !tolowar_dmg) {}
+        if(((GIRL_X+90 >= niloy.posx && GIRL_X<=niloy.posx ) ||(GIRL_X - 220<= niloy.posx && GIRL_X >= niloy.posx )) && niloy.state != 4 && toroal==1){
+            if(abs(GIRL_Y - niloy.posy) > 200 || !tolowar_dmg) {}
             else {
-                hasnain.life--;
+                niloy.life--;
                 tolowar_dmg = 0;
-                if(hasnain.life <= 0){
-                    hasnain.state = 4; hasnain.image_index = 0;
+                if(niloy.life <= 0){
+                    niloy.state = 4; niloy.image_index = 0;
                 }
             }
         }

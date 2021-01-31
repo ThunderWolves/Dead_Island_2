@@ -9,7 +9,7 @@ int game_state = 0;
 int hate_gulli_left = -100;
 int act_ashiq = 0;
 int ashiq_image_index = 0;
-int hasnain_dead_music = 0;
+int niloy_dead_music = 0;
 sf::Music sounds[20];
 int pause = 0;
 int throw_music_on = 0, sward_music= 0;
@@ -49,7 +49,7 @@ int TIME_TO_STOP = 0;
 int freez = 0;
 int sara_idle_index = 0;
 int jumppic_indexr = 0, idle_indexr = 0, nin_throw_idxr = 0;
-int hasnain_dead = 0,case_ache = 1,sara_x = 1100, sara_y = 60, sara_index = 0;
+int niloy_dead = 0,case_ache = 1,sara_x = 1100, sara_y = 60, sara_index = 0;
 
 int ashiq_video_on = 0, press_g = 0, ashiq_video_index = 0;
 int dead_shim_indexr=0;
@@ -97,7 +97,7 @@ char t2enemyr[5][14][20] = {{"grl\\idler\\1.bmp","grl\\idler\\2.bmp","grl\\idler
                 {"grl\\atkr\\1.bmp","grl\\atkr\\2.bmp","grl\\atkr\\3.bmp","grl\\atkr\\4.bmp","grl\\atkr\\5.bmp","grl\\atkr\\6.bmp"},
                 {"grl\\dedr\\1.bmp","grl\\dedr\\2.bmp","grl\\dedr\\3.bmp","grl\\dedr\\4.bmp","grl\\dedr\\5.bmp","grl\\dedr\\6.bmp","grl\\dedr\\7.bmp","grl\\dedr\\8.bmp","grl\\dedr\\9.bmp","grl\\dedr\\10.bmp","grl\\dedr\\11.bmp","grl\\dedr\\12.bmp"} };
 bool toroal=0;
-int one = 1; //default = 1;
+int one = 0; //default = 1;
 int toroal_index=0,toroal_indexr=0;
 char toroal_pic[15][25]={"toroal\\1.bmp","toroal\\2.bmp","toroal\\3.bmp","toroal\\4.bmp","toroal\\5.bmp","toroal\\6.bmp","toroal\\7.bmp","toroal\\8.bmp","toroal\\9.bmp","toroal\\10.bmp"};
 char toroal_picr[15][25]={"toroalr\\1.bmp","toroalr\\2.bmp","toroalr\\3.bmp","toroalr\\4.bmp","toroalr\\5.bmp","toroalr\\6.bmp","toroalr\\7.bmp","toroalr\\8.bmp","toroalr\\9.bmp","toroalr\\10.bmp"};
@@ -167,7 +167,7 @@ struct boss{
     int base;
     int life = MAX_LIFE;
 };
-boss hasnain;
+boss niloy;
 arm1 bullet[300];
 arm1 ninchuk[30];
 enemy1 jombie[number_of_enemy];
@@ -447,7 +447,7 @@ void iDraw()
         else if(cnt10 == 2){ freez = 1;
             iShowBMP2(0,0,"conversation\\34.bmp", 255);
         }
-        if(abs(sara_x-GIRL_X) <= 65 && hasnain.state == 4) {
+        if(abs(sara_x-GIRL_X) <= 65 && niloy.state == 4) {
             iShowBMP2(sara_x - 120, emoji_ind[0], "emoji\\1.bmp", 255);
             iShowBMP2(sara_x - 0, emoji_ind[1], "emoji\\2.bmp", 255);
             iShowBMP2(sara_x - 65, emoji_ind[2], "emoji\\3.bmp", 255);
@@ -488,15 +488,15 @@ void place_enemy(){
         ase.insert(i);
     }
     if(game_state == 5 || game_state == 14){
-        hasnain.life = hasnain.MAX_LIFE;
-        hasnain.posx = 900;
-        hasnain.posy = FLOOR[game_state][0][0] ;
-        hasnain.face = 0,
-        hasnain.chaku = 0;
-        hasnain.image_index = 0;
-        hasnain.state = 0;
+        niloy.life = niloy.MAX_LIFE;
+        niloy.posx = 900;
+        niloy.posy = FLOOR[game_state][0][0] ;
+        niloy.face = 0,
+        niloy.chaku = 0;
+        niloy.image_index = 0;
+        niloy.state = 0;
     }
-    else hasnain.state = 4;
+    else niloy.state = 4;
     int dif = (desktop_hor-500)/number_of_enemy;
     int space = 400;
     if(game_state == 6 ){
@@ -744,7 +744,7 @@ int main()
     sounds[3].openFromFile("knife3.wav");
     sounds[4].openFromFile("shim_dead.wav");//shimla/////////////////////////////////////////////////////////////////////
     sounds[5].openFromFile("pirate_sword.wav");
-    sounds[6].openFromFile("hasnain_dead.wav");
+    sounds[6].openFromFile("niloy_dead.wav");
     sounds[7].openFromFile("hammer.wav");
     sounds[8].openFromFile("pistol.wav");
     iSetTimer(10, change);

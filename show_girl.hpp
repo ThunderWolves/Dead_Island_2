@@ -30,15 +30,15 @@ void print_swat(){
 void show_jombie(){
         if(game_state == 5 || game_state == 14){
             int bonus = 0;
-            if(hasnain.state == 3 && (hasnain.image_index >= 5 || hasnain.image_index <= 1)){
+            if(niloy.state == 3 && (niloy.image_index >= 5 || niloy.image_index <= 1)){
                 bonus = 45;
             }
-            if(hasnain.face) iShowBMP2(hasnain.posx+bonus,hasnain.posy, bos[hasnain.state][hasnain.image_index],255);
-            else iShowBMP2(hasnain.posx-bonus,hasnain.posy, bosr[hasnain.state][hasnain.image_index],255);
-            if(hasnain.state != 4){
-                int pk = floor((200.00/hasnain.MAX_LIFE)*hasnain.life);
+            if(niloy.face) iShowBMP2(niloy.posx+bonus,niloy.posy, bos[niloy.state][niloy.image_index],255);
+            else iShowBMP2(niloy.posx-bonus,niloy.posy, bosr[niloy.state][niloy.image_index],255);
+            if(niloy.state != 4){
+                int pk = floor((200.00/niloy.MAX_LIFE)*niloy.life);
                 iSetColor(255, 0,0);
-                iFilledRectangle(hasnain.posx+23,hasnain.posy+200,pk ,10);
+                iFilledRectangle(niloy.posx+23,niloy.posy+200,pk ,10);
             }
         }
         for(int i = 0; i < number_of_enemy; i++){

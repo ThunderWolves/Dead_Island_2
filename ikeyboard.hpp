@@ -225,7 +225,7 @@ void iKeyboard(unsigned char key)
                 return;
             }
         }
-        if(hasnain.state != 4) return;
+        if(niloy.state != 4) return;
             }
         if(GIRL_X >= desktop_hor-100|| game_state == 9 || press_n){
             shim_dead_sound=1;
