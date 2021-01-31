@@ -14,6 +14,9 @@ void iMouse(int button, int state, int mx, int my)
         if(pause == 1){
             int one_x = 149, one_y = 150, two_x = 149, two_y = 150;
             if(mx >= 460 && mx <= 460+one_x && my >= 80 && my <= 80+one_y){
+                SWAT_POSY = 600;
+                SWAT_POSX = 100;
+                GIRL_Y = 700;
                 if(game_state == 6){
                     game_state = 5;
                 }
