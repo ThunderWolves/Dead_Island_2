@@ -1,5 +1,5 @@
 # Project
-This is an action-adventure video Game Developed by Farhan, Shimla & Ashiq.
+This is an action-adventure video Game developed by Farhan, Shimla & Ashiq.
 
 
 # GamePlay Video:
