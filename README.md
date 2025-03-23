@@ -23,56 +23,50 @@
 <table>
   <tr> Starting With The Intro Of The Game</tr>
   <tr>
-    <td><img src="Previews/DeadIsland1.png" alt="Home Screen" width="250"></td>
-    <td><img src="Previews/DeadIsland2.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland3.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland4.png" alt="Gameplay" width="250"></td>
+    <td><img src="Previews/DeadIsland1.png" alt="Home Screen" width="320"></td>
+    <td><img src="Previews/DeadIsland3.png" alt="Gameplay" width="320"></td>
+    <td><img src="Previews/DeadIsland4.png" alt="Gameplay" width="320"></td>
   </tr>
 </table>
 <table>
   <tr> Some Stages Before Meeting The Charecter Farhan</tr>
   <tr>
-    <td><img src="Previews/DeadIsland5.png" alt="Home Screen" width="250"></td>
-    <td><img src="Previews/DeadIsland6.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland7.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland8.png" alt="Gameplay" width="250"></td>
+    <td><img src="Previews/DeadIsland6.png" alt="Gameplay" width="320"></td>
+    <td><img src="Previews/DeadIsland7.png" alt="Gameplay" width="320"></td>
+    <td><img src="Previews/DeadIsland8.png" alt="Gameplay" width="320"></td>
   </tr>
 </table>
 <table>
   <tr>Fighting and Farhans Entry to The Game</tr>
   <tr>
-    <td><img src="Previews/DeadIsland9.png" alt="Home Screen" width="250"></td>
-    <td><img src="Previews/DeadIsland10.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland11.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland12.png" alt="Gameplay" width="250"></td>
+    <td><img src="Previews/DeadIsland9.png" alt="Home Screen" width="320"></td>
+    <td><img src="Previews/DeadIsland10.png" alt="Gameplay" width="320"></td>
+    <td><img src="Previews/DeadIsland12.png" alt="Gameplay" width="320"></td>
   </tr>
 </table>
 <table>
   <tr>The Charecter Ashiq Entry and Trainning Stage</tr>
   <tr>
-    <td><img src="Previews/DeadIsland13.png" alt="Home Screen" width="250"></td>
-    <td><img src="Previews/DeadIsland14.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland15.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland16.png" alt="Gameplay" width="250"></td>
+    <td><img src="Previews/DeadIsland13.png" alt="Home Screen" width="320"></td>
+    <td><img src="Previews/DeadIsland15.png" alt="Gameplay" width="320"></td>
+    <td><img src="Previews/DeadIsland16.png" alt="Gameplay" width="320"></td>
   </tr>
 </table>
 
 <table>
   <tr>Some Stages Before the Boss Round</tr>
   <tr>
-    <td><img src="Previews/DeadIsland17.png" alt="Home Screen" width="250"></td>
-    <td><img src="Previews/DeadIsland18.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland19.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland20.png" alt="Gameplay" width="250"></td>
+    <td><img src="Previews/DeadIsland17.png" alt="Home Screen" width="320"></td>
+    <td><img src="Previews/DeadIsland18.png" alt="Gameplay" width="320"></td>
+    <td><img src="Previews/DeadIsland19.png" alt="Gameplay" width="320"></td>
   </tr>
 </table>
 <table>
   <tr>The Final Fight and Ending</tr>
   <tr>
-    <td><img src="Previews/DeadIsland23.png" alt="Home Screen" width="250"></td>
-    <td><img src="Previews/DeadIsland24.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland27.png" alt="Gameplay" width="250"></td>
-    <td><img src="Previews/DeadIsland28.png" alt="Gameplay" width="250"></td>
+    <td><img src="Previews/DeadIsland24.png" alt="Gameplay" width="320"></td>
+    <td><img src="Previews/DeadIsland27.png" alt="Gameplay" width="320"></td>
+    <td><img src="Previews/DeadIsland28.png" alt="Gameplay" width="320"></td>
   </tr>
 </table>
 
